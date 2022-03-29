@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.MaterialComponents.CardView"
+    android:id="@+id/search_blog_item_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_32">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="@dimen/dimen_0"
+        app:layout_constraintBottom_toBottomOf="@id/blog_author"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/blog_title"
+        app:layout_constraintTop_toTopOf="@id/blog_title" />
+
+        <ImageView
+            android:id="@+id/blog_image"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="@dimen/dimen_0"
+            android:contentDescription="@string/text_blog_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/blog_author"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/blog_title"
+            app:layout_constraintTop_toTopOf="@id/blog_title"
+            tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/blog_title"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="2"
+        android:paddingHorizontal="@dimen/dimen_16"
+        android:paddingTop="@dimen/dimen_16"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/blog_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/text_blog_title" />
+
+        <ImageView
+        android:id="@+id/blog_author_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_4"
+        app:layout_constraintBottom_toBottomOf="@id/blog_author"
+        app:layout_constraintStart_toStartOf="@id/blog_title"
+        app:layout_constraintTop_toTopOf="@id/blog_author"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        android:contentDescription="@string/text_blog_author" />
+
+    <TextView
+        android:id="@+id/blog_author"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/dimen_16"
+        android:padding="@dimen/dimen_4"
+        android:textAppearance="?attr/textAppearanceCaption"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/blog_author_icon"
+        app:layout_constraintTop_toBottomOf="@id/blog_title"
+        tools:text="@string/text_blog_author" />
+
+        <View
+        android:id="@+id/highlight"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="@dimen/dimen_0"
+        android:foreground="@drawable/small_component_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/blog_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

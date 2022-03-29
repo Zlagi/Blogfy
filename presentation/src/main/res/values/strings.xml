@@ -1,0 +1,15 @@
+<resources>
+    <string name="email_error_message">Please enter a valid email address</string>
+    <string name="username_error_message">No special characters allowed in username</string>
+    <string name="username_error_message2">Username must be at least 8 characters</string>
+    <string name="password_error_message">Password must be at least 8 characters</string>
+    <string name="empty_field_message">Empty field</string>
+    <string name="no_error_message" />
+    <string name="title_error_message">Title must be at least 3 characters</string>
+    <string name="description_error_message">Description must be at least 8 characters</string>
+    <string name="uri_error_message">You must select an image.</string>
+    <string name="created">Created</string>
+    <string name="updated">Updated</string>
+    <string name="password_unmatched">"Passwords do not match."</string>
+
+</resources>

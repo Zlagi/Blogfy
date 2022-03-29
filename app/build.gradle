@@ -1,0 +1,122 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
+    id 'com.google.gms.google-services'
+    id 'com.google.secrets_gradle_plugin' version '0.4'
+}
+
+android {
+    compileSdkVersion SDKConfig.compileSdkVersion
+    buildToolsVersion SDKConfig.buildToolsVersion
+
+    defaultConfig {
+        applicationId SDKConfig.applicationId
+        minSdkVersion SDKConfig.minSdkVersion
+        targetSdkVersion SDKConfig.targetSdkVersion
+        versionCode SDKConfig.versionCode
+        versionName SDKConfig.versionName
+
+        testInstrumentationRunner "com.zlagi.blogfy.HiltTestRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude "**/attach_hotspot_windows.dll"
+        exclude "META-INF/licenses/**"
+        exclude "META-INF/AL2.0"
+        exclude "META-INF/LGPL2.1"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation project(":common")
+    implementation project(":data")
+    implementation project(":domain")
+    implementation project(':network')
+    implementation project(':cache')
+    implementation project(":preferences")
+    implementation project(":presentation")
+
+    // Ui
+    implementation Deps.TOASTER
+    implementation Deps.TOASTER_KTX
+    implementation Deps.APP_COMPAT
+    implementation Deps.RECYCLER_VIEW
+    implementation Deps.LOTTIE
+    implementation Deps.COIL
+    implementation Deps.FIRECOIL
+    implementation Deps.MATERIAL
+    implementation Deps.SWIPE_REFRESH
+    implementation Deps.CONSTRAINT_LAYOUT
+
+    // Work Manager
+    implementation Deps.WORK_MANAGER
+    implementation Deps.DAGGER_HILT_WORK
+
+    // Firebase
+    implementation Deps.FIREBASE_GMS
+    implementation Deps.FIREBASE_AUTH_KTX
+    implementation Deps.FIREBASE_STORAGE
+
+    // Retrofit
+    implementation Deps.RETROFIT
+    implementation Deps.MOSHI_CONVERTER
+
+    // Okhttp
+    implementation Deps.OKHTTP
+    implementation Deps.OKHTTP_LOGGING_INTERCEPTOR
+
+    // Room
+    implementation Deps.ROOM
+    implementation Deps.ROOM_KTX
+    kapt AnnotationDeps.ROOM_COMPILER
+
+    // Navigation
+    implementation Deps.NAVIGATION_FRAGMENT_KTX
+    implementation Deps.NAVIGATION_UI_KTX
+
+    // Lifecycles
+    implementation Deps.LIFECYCLESCOPE
+
+    // Dagger - Hilt
+    implementation Deps.DAGGER_HILT
+    kapt AnnotationDeps.DAGGER_HILT_COMPILER
+
+    // Kotlin extensions
+    implementation Deps.CORE_KTX
+
+    // Kotlin reflection
+    implementation Deps.REFLECT
+
+    // Leak canary
+    implementation Deps.LEAK_CANARY
+
+    // Android-Image-Cropper
+    implementation Deps.ANDROID_IMAGE_CROPPER
+
+    // One signal
+    implementation Deps.ONESIGNAL
+}

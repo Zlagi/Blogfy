@@ -1,0 +1,97 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+
+        <vector
+            android:width="48dp"
+            android:height="48dp"
+            android:viewportWidth="48"
+            android:viewportHeight="48">
+
+            <group
+                android:name="progressBarContainer2">
+                <path
+                    android:pathData="M17.5898,0.0508C14.8359,0.3125 12.7422,0.8984 10.457,2.0469C7.4453,3.5547 4.6523,6.1172 2.8203,9.0547C1.4922,11.1758 0.5273,13.9141 0.1328,16.6641C0.0078,17.5391 0.0078,20.4609 0.1328,21.3359C0.4453,23.5273 1.0234,25.4414 1.9297,27.2734C2.9453,29.3516 3.9492,30.75 5.5977,32.4023C7.2383,34.0352 8.6523,35.0547 10.6484,36.0313C12.0469,36.7148 12.9453,37.0508 14.3633,37.4063C18.0703,38.3398 21.7969,38.1641 25.4219,36.8789C26.5352,36.4844 28.4492,35.5195 29.4297,34.8672C33.5859,32.0938 36.4922,27.875 37.5547,23.082C37.8008,21.9688 37.9258,20.9219 37.9766,19.6328C38.0898,16.4688 37.4375,13.457 36.0273,10.6211C35.1055,8.7656 34.0742,7.3047 32.625,5.8125C31.0391,4.1641 29.4336,3 27.3516,1.9688C25.1523,0.8828 23.1055,0.2969 20.6719,0.0742C19.9141,0.0078 18.1992,-0.0078 17.5898,0.0508ZM20.2969,1.707C24.5508,2.0547 28.3164,3.793 31.2852,6.7852C34.0078,9.5234 35.6992,12.9961 36.2266,16.9219C36.3438,17.8281 36.3438,20.1719 36.2266,21.0781C35.6406,25.4492 33.5625,29.3398 30.3203,32.1211C27.6992,34.3633 24.5586,35.7578 21.0781,36.2266C20.1719,36.3438 17.8281,36.3438 16.9219,36.2266C9.4609,35.2305 3.6133,29.875 2.0391,22.6016C1.7656,21.3008 1.6758,20.4688 1.6758,19C1.6758,17.6055 1.7578,16.7578 2.0117,15.5273C2.8867,11.1992 5.4609,7.2969 9.1133,4.7656C12.3945,2.4844 16.418,1.3867 20.2969,1.707ZM20.2969,1.707"
+                    android:fillColor="@color/grey5"
+                    android:fillType="nonZero"
+                    android:strokeColor="#00000000"/>
+                <path
+                    android:pathData="M18.6641,8.3203C18.4375,8.4453 11.8008,15.082 11.6836,15.3047C11.4141,15.8164 11.7266,16.4453 12.2813,16.4922C12.7344,16.5195 12.7813,16.4844 15.4883,13.7891L18.1836,11.1016L18.1836,20.1133C18.1836,28.8711 18.1914,29.1367 18.3242,29.3594C18.6211,29.8516 19.3789,29.8516 19.6758,29.3594C19.8086,29.1367 19.8164,28.8711 19.8164,20.1133L19.8164,11.1016L22.5117,13.7891C25.2188,16.4844 25.2656,16.5195 25.7188,16.4922C26.2734,16.4453 26.5859,15.8164 26.3164,15.3047C26.1836,15.0586 19.5508,8.4375 19.3203,8.3203C19.1172,8.2148 18.8594,8.2148 18.6641,8.3203ZM18.6641,8.3203"
+                    android:fillColor="@color/grey5"
+                    android:fillType="nonZero"
+                    android:strokeColor="#00000000"/>
+
+            </group>
+
+            <group
+                android:name="progressBarContainer"
+                android:translateX="19"
+                android:translateY="19">
+
+                <path
+                    android:name="progressBar"
+                    android:pathData="M0,0 m 0,-18 a 18,18 0 1,1 0,36 a 18,18 0 1,1 0,-36"
+                    android:strokeWidth="2"
+                    android:strokeColor="#FF4081"
+                    android:strokeLineCap="square"
+                    android:strokeLineJoin="miter"
+                    android:trimPathStart="0"
+                    android:trimPathEnd="0"
+                    android:trimPathOffset="0" />
+            </group>
+        </vector>
+    </aapt:attr>
+
+    <target android:name="progressBar">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:duration="1333"
+                    android:propertyName="trimPathStart"
+                    android:repeatCount="-1"
+                    android:valueFrom="0"
+                    android:valueTo="0.75"
+                    android:valueType="floatType">
+                    <aapt:attr name="android:interpolator">
+                        <pathInterpolator android:pathData="L0.5,0 C 0.7,0 0.6,1 1,1" />
+                    </aapt:attr>
+                </objectAnimator>
+                <objectAnimator
+                    android:duration="1333"
+                    android:fromDegrees="270"
+                    android:propertyName="trimPathEnd"
+                    android:repeatCount="-1"
+                    android:valueFrom="0"
+
+                    android:valueTo="0.78"
+                    android:valueType="floatType">
+                    <aapt:attr name="android:interpolator">
+                        <pathInterpolator android:pathData="C0.2,0 0.1,1 0.5,0.96 C 0.96666666666,0.96 0.99333333333,1 1,1" />
+                    </aapt:attr>
+                </objectAnimator>
+                <objectAnimator
+                    android:duration="1333"
+                    android:interpolator="@android:anim/linear_interpolator"
+                    android:propertyName="trimPathOffset"
+                    android:repeatCount="-1"
+                    android:valueFrom="0"
+                    android:valueTo="0.25"
+                    android:valueType="floatType" />
+            </set>
+        </aapt:attr>
+    </target>
+
+    <target android:name="progressBarContainer">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="4444"
+                android:interpolator="@android:anim/linear_interpolator"
+                android:propertyName="rotation"
+                android:repeatCount="-1"
+                android:valueFrom="0"
+                android:valueTo="270"
+                android:valueType="floatType" />
+        </aapt:attr>
+    </target>
+
+</animated-vector>

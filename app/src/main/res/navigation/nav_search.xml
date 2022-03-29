@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_search"
+    app:startDestination="@id/searchBlogFragment">
+
+    <fragment
+        android:id="@+id/searchBlogFragment"
+        android:name="com.zlagi.blogfy.view.blog.search.SearchBlogFragment"
+        android:label="searchBlogFragment"
+        tools:layout="@layout/fragment_search_blog" >
+
+        <action
+            android:id="@+id/action_searchFragment_to_nav_blog_detail"
+            app:destination="@id/nav_blog_detail" />
+    </fragment>
+
+    <include app:graph="@navigation/nav_blog_detail" />
+
+</navigation>

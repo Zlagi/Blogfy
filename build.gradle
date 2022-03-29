@@ -1,0 +1,26 @@
+buildscript {
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath "com.google.gms:google-services:${BuildPluginsVersion.FIREBASE_GMS}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}"
+        classpath "gradle.plugin.com.onesignal:onesignal-gradle-plugin:${BuildPluginsVersion.ONESIGNAL}"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${BuildPluginsVersion.DETEKT}"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:${Versions.DAGGER_HILT}"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAVIGATION}"
+    }
+}
+
+subprojects {
+    apply from: "../buildscripts/detekt.gradle"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

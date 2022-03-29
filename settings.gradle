@@ -1,0 +1,18 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        jcenter()
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+rootProject.name = "blogfy"
+include ':app'
+include ':common'
+include ':data'
+include ':domain'
+include ':network'
+include ':cache'
+include ':preferences'
+include ':presentation'

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_blog_detail"
+    app:startDestination="@id/blogDetailFragment">
+
+    <fragment
+        android:id="@+id/blogDetailFragment"
+        android:name="com.zlagi.blogfy.view.blog.detail.BlogDetailFragment"
+        android:label="BlogDetailFragment"
+        tools:layout="@layout/fragment_blog_detail">
+
+        <action
+            android:id="@+id/action_blogDetailFragment_to_updateBlogFragment"
+            app:destination="@id/updateBlogFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/updateBlogFragment"
+        android:name="com.zlagi.blogfy.view.blog.update.UpdateBlogFragment"
+        android:label="fragment_update_blog"
+        tools:layout="@layout/fragment_update_blog"/>
+
+</navigation>

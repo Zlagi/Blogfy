@@ -1,0 +1,103 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AuthBlogfy" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnPrimary">@color/background</item>
+        <item name="colorError">@color/deep_red</item>
+        <item name="colorOnSecondary">@color/gray4</item>
+        <item name="colorOnBackground">@color/gray4</item>
+        <item name="colorOnSurface">@color/gray4</item>
+        <item name="colorOnError">@color/gray4</item>
+        <item name="colorAccent">@color/blue1</item>
+        <item name="colorPrimaryDark" tools:targetApi="23">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+    </style>
+
+    <style name="Theme.MainBlogfy" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnPrimary">@color/background</item>
+        <item name="colorError">@color/deep_red</item>
+        <item name="colorOnSecondary">@color/gray4</item>
+        <item name="colorOnBackground">@color/gray4</item>
+        <item name="colorOnSurface">@color/gray4</item>
+        <item name="colorOnError">@color/gray4</item>
+        <item name="colorAccent">@color/blue1</item>
+        <item name="colorPrimaryDark" tools:targetApi="23">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="AuthenticationTextViewStyle">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline4</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:fontFamily">@font/gilroy_bold</item>
+    </style>
+
+    <style name="EmailFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="startIconDrawable">@drawable/ic_baseline_mail_outline_24</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:hint">@string/text_email</item>
+        <item name="hintTextColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="UsernameFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="startIconDrawable">@drawable/ic_user</item>
+        <item name="android:inputType">text</item>
+        <item name="android:hint">@string/text_username</item>
+        <item name="hintTextColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="PasswordFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="startIconDrawable">@drawable/ic_lock</item>
+        <item name="endIconMode">password_toggle</item>
+        <item name="android:hint">@string/hint_password</item>
+        <item name="hintTextColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="EmailPasswordAuthenticationButton">
+        <item name="android:background">@drawable/email_button_shape</item>
+        <item name="android:textAppearance">@style/TextAppearance.MdcTypographyStyles.Button</item>
+        <item name="android:textColor">@color/background</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:text">@string/text_email_continue</item>
+    </style>
+
+    <style name="GoogleAuthenticationButton">
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:textAppearance">@style/TextAppearance.MdcTypographyStyles.Button</item>
+        <item name="android:drawableStart">@drawable/ic_google</item>
+        <item name="android:drawablePadding">@dimen/dimen_32</item>
+        <item name="android:text">@string/text_google_continue</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="SignOutButton">
+        <item name="android:background">@color/red</item>
+        <item name="android:textSize">@dimen/size_20</item>
+        <item name="android:textColor">@color/background</item>
+        <item name="android:textAppearance">@style/TextAppearance.MdcTypographyStyles.Button</item>
+    </style>
+
+    <style name="MyCustomTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
+    </style>
+
+    <style name="GoogleSignInText" parent="TextAppearance.MdcTypographyStyles.Caption">
+        <item name="android:textColor">@color/gray4</item>
+    </style>
+
+    <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+</resources>

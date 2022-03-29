@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/asl_trimclip_searchback.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/avd_trimclip_searchback_back_to_search.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/avd_trimclip_searchback_search_to_back.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/curved_toolbar.xml" value="0.21296296296296297" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_account_circle_white_24dp.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_avatar_placeholder.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_add_photo_alternate_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_add_task_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_cancel_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_check_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_close_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_cloud_done_24.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_delete_forever_24.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_edit_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_error_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_explore_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_favorite_border_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_home_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_language_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_notifications_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_search_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_send_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_settings_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_wifi_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_baseline_wifi_off_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_check_green_24dp.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_course.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_edit_black_24dp.xml" value="0.2169230769230769" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_filter_list_grey_24dp.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_lock.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/ic_logo.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/vd_trimclip_searchback_back.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable-v24/vd_trimclip_searchback_search.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/blog_detail_image_scream.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/blog_item_holder.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/button_shape.xml" value="0.21296296296296297" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/button_shape2.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/course_image_place_holder.xml" value="0.175" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/divider.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_arrow_down.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_arrow_left.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_back.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_cloud_done_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_mail_outline_24.xml" value="0.17592592592592593" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_photo_library_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_search_off_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_google.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_home_selector.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_nav_bottom_selector.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_outline_info_24.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_outline_search_24.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_outline_settings_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_search.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_settings_selector.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_delete.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_drafts.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_error.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_forward.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_inbox.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_send.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_star.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_star_on_background.xml" value="0.175" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_twotone_stars.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/ic_up_arrow_selector.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/learn_image_scream.xml" value="0.175" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/small_component_foreground.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/splash_background.xml" value="0.1" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/drawable/stroked_search_blog_image_placeholder.xml" value="0.1" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/font/rubik.xml" value="0.1" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/font/work_sans.xml" value="0.18" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/font/work_sans_bold.xml" value="0.1" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/font/work_sans_extrabold.xml" value="0.1" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/activity_auth.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/activity_auth2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/custom_toast_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/custon.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/cutom_toast.xml" value="0.25" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fail_toast_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/feed_item_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_account_detail.xml" value="0.22" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_blog_detail.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_blog_details.xml" value="0.16113744075829384" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_create_blog.xml" value="0.25" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_email_password_authentication.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_feed.xml" value="0.22" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_loading_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_on_boarding.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_search.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_search_blog.xml" value="0.15709969788519637" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_sign_in.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_update_account.xml" value="0.25" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_update_blog.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/fragment_update_password.xml" value="0.1" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/item_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/layout_error.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/layout_no_more_results.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/menu_bottom_sheet_dialog.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/no_more_results.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/search_item.xml" value="0.5" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/search_item_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/search_suggestion_item.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/success_toast_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/layout/test.xml" value="0.33" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/menu-v26/blog_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/menu/blog_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/app/src/main/res/menu/feed.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/presentation/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/presentation/src/main/res/drawable/ic_baseline_north_west_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Haythem/AndroidStudioProjects/Blogfy finale/presentation/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="dagger.Binds" />
+      <item index="1" class="java.lang.String" itemvalue="dagger.hilt.testing.TestInstallIn" />
+    </list>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="15" project-jdk-type="JavaSDK" />
+</project>

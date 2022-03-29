@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.MdcTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/opensans_regular</item>
+        <item name="android:textSize">@dimen/size_16</item>
+    </style>
+
+    <style name="TextAppearance.MdcTypographyStyles.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">@dimen/size_14</item>
+    </style>
+
+    <style name="TextAppearance.MdcTypographyStyles.Subtitle3" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">@dimen/size_14</item>
+    </style>
+
+    <style name="TextAppearance.MdcTypographyStyles.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:textSize">@dimen/size_12</item>
+    </style>
+
+    <style name="TextAppearance.Blogfy.Custom1" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/opensans_bold</item>
+        <item name="android:textSize">@dimen/size_32</item>
+    </style>
+
+    <style name="TextAppearance.Blogfy.Custom3" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/opensans_bold</item>
+        <item name="android:textSize">@dimen/size_16</item>
+    </style>
+
+    <style name="TextAppearance.Blogfy.Custom4" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="fontFamily">@font/opensans_bold</item>
+        <item name="android:textSize">@dimen/size_12</item>
+    </style>
+
+
+    <style name="TextAppearance.Blogfy.Custom6" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">@dimen/size_28</item>
+        <item name="android:color">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.MdcTypographyStyles.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">@dimen/size_32</item>
+    </style>
+
+    <style name="TextAppearance.Blogfy.TextDescription" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/reply_black_900_alpha_030</item>
+    </style>
+
+    <style name="TextAppearance.Blogfy.SignInWelcome" parent="TextAppearance.MdcTypographyStyles.Headline5">
+        <item name="android:textColor">@color/lt_darkpblue</item>
+    </style>
+
+    <style name="TextAppearance.Blogfy.Body1" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/opensans_light</item>
+        <item name="android:textColor">@color/grey6</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.Blogfy.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/opensans_light</item>
+        <item name="android:textColor">@color/grey6</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.Blogfy.Body3" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/opensans_regular</item>
+        <item name="android:textSize">@dimen/size_32</item>
+    </style>
+
+</resources>

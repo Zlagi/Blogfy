@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+
+    compileSdkVersion SDKConfig.compileSdkVersion
+    buildToolsVersion SDKConfig.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion SDKConfig.minSdkVersion
+        targetSdkVersion SDKConfig.targetSdkVersion
+
+        testInstrumentationRunner "com.zlagi.cache.HiltTestRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"
+                ]
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+dependencies {
+
+    implementation(project(":common"))
+    implementation(project(":data"))
+
+    // Dagger - Hilt
+    implementation Deps.DAGGER_HILT
+    kapt AnnotationDeps.DAGGER_HILT_COMPILER
+
+    // Room
+    implementation Deps.ROOM
+    implementation Deps.ROOM_KTX
+    kapt AnnotationDeps.ROOM_COMPILER
+    kaptAndroidTest AnnotationDeps.ROOM_COMPILER
+
+    // Kotlin reflection
+    implementation Deps.REFLECT
+
+    // Run Blocking Test
+    androidTestImplementation UnitTestDeps.CORE
+    // Flow - testing
+    androidTestImplementation UnitTestDeps.TURBINE
+    // testImplementation for pure JVM unit tests
+    androidTestImplementation(UnitTestDeps.COROUTINES_TEST)
+    // Truth
+    androidTestImplementation UnitTestDeps.TRUTH
+    // For small test - large test annotations
+    androidTestImplementation UnitTestDeps.RUNNER
+    androidTestImplementation UnitTestDeps.JUNIT_EXT
+    // Hilt - testing
+    androidTestImplementation UnitTestDeps.HILT_TEST
+    // For Instrumented tests.
+    kaptAndroidTest AnnotationDeps.DAGGER_HILT_COMPILER
+}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/dimen_16"
+    android:paddingTop="@dimen/dimen_8">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:elevation="@dimen/dimen_0">
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/background"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:statusBarScrim="@color/background">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background"
+                app:layout_collapseMode="pin" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/search_text_view"
+                    style="@style/TextAppearance.Blogfy.Custom6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/background"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/dimen_48"
+                    android:paddingBottom="@dimen/dimen_24"
+                    android:text="@string/search"
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/search_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:background="@drawable/curved_toolbar"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/search_back_button"
+                        android:layout_width="@dimen/dimen_40"
+                        android:layout_height="match_parent"
+                        android:background="?attr/actionBarItemBackground"
+                        android:padding="@dimen/dimen_16"
+                        app:srcCompat="@drawable/ic_search"
+                        tools:ignore="ContentDescription" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_input_text"
+                        android:layout_width="@dimen/dimen_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:imeOptions="flagNoExtractUi|actionSearch"
+                        android:inputType="text"
+                        tools:ignore="InefficientWeight" />
+
+                    <ImageButton
+                        android:id="@+id/search_suggestion_clear_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen_24"
+                        android:background="?attr/actionBarItemBackground"
+                        android:paddingEnd="@dimen/dimen_16"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_baseline_clear_24"
+                        tools:ignore="ContentDescription,RtlSymmetry" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_container_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:fillViewport="true"
+        android:paddingTop="@dimen/dimen_12"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+       <ProgressBar
+           android:id="@+id/progress_bar"
+           android:layout_width="@dimen/dimen_48"
+           android:layout_height="@dimen/dimen_48"
+           android:visibility="gone"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/initial_search_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/background"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dimen_172"
+            android:text="@string/initial_search_message_text"
+            android:textAppearance="@style/TextAppearance.Blogfy.Custom4"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/error_message_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/background"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dimen_172"
+            android:textAppearance="@style/TextAppearance.Blogfy.Custom3"
+            android:text="@string/no_more_results"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/suggestions_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:transitionGroup="true"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/blogs_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transitionGroup="true"
+            android:visibility="gone"
+            android:descendantFocusability="blocksDescendants"
+            tools:listitem="@layout/search_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/clear_search_suggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dimen_8"
+            android:paddingHorizontal="@dimen/dimen_4"
+            android:text="@string/clear_search_suggestions"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Subtitle3"
+            android:textColor="@color/reply_black_900_alpha_010"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/suggestions_recycler_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

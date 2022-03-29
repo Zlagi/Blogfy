@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+
+    compileSdkVersion SDKConfig.compileSdkVersion
+    buildToolsVersion SDKConfig.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion SDKConfig.minSdkVersion
+        targetSdkVersion SDKConfig.targetSdkVersion
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation project(":common")
+    implementation project(':data')
+
+    // Firebase
+    implementation Deps.FIREBASE_AUTH
+    implementation Deps.FIREBASE_AUTH_KTX
+    implementation Deps.FIREBASE_STORAGE
+    implementation Deps.FIREBASE_FIRESTORE
+
+    // Retrofit
+    implementation Deps.RETROFIT
+    implementation Deps.MOSHI
+    implementation Deps.MOSHI_CONVERTER
+
+    // Okhttp
+    implementation Deps.OKHTTP
+    implementation Deps.OKHTTP_LOGGING_INTERCEPTOR
+
+    // Coroutines
+    implementation Deps.FIREBASE_COROUTINES
+
+    // Dagger - Hilt
+    implementation Deps.DAGGER_HILT
+    kapt AnnotationDeps.DAGGER_HILT_COMPILER
+
+    // Kotlin extensions
+    implementation Deps.CORE_KTX
+
+    // Test
+    testImplementation UnitTestDeps.JUNIT
+    // testImplementation for pure JVM unit tests
+    testImplementation UnitTestDeps.COROUTINES_TEST
+    // Truth
+    testImplementation UnitTestDeps.TRUTH
+    // For small test - large test annotations
+    testImplementation UnitTestDeps.RUNNER
+    // Mock objects
+    testImplementation UnitTestDeps.MOCKK
+    // Hilt - testing
+    testImplementation UnitTestDeps.HILT_TEST
+    // Mock web server
+    testImplementation UnitTestDeps.MOCK_WEB_SERVER
+}

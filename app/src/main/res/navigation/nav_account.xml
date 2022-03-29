@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_account"
+    app:startDestination="@id/accountDetail">
+
+    <fragment
+        android:id="@+id/accountDetail"
+        android:name="com.zlagi.blogfy.view.account.detail.AccountDetailFragment"
+        tools:layout="@layout/fragment_account_detail">
+
+        <action
+            android:id="@+id/action_accountDetail_to_updatePasswordFragment"
+            app:destination="@id/updatePasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/updatePasswordFragment"
+        android:name="com.zlagi.blogfy.view.account.update.UpdatePasswordFragment"
+        tools:layout="@layout/fragment_update_password" />
+
+    <include app:graph="@navigation/nav_auth" />
+
+</navigation>

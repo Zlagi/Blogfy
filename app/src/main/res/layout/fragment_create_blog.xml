@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_container_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:paddingHorizontal="@dimen/dimen_4"
+    android:paddingTop="@dimen/dimen_8"
+    android:clipToPadding="false"
+    tools:context="com.zlagi.blogfy.view.blog.create.CreateBlogFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/update_password_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16">
+
+            <ImageButton
+                android:id="@+id/cancel_create_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:background="?attr/actionBarItemBackground"
+                android:contentDescription="@string/close_updating_password"
+                android:padding="@dimen/dimen_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_clear_24"
+                app:tint="@color/grey2"
+                tools:ignore="ImageContrastCheck" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_blog_title_input_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_16"
+                android:background="@android:color/transparent"
+                android:hint="@string/text_blog_title"
+                android:minHeight="@dimen/dimen_48"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.Blogfy.Custom1"
+                app:layout_constraintEnd_toStartOf="@+id/confirm_create_button"
+                app:layout_constraintStart_toEndOf="@id/cancel_create_button"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/confirm_create_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_12"
+                android:layout_marginEnd="@dimen/dimen_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/confirm_password_update"
+                android:background="?attr/actionBarItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                app:srcCompat="@drawable/ic_check_green_24dp" />
+
+            <ImageView
+                android:id="@+id/blog_title_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_blog_title_input_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginHorizontal="@dimen/dimen_16"
+                android:background="@drawable/divider"
+                app:backgroundTint="@color/grey2"
+                android:contentDescription="@string/text_blog_image_divider" />
+
+            <ImageView
+                android:id="@+id/blog_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginHorizontal="@dimen/dimen_16"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blog_title_divider"
+                app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24"
+                android:contentDescription="@string/text_blog_image" />
+
+            <ImageView
+                android:id="@+id/blog_description_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blog_image_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginHorizontal="@dimen/dimen_16"
+                android:background="@drawable/divider"
+                app:backgroundTint="@color/grey2"
+                android:contentDescription="@string/text_blog_image_divider"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_blog_description_input_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/blog_description_divider"
+                android:hint="@string/text_update_description"
+                android:textAppearance="@style/TextAppearance.Blogfy.Body3"
+                android:background="@android:color/transparent"
+                android:gravity="top"
+                android:minHeight="@dimen/dimen_256"
+                app:lineHeight="@dimen/size_24"
+                tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.core.widget.NestedScrollView>
