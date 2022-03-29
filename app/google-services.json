@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "838355569325",
+    "project_id": "blogfy-e5b41",
+    "storage_bucket": "blogfy-e5b41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838355569325:android:d31ef3aff483fc0f719424",
+        "android_client_info": {
+          "package_name": "com.zlagi.blogfy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838355569325-d59a1jf6rv6dt58ud42607m12a2u9ptr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zlagi.blogfy",
+            "certificate_hash": "415fc9d85df46a5e5a2012fda1f8d8fa8cd4fbaa"
+          }
+        },
+        {
+          "client_id": "838355569325-upi38j8btaun1p60nvcd3uptvahli9fq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq12VRJ3Ay-U7CZ_TUAu7GEPvDg76hkts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838355569325-upi38j8btaun1p60nvcd3uptvahli9fq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

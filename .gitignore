@@ -11,6 +11,5 @@
 /captures
 .externalNativeBuild
 .cxx
-google-services.json
 # Project exclude paths
 /buildSrc/build/
