@@ -20,7 +20,7 @@ https://github.com/Zlagi/blogfy-api.
 
 ***You can Install and test latest Blogfy Android app from below 👇***
 
-[![Blogfy](https://img.shields.io/badge/Blogfy✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Zlagi/Blogfy/releases/tag/1)
+[![Blogfy](https://img.shields.io/badge/Blogfy✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Zlagi/Blogfy/releases/tags)
 
 
 The codebase containes the following features:
@@ -66,7 +66,7 @@ The codebase containes the following features:
   - [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library.
   - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - WorkManager is an API that makes it easy to schedule deferrable,       asynchronous tasks that are expected to run even if the app exits or the device restarts.
   - [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started) Navigation refers to the interactions that allow users to     navigate across, into, and back out from the different pieces of content within your app.
-  - [Jetpack Security](https://developer.android.com/topic/security/)
+  - [Jetpack Security](https://developer.android.com/topic/security/) Provides abstractions for encrypting and decrypting SharedPreferences and Files.
   - [Encrypted SharedPreference](https://developer.android.com/topic/security/data) - Used to store key-value data using encryption.
   - [Dependency Injection](https://developer.android.com/training/dependency-injection) - 
   - [Hilt-Dagger](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
@@ -90,7 +90,7 @@ The codebase containes the following features:
   - [Lottie](http://airbnb.io/lottie/) - Render After Effects animations.
   - [CanHub](https://github.com/CanHub/Android-Image-Cropper) - Android image cropper.
   - [Firecoil](https://github.com/thatfiredev/firecoil) - Load images from Cloud Storage for Firebase in your Android app (through a StorageReference).
-  - [One Signal](https://onesignal.com/) - For push notifications.
+  - [One Signal](https://onesignal.com/) - An Api for Push Notifications, Email, SMS & In-App...
   - [Kluent ](https://github.com/MarkusAmshove/Kluent) - "Fluent Assertions" library written specifically for Kotlin.
 
 ## CI pipeline
