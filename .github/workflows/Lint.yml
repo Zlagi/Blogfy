@@ -1,4 +1,4 @@
-name: run Android Lint
+name: Android Lint
 
 on:
   push:
