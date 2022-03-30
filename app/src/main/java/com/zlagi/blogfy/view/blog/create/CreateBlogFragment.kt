@@ -1,6 +1,5 @@
 package com.zlagi.blogfy.view.blog.create
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -34,9 +33,6 @@ import com.zlagi.presentation.viewmodel.blog.create.CreateBlogContract.CreateBlo
 import com.zlagi.presentation.viewmodel.blog.create.CreateBlogViewModel
 import com.zlagi.presentation.viewmodel.blog.feed.SHOULD_REFRESH
 import dagger.hilt.android.AndroidEntryPoint
-import tech.developingdeveloper.toaster.Toaster
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -52,10 +48,6 @@ class CreateBlogFragment : Fragment() {
     @Inject
     lateinit var imageLoader: ImageLoader
 
-    @SuppressLint("SimpleDateFormat")
-    private val formatter = SimpleDateFormat("'Date: 'yyyy-MM-dd' Time: 'HH:mm:ss")
-    private val now = Date()
-    private val imageCreationTime = formatter.format(now)
     private var imageUri: Uri? = null
 
     private val cropActivityResultContract = object : ActivityResultContract<Any?, Uri>() {
@@ -120,7 +112,6 @@ class CreateBlogFragment : Fragment() {
         }
     }
 
-
     private fun setupUri() {
         binding.blogImageView.setOnClickListener {
             if (isStoragePermissionGranted()) {
@@ -131,7 +122,7 @@ class CreateBlogFragment : Fragment() {
 
     private fun clickConfirmCreateButton() {
         binding.confirmCreateButton.setOnClickListener {
-            viewModel.setEvent(ConfirmCreateButtonClicked(imageCreationTime, imageUri))
+            viewModel.setEvent(ConfirmCreateButtonClicked(imageUri))
             requireActivity().hideKeyboard()
         }
     }
@@ -214,19 +205,11 @@ class CreateBlogFragment : Fragment() {
 
     private fun reactTo(effect: CreateBlogContract.CreateBlogViewEffect) {
         when (effect) {
-            is ShowToast -> showToast()
+            is ShowToast -> showToast(R.string.created)
             is ShowSnackBarError -> showSnackBar(effect.message, LENGTH_SHORT)
             is ShowDiscardChangesDialog -> showDiscardChangesDialog()
             is NavigateUp -> navigateToFeed()
         }
-    }
-
-    private fun showToast() {
-        Toaster.popSuccess(
-            requireContext(),
-            getString(R.string.created),
-            Toaster.LENGTH_SHORT
-        ).show()
     }
 
     private fun showDiscardChangesDialog() {

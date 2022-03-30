@@ -11,5 +11,4 @@
     <string name="created">Created</string>
     <string name="updated">Updated</string>
     <string name="password_unmatched">"Passwords do not match."</string>
-
 </resources>

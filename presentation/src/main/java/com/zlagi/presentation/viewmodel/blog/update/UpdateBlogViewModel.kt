@@ -1,5 +1,6 @@
 package com.zlagi.presentation.viewmodel.blog.update
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,6 @@ import com.zlagi.common.mapper.getStringResId
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.usecase.blog.detail.GetBlogUseCase
 import com.zlagi.domain.usecase.blog.update.UpdateBlogUseCase
-import com.zlagi.presentation.R
 import com.zlagi.presentation.R.string.description_error_message
 import com.zlagi.presentation.R.string.title_error_message
 import com.zlagi.presentation.mapper.BlogDomainPresentationMapper
@@ -23,6 +23,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,6 +45,11 @@ class UpdateBlogViewModel @Inject constructor(
     private val _viewEffect: Channel<UpdateBlogViewEffect> = Channel()
     val viewEffect = _viewEffect.receiveAsFlow()
 
+    @SuppressLint("SimpleDateFormat")
+    private val formatter = SimpleDateFormat("'Date: 'yyyy-MM-dd' Time: 'HH:mm:ss")
+    private val now = Date()
+    private val imageUpdateTime = formatter.format(now)
+
     private var job: Job? = null
 
     var blogPk = savedStateHandle.get<Int>("blogPostPk")
@@ -56,7 +63,7 @@ class UpdateBlogViewModel @Inject constructor(
             is TitleChanged -> onUpdateTitle(event.title)
             is DescriptionChanged -> onUpdateDescription(event.description)
             is OriginalUriChanged -> onUpdateOriginalUri(event.uri)
-            is ConfirmUpdateButtonClicked -> onUpdateBlog(blogPk, event.updateTime, event.imageUri)
+            is ConfirmUpdateButtonClicked -> onUpdateBlog(blogPk, event.imageUri)
             is CancelUpdateButtonClicked -> setEffect { ShowDiscardChangesDialog }
             is ConfirmDialogButtonClicked -> setEffect { NavigateUp }
         }
@@ -130,8 +137,8 @@ class UpdateBlogViewModel @Inject constructor(
     /**
      * Start updating blog
      */
-    private fun onUpdateBlog(blogPk: Int?, creationTime: String, imageUri: Uri?) {
-        val updateTime = if (imageUri == null) "" else creationTime
+    private fun onUpdateBlog(blogPk: Int?, imageUri: Uri?) {
+        val updateTime = if (imageUri == null) "" else imageUpdateTime
         setState { copy(loading = true) }
         job?.cancel()
         blogPk?.let { pk ->

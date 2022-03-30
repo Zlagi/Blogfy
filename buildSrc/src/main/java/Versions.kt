@@ -30,7 +30,6 @@ object Versions {
     const val LEAK_CANARY = "2.7"
     const val NAVIGATION = "2.4.0"
     const val SWIPE_REFRESH = "1.1.0"
-    const val TOASTER = "2.3.0"
     const val LOTTIE = "3.7.0"
     const val COIL = "1.2.2"
     const val IMAGE_CROPPER = "3.1.1"

@@ -1,5 +1,6 @@
 package com.zlagi.presentation.viewmodel.blog.create
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,6 +19,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,6 +38,11 @@ class CreateBlogViewModel @Inject constructor(
     private val _viewEffect: Channel<CreateBlogViewEffect> = Channel()
     val viewEffect = _viewEffect.receiveAsFlow()
 
+    @SuppressLint("SimpleDateFormat")
+    private val formatter = SimpleDateFormat("'Date: 'yyyy-MM-dd' Time: 'HH:mm:ss")
+    private val now = Date()
+    private val imageCreationTime = formatter.format(now)
+
     private var job: Job? = null
 
     /**
@@ -50,7 +58,7 @@ class CreateBlogViewModel @Inject constructor(
                 )
             }
             is CancelCreateButtonClicked -> setEffect { ShowDiscardChangesDialog }
-            is ConfirmCreateButtonClicked -> onCreateBlog(event.creationTime, event.imageUri)
+            is ConfirmCreateButtonClicked -> onCreateBlog(event.imageUri)
             is ConfirmDialogButtonClicked -> setEffect { NavigateUp }
         }
     }
@@ -75,13 +83,13 @@ class CreateBlogViewModel @Inject constructor(
     /**
      * Start creating blog
      */
-    private fun onCreateBlog(creationTime: String, imageUri: Uri?) {
+    private fun onCreateBlog(imageUri: Uri?) {
         val (title, description, blogImage) = currentState
         job?.cancel()
         job = viewModelScope.launch {
             setState { copy(loading = true) }
             val createBlogResult =
-                createBlogUseCase(title, description, blogImage, creationTime)
+                createBlogUseCase(title, description, blogImage, imageCreationTime)
 
             when {
                 createBlogResult.titleError != null -> setEffect {
@@ -105,7 +113,7 @@ class CreateBlogViewModel @Inject constructor(
                 else -> {
                     when (createBlogResult.result) {
                         is DataResult.Success -> {
-                            storageReference.getReference("image/$creationTime").putFile(imageUri!!)
+                            storageReference.getReference("image/$imageCreationTime").putFile(imageUri!!)
                                 .addOnSuccessListener {
                                     setEffect { ShowToast }
                                     setEffect { NavigateUp }

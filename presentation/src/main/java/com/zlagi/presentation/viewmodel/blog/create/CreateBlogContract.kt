@@ -17,7 +17,7 @@ class CreateBlogContract {
             val uri: Uri?
         ) : CreateBlogEvent()
 
-        data class ConfirmCreateButtonClicked(val creationTime: String, val imageUri: Uri?) : CreateBlogEvent()
+        data class ConfirmCreateButtonClicked(val imageUri: Uri?) : CreateBlogEvent()
 
         object CancelCreateButtonClicked : CreateBlogEvent()
 
