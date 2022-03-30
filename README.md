@@ -1,6 +1,8 @@
 # Blogfy
 
 [![Build (API)](https://github.com/Zlagi/blogfy-api/actions/workflows/run-build.yml/badge.svg)](https://github.com/Zlagi/blogfy-api/actions/workflows/run-build.yml)
+[![Android lint](https://github.com/Zlagi/Blogfy/actions/workflows/Lint.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Lint.yml)
+[![Testing](https://github.com/Zlagi/Blogfy/actions/workflows/Testing.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Testing.yml)
 [![Release](https://github.com/Zlagi/Blogfy/actions/workflows/Release.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Release.yml)
 
 **Blogfy** is a complete Kotlin-stack blog post taking 🖊️ application 📱 built to demonstrate a use of Kotlin programming language in *server-side* and *Modern Android development* tools. Dedicated to all Android Developers with ❤️. 
