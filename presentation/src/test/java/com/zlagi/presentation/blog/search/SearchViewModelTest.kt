@@ -179,26 +179,6 @@ class SearchViewModelTest {
         }
 
     @Test
-    fun `when BlogItemClicked then verify viewEffect`() =
-        testCoroutineRule.runBlockingTest {
-            // Given
-            val expectedViewEffect =
-                SearchContract.SearchViewEffect.Navigate(blogPk = FakeDataGenerator.blogPk)
-
-            // When
-            sut.setEvent(SearchContract.SearchEvent.BlogItemClicked(blogPk = FakeDataGenerator.blogPk))
-
-            // Then
-            sut.viewEffect.test {
-                val actual = awaitItem()
-
-                // Assertion
-                Truth.assertThat(actual).isEqualTo(expectedViewEffect)
-                expectNoEvents()
-            }
-        }
-
-    @Test
     fun `when DeleteSearchSuggestionButtonClicked then verify viewState`() =
         testCoroutineRule.runBlockingTest {
             // Given

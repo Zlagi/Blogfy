@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class GetFeedUseCase @Inject constructor(private val feedRepository: FeedRepository) {
-    operator suspend fun invoke(
+    suspend operator fun invoke(
         query: String
     ) = feedRepository.getBlogs(query).first()
 }

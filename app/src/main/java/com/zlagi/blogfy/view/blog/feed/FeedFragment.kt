@@ -9,13 +9,14 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialElevationScale
+import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.blogfy.R
 import com.zlagi.blogfy.R.id.action_create_blog
 import com.zlagi.blogfy.databinding.FragmentFeedBinding
@@ -29,11 +30,15 @@ import com.zlagi.presentation.viewmodel.blog.feed.FeedContract.FeedViewEffect.Sh
 import com.zlagi.presentation.viewmodel.blog.feed.FeedViewModel
 import com.zlagi.presentation.viewmodel.blog.feed.SHOULD_REFRESH
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
-    private val viewModel by activityViewModels<FeedViewModel>()
+    @Inject
+    lateinit var firebaseStorage: FirebaseStorage
+
+    private val viewModel by viewModels<FeedViewModel>()
 
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!
@@ -81,7 +86,7 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun createFeedAdapter(): FeedAdapter {
-        return FeedAdapter { _, selectedBlog ->
+        return FeedAdapter(firebaseStorage) { _, selectedBlog ->
             onBlogDetail(selectedBlog.pk)
         }
     }

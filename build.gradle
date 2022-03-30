@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.4"
         classpath "com.google.gms:google-services:${BuildPluginsVersion.FIREBASE_GMS}"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:${BuildPluginsVersion.FIREBASE_CRASHLYTICS}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}"
         classpath "gradle.plugin.com.onesignal:onesignal-gradle-plugin:${BuildPluginsVersion.ONESIGNAL}"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${BuildPluginsVersion.DETEKT}"

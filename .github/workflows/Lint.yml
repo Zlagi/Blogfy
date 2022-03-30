@@ -1,7 +1,7 @@
-name: run android lint
+name: run Android Lint
 
 on:
-  pull_request:
+  push:
 
 jobs:
   lint_job:

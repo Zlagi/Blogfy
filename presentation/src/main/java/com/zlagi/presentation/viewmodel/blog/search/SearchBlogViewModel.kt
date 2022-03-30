@@ -104,7 +104,6 @@ class SearchBlogViewModel @Inject constructor(
             is SearchSuggestionViewCollapsedChanged -> onCollapseSearchSuggestionsView(event.state)
             is SearchBlogResultViewChanged -> onSearchBlogResultView(event.state)
             is SearchTextFocusedChanged -> onSearchTextFocusedChanged(event.state)
-            is BlogItemClicked -> onNavigation(event.blogPk)
             is NextPage -> onNextPage(false)
             is NewSearch -> onSearch(event.query)
             is DeleteSearchSuggestionButtonClicked -> onDeleteSearchSuggestion(event.searchSuggestionPk)
@@ -177,13 +176,6 @@ class SearchBlogViewModel @Inject constructor(
                 searchTextFocused = state
             )
         }
-    }
-
-    /**
-     * Set new destination
-     */
-    private fun onNavigation(blogPk: Int) {
-        setEffect { SearchViewEffect.Navigate(blogPk) }
     }
 
     /**

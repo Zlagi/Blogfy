@@ -24,9 +24,9 @@ class RequestMoreBlogsUseCase @Inject constructor(
         return when (result) {
             is DataResult.Success -> {
                 if (refreshLoad) searchBlogRepository.deleteAllBlogs()
-                val feed = result.data.results
-                if (feed.isEmpty()) return DataResult.Error(NetworkException.NoResults)
-                searchBlogRepository.storeBlogs(feed)
+                val results = result.data.results
+                if (results.isEmpty()) return DataResult.Error(NetworkException.NoResults)
+                searchBlogRepository.storeBlogs(results)
                 DataResult.Success(result.data)
             }
             is DataResult.Error -> {

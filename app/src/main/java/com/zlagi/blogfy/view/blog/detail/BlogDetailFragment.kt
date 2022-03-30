@@ -37,6 +37,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.rosariopfernandes.firecoil.load
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class BlogDetailFragment : Fragment() {
@@ -48,7 +49,8 @@ class BlogDetailFragment : Fragment() {
 
     private var loadingDialog: LoadingDialogFragment? = null
 
-    private val storageRef = FirebaseStorage.getInstance()
+    @Inject
+    lateinit var firebaseStorage: FirebaseStorage
 
     private var menuBottomSheetDialogFragment: MenuBottomSheetDialogFragment? = null
 
@@ -126,12 +128,12 @@ class BlogDetailFragment : Fragment() {
             blogImageView.apply {
                 transitionName = state.blog?.pk.toString()
                 if (state.blog?.updated?.isNotEmpty() == true) {
-                    load(storageRef.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}")) {
+                    load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}")) {
                         placeholder(lottieDrawable)
                     }
                 }
                 else {
-                    load(storageRef.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}")) {
+                    load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}")) {
                         placeholder(lottieDrawable)
                     }
                 }

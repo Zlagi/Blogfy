@@ -2,6 +2,7 @@ object BuildPluginsVersion {
     const val DETEKT = "1.17.0"
     const val KTLINT = "10.1.0"
     const val FIREBASE_GMS = "4.3.10"
+    const val FIREBASE_CRASHLYTICS = "2.8.1"
     const val ONESIGNAL = "0.13.4"
 }
 
@@ -36,6 +37,7 @@ object Versions {
     const val FIREBASE_AUTH = "19.2.0"
     const val FIREBASE_AUTH_KTX = "21.0.1"
     const val FIREBASE_GMS = "19.2.0"
+    const val FIREBASE_CRASHLYTICS = "18.2.9"
 
     // Testing
     const val JUNIT = "4.13.2"

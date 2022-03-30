@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.blogfy.databinding.FeedItemLayoutBinding
 import com.zlagi.presentation.model.BlogPresentationModel
 
 
 class FeedAdapter(
+    private val firebaseStorage: FirebaseStorage,
     private val listener: OnItemSelectedListener<BlogPresentationModel> = { _, _ -> }
 ) : ListAdapter<BlogPresentationModel, FeedViewHolder>(DIFF_UTIL) {
 
@@ -25,7 +27,7 @@ class FeedAdapter(
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-        holder.bind(position, getItem(position))
+        holder.bind(position, getItem(position), firebaseStorage)
     }
 }
 
