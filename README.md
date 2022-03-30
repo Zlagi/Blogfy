@@ -10,7 +10,9 @@
 ### 🔹 [Blogfy API](/blogfy-api)
 
 This is a *REST API* built using Ktor Framework deployed on *Heroku*.  
-Navigate to https://github.com/Zlagi/blogfy-api.
+Navigate to the link in below 👇
+
+https://github.com/Zlagi/blogfy-api.
 
 ### 🔹 [Blogfy Android Application](/blogfy-android)
 

@@ -125,8 +125,7 @@ class CreateBlogViewModelTest {
             )
             sut.setEvent(
                 CreateBlogContract.CreateBlogEvent.ConfirmCreateButtonClicked(
-                    "",
-                    FakeDataGenerator.blogImage.toUri()
+                    imageUri = FakeDataGenerator.blogImage.toUri()
                 )
             )
 
@@ -176,8 +175,7 @@ class CreateBlogViewModelTest {
             )
             sut.setEvent(
                 CreateBlogContract.CreateBlogEvent.ConfirmCreateButtonClicked(
-                    "",
-                    FakeDataGenerator.blogImage.toUri()
+                    imageUri = FakeDataGenerator.blogImage.toUri()
                 )
             )
 
@@ -227,8 +225,7 @@ class CreateBlogViewModelTest {
             )
             sut.setEvent(
                 CreateBlogContract.CreateBlogEvent.ConfirmCreateButtonClicked(
-                    "",
-                    FakeDataGenerator.blogImage.toUri()
+                    imageUri = FakeDataGenerator.blogImage.toUri()
                 )
             )
 
@@ -278,8 +275,7 @@ class CreateBlogViewModelTest {
             )
             sut.setEvent(
                 CreateBlogContract.CreateBlogEvent.ConfirmCreateButtonClicked(
-                    "",
-                    FakeDataGenerator.blogImage.toUri()
+                    imageUri = FakeDataGenerator.blogImage.toUri()
                 )
             )
 

@@ -1,6 +1,5 @@
 package com.zlagi.blogfy.view.blog.update
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -36,9 +35,6 @@ import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlo
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.rosariopfernandes.firecoil.load
-import tech.developingdeveloper.toaster.Toaster
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -54,10 +50,6 @@ class UpdateBlogFragment : Fragment() {
     @Inject
     lateinit var imageLoader: ImageLoader
 
-    @SuppressLint("SimpleDateFormat")
-    private val formatter = SimpleDateFormat("'Date: 'yyyy-MM-dd' Time: 'HH:mm:ss")
-    private val now = Date()
-    private val imageUpdateTime = formatter.format(now)
     private var imageUri: Uri? = null
     private val storageReference = FirebaseStorage.getInstance()
 
@@ -127,7 +119,7 @@ class UpdateBlogFragment : Fragment() {
                 val description = blogDescriptionInputText.text.toString()
                 viewModel.setEvent(TitleChanged(title))
                 viewModel.setEvent(DescriptionChanged(description))
-                viewModel.setEvent(ConfirmUpdateButtonClicked(imageUpdateTime, imageUri))
+                viewModel.setEvent(ConfirmUpdateButtonClicked(imageUri))
                 requireActivity().hideKeyboard()
             }
         }
@@ -214,19 +206,11 @@ class UpdateBlogFragment : Fragment() {
 
     private fun reactTo(effect: UpdateBlogViewEffect) {
         when (effect) {
-            is ShowToast -> showToast()
+            is ShowToast -> showToast(R.string.updated)
             is ShowSnackBarError -> showSnackBar(effect.message, LENGTH_SHORT)
             is ShowDiscardChangesDialog -> showDiscardChangesDialog()
             is NavigateUp -> navigateUp()
         }
-    }
-
-    private fun showToast() {
-        Toaster.popSuccess(
-            requireContext(),
-            getString(R.string.updated),
-            Toaster.LENGTH_SHORT
-        ).show()
     }
 
     private fun showDiscardChangesDialog() {

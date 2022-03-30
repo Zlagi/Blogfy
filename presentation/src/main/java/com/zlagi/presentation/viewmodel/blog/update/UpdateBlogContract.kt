@@ -21,7 +21,7 @@ class UpdateBlogContract {
             val uri: Uri?
         ) : UpdateBlogEvent()
 
-        data class ConfirmUpdateButtonClicked(val updateTime: String, val imageUri: Uri?) : UpdateBlogEvent()
+        data class ConfirmUpdateButtonClicked(val imageUri: Uri?) : UpdateBlogEvent()
 
         object CancelUpdateButtonClicked : UpdateBlogEvent()
 

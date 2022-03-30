@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -30,9 +31,11 @@ fun Activity.hideKeyboard() {
     insetsControllerCompat?.hide(WindowInsetsCompat.Type.ime())
 }
 
-/**
- * Extension method to show a keyboard for View.
- */
+fun Fragment.showToast(text: Int) {
+    val toast = Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT)
+    toast.show()
+}
+
 fun Activity.showKeyboard() {
     val insetsControllerCompat = ViewCompat.getWindowInsetsController(window.decorView)
     insetsControllerCompat?.show(WindowInsetsCompat.Type.ime())
@@ -133,6 +136,5 @@ private fun getKey(property: ViewProperty): Int {
 }
 
 object ViewExt {
-    const val GALLERY_REQUEST_CODE = 201
     const val PERMISSIONS_REQUEST_READ_STORAGE: Int = 301
 }

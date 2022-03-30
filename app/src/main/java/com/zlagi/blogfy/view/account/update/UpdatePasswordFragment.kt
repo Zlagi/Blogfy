@@ -19,6 +19,7 @@ import com.zlagi.blogfy.databinding.FragmentUpdatePasswordBinding
 import com.zlagi.blogfy.view.utils.LoadingDialogFragment
 import com.zlagi.blogfy.view.utils.hideKeyboard
 import com.zlagi.blogfy.view.utils.showSnackBar
+import com.zlagi.blogfy.view.utils.showToast
 import com.zlagi.presentation.viewmodel.account.update.UpdatePasswordContract.UpdatePasswordEvent.*
 import com.zlagi.presentation.viewmodel.account.update.UpdatePasswordContract.UpdatePasswordViewEffect
 import com.zlagi.presentation.viewmodel.account.update.UpdatePasswordContract.UpdatePasswordViewEffect.*
@@ -27,7 +28,6 @@ import com.zlagi.presentation.viewmodel.account.update.UpdatePasswordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import tech.developingdeveloper.toaster.Toaster
 
 @AndroidEntryPoint
 class UpdatePasswordFragment : Fragment() {
@@ -162,23 +162,11 @@ class UpdatePasswordFragment : Fragment() {
 
     private fun reactTo(effect: UpdatePasswordViewEffect) {
         when (effect) {
-            is ShowToast -> showToast()
-            is ShowSnackBarError -> showSnackBarError(effect.message)
+            is ShowToast -> showToast(R.string.updated)
+            is ShowSnackBarError -> showSnackBar(effect.message, LENGTH_SHORT)
             is ShowDiscardChangesDialog -> showDiscardChangesDialog()
             is NavigateUp -> navigateToAccountDetail()
         }
-    }
-
-    private fun showToast() {
-        Toaster.popSuccess(
-            requireContext(),
-            getString(R.string.updated),
-            Toaster.LENGTH_SHORT
-        ).show()
-    }
-
-    private fun showSnackBarError(message: Int) {
-        showSnackBar(message, LENGTH_SHORT)
     }
 
     private fun showDiscardChangesDialog() {

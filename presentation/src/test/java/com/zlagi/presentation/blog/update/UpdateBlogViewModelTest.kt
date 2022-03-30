@@ -177,7 +177,6 @@ class UpdateBlogViewModelTest {
             sut.setEvent(UpdateBlogContract.UpdateBlogEvent.OriginalUriChanged(uri = FakeDataGenerator.blogImage.toUri()))
             sut.setEvent(
                 UpdateBlogContract.UpdateBlogEvent.ConfirmUpdateButtonClicked(
-                    updateTime = "",
                     FakeDataGenerator.blogImage.toUri()
                 )
             )
@@ -234,7 +233,6 @@ class UpdateBlogViewModelTest {
             sut.setEvent(UpdateBlogContract.UpdateBlogEvent.TitleChanged(title = ""))
             sut.setEvent(
                 UpdateBlogContract.UpdateBlogEvent.ConfirmUpdateButtonClicked(
-                    updateTime = "",
                     FakeDataGenerator.blogImage.toUri()
                 )
             )
@@ -291,7 +289,6 @@ class UpdateBlogViewModelTest {
             sut.setEvent(UpdateBlogContract.UpdateBlogEvent.DescriptionChanged(description = ""))
             sut.setEvent(
                 UpdateBlogContract.UpdateBlogEvent.ConfirmUpdateButtonClicked(
-                    updateTime = "",
                     FakeDataGenerator.blogImage.toUri()
                 )
             )

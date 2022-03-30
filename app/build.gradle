@@ -61,8 +61,6 @@ dependencies {
     implementation project(":presentation")
 
     // Ui
-    implementation Deps.TOASTER
-    implementation Deps.TOASTER_KTX
     implementation Deps.APP_COMPAT
     implementation Deps.RECYCLER_VIEW
     implementation Deps.LOTTIE
