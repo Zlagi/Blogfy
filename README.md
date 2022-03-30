@@ -25,19 +25,35 @@ https://github.com/Zlagi/blogfy-api.
 
 The codebase containes the following features:
 
-- [x] Basic and social media authentication
-- [x] Bottom navigation bar, bottom sheet, loading and confirmation dialogs 🎨
-- [x] Create, update, delete blog 
-- [x] Fetch blogs with pagination support
-- [x] Animate blog search results using spring physics 💫
-- [x] Expose search suggestions before making search and possibility to clear them all or individually 👀
-- [x] Fetch user account properties periodically
-- [x] Update user password
-- [x] Refresh access token periodically (20 minutes) 🔄
-- [x] Revoke refresh token when the user sign out
-- [x] Tests
+- [x] Basic and social media authentication.
+- [x] Bottom navigation bar, bottom sheet, loading and confirmation dialogs. 🎨
+- [x] Create, update, delete blog.
+- [x] Push notifications.
+- [x] Fetch blogs with pagination support.
+- [x] Animate blog search results using spring physics. 💫
+- [x] Expose search suggestions before making search and possibility to clear them all or individually. 👀
+- [x] Fetch user account properties periodically.
+- [x] Update user password.
+- [x] Refresh access token periodically (20 minutes). 🔄
+- [x] Revoke refresh token when the user sign out.
+- [x] Tests (mockk for viewModels and dataSources, fakes for repository *for demonstration purposes*).
 
 ## Screenshots ✨
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/63319103/160729444-465fc255-c887-4117-8092-9db08726a1b7.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160729653-a896cc1a-327d-426b-bf0a-15982303e041.png" width="230px" />  
+  <img src="https://user-images.githubusercontent.com/63319103/160729716-761b2a07-3d3b-4345-bdbf-a2a30aed9daa.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160729893-42b5974c-92ab-4741-8227-cfd282562e66.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160730896-269e954e-d48c-4163-87a1-183bb15bd068.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160729978-46b19ef2-62c5-47e1-be6d-4a7581ca63b3.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160730232-ce4795f4-83e7-47dc-97ba-9422357d9003.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160730390-4eefa837-2b37-4c84-b766-a124dd5bc52b.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160730511-be3146f1-1109-46bf-971f-44bc2c54cca4.png" width="230px" />  
+  <img src="https://user-images.githubusercontent.com/63319103/160730582-32884cf2-dff7-4ace-9e84-ac376aad4a63.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160730682-342c3918-8528-413c-956b-2a73777df5a7.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/160730761-26ba7a6b-b789-45ae-b021-5f8def46a92a.png" width="230px" /> 
+</div>
 
 ## Built with 🛠
 
