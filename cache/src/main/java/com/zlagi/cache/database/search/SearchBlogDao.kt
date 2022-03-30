@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.zlagi.cache.model.BlogCacheModel
+import com.zlagi.cache.model.SearchBlogCacheModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -12,24 +12,24 @@ interface SearchBlogDao {
 
     @Query(
         """
-        SELECT * FROM blog
+        SELECT * FROM search_blog
         WHERE title LIKE '%' || :searchQuery || '%'
         ORDER BY pk ASC
         """
     )
     fun fetchBlogsOrderByTitleDESC(
         searchQuery: String
-    ): Flow<List<BlogCacheModel>>
+    ): Flow<List<SearchBlogCacheModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun storeBlogs(blogCacheModels: List<BlogCacheModel>)
+    suspend fun storeBlogs(blogCacheModels: List<SearchBlogCacheModel>)
 
-    @Query("DELETE FROM blog WHERE pk = :blogPk")
+    @Query("DELETE FROM search_blog WHERE pk = :blogPk")
     suspend fun deleteBlog(blogPk: Int)
 
     @Query(
         """
-        DELETE FROM blog
+        DELETE FROM search_blog
     """
     )
     suspend fun deleteAllBlogs()

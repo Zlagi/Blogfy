@@ -17,8 +17,7 @@ import com.zlagi.presentation.model.BlogPresentationModel
 import io.github.rosariopfernandes.firecoil.load
 
 class SearchBlogAdapter(
-    val imageLoader: ImageLoader,
-    val onClick: (BlogPk) -> Unit
+    val imageLoader: ImageLoader
 ) : ListAdapter<BlogPresentationModel, SearchBlogAdapter.SearchBlogViewHolder>(DiffCallback()) {
 
     private val storageRef = FirebaseStorage.getInstance()
@@ -68,15 +67,7 @@ class SearchBlogAdapter(
                         placeholder(lottieDrawable)
                     }
                 }
-                getFeedDetail(binding, item.pk)
             }
-        }
-    }
-
-    @SuppressLint("UseValueOf")
-    private fun getFeedDetail(binding: SearchItemBinding, blogPk: Int?) {
-        binding.searchBlogItemCardView.setOnClickListener {
-            onClick(BlogPk(value = blogPk))
         }
     }
 

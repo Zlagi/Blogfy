@@ -10,12 +10,6 @@
         android:name="com.zlagi.blogfy.view.blog.search.SearchBlogFragment"
         android:label="searchBlogFragment"
         tools:layout="@layout/fragment_search_blog" >
-
-        <action
-            android:id="@+id/action_searchFragment_to_nav_blog_detail"
-            app:destination="@id/nav_blog_detail" />
     </fragment>
-
-    <include app:graph="@navigation/nav_blog_detail" />
 
 </navigation>

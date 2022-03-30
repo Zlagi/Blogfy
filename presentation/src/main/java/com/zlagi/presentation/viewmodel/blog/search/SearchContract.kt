@@ -11,7 +11,6 @@ class SearchContract {
         data class SearchSuggestionViewCollapsedChanged(val state: Boolean): SearchEvent()
         data class SearchBlogResultViewChanged(val state: Boolean): SearchEvent()
         data class SearchTextFocusedChanged(val state: Boolean): SearchEvent()
-        data class BlogItemClicked(val blogPk: Int): SearchEvent()
         data class NewSearch(val query: String): SearchEvent()
         object NextPage: SearchEvent()
         data class DeleteSearchSuggestionButtonClicked(val searchSuggestionPk: Int): SearchEvent()
@@ -19,7 +18,6 @@ class SearchContract {
     }
 
     sealed class SearchViewEffect {
-        data class Navigate(val blogPk: Int): SearchViewEffect()
         data class ShowSnackBarError(val message: Int): SearchViewEffect()
     }
 

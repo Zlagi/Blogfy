@@ -16,7 +16,6 @@ class FeedViewHolder(
 
     private lateinit var currentFeedItem: BlogPresentationModel
     private var currentPosition: Int = -1
-    private val storageRef = FirebaseStorage.getInstance()
 
     init {
         listener.let { l ->
@@ -24,7 +23,7 @@ class FeedViewHolder(
         }
     }
 
-    fun bind(position: Int, item: BlogPresentationModel) {
+    fun bind(position: Int, item: BlogPresentationModel, firebaseStorage: FirebaseStorage) {
         currentPosition = position
         currentFeedItem = item
         with(binding) {
@@ -40,10 +39,10 @@ class FeedViewHolder(
                 }
             with(blogImageView) {
                 transitionName = item.pk.toString()
-                if (item.updated.isNotEmpty()) load(storageRef.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${item.updated}")) {
+                if (item.updated.isNotEmpty()) load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${item.updated}")) {
                     placeholder(lottieDrawable)
                 }
-                else load(storageRef.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${item.created}")) {
+                else load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${item.created}")) {
                     placeholder(lottieDrawable)
                 }
             }

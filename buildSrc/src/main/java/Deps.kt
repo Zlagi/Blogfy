@@ -24,6 +24,7 @@ object Deps {
     const val FIREBASE_AUTH = "com.google.android.gms:play-services-auth:${Versions.FIREBASE_AUTH}"
     const val FIREBASE_AUTH_KTX = "com.google.firebase:firebase-auth-ktx:${Versions.FIREBASE_AUTH_KTX}"
     const val FIREBASE_GMS = "com.google.android.gms:play-services-auth:${Versions.FIREBASE_GMS}"
+    const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics-ktx:${Versions.FIREBASE_CRASHLYTICS}"
     const val LOTTIE = "com.airbnb.android:lottie:${Versions.LOTTIE}"
     const val INJECT = "javax.inject:javax.inject:1"
     const val COIL = "io.coil-kt:coil:${Versions.COIL}"

@@ -5,6 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
     id 'com.google.secrets_gradle_plugin' version '0.4'
 }
 
@@ -78,6 +79,7 @@ dependencies {
     implementation Deps.FIREBASE_GMS
     implementation Deps.FIREBASE_AUTH_KTX
     implementation Deps.FIREBASE_STORAGE
+    implementation Deps.FIREBASE_CRASHLYTICS
 
     // Retrofit
     implementation Deps.RETROFIT

@@ -10,12 +10,11 @@ import android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
 import android.view.inputmethod.EditorInfo.IME_ACTION_UNSPECIFIED
 import androidx.activity.addCallback
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,9 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
-import com.google.android.material.transition.MaterialElevationScale
 import com.google.android.material.transition.MaterialFadeThrough
-import com.zlagi.blogfy.R
 import com.zlagi.blogfy.R.dimen.dimen_16
 import com.zlagi.blogfy.R.drawable.ic_arrow_left
 import com.zlagi.blogfy.R.drawable.ic_search
@@ -36,7 +33,6 @@ import com.zlagi.presentation.viewmodel.blog.search.SearchBlogViewModel
 import com.zlagi.presentation.viewmodel.blog.search.SearchContract
 import com.zlagi.presentation.viewmodel.blog.search.SearchContract.SearchEvent.*
 import com.zlagi.presentation.viewmodel.blog.search.SearchContract.SearchViewEffect
-import com.zlagi.presentation.viewmodel.blog.search.SearchContract.SearchViewEffect.Navigate
 import com.zlagi.presentation.viewmodel.blog.search.SearchContract.SearchViewEffect.ShowSnackBarError
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -45,7 +41,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SearchBlogFragment : Fragment() {
 
-    private val viewModel by activityViewModels<SearchBlogViewModel>()
+    private val viewModel by viewModels<SearchBlogViewModel>()
 
     private val binding get() = _binding!!
     private var _binding: FragmentSearchBlogBinding? = null
@@ -106,11 +102,7 @@ class SearchBlogFragment : Fragment() {
     }
 
     private fun createSearchBlogAdapter(): SearchBlogAdapter {
-        return SearchBlogAdapter(imageLoader) { blogPk ->
-            blogPk.value?.let {
-                onBlogDetail(it)
-            }
-        }
+        return SearchBlogAdapter(imageLoader)
     }
 
     private fun prepareForSearch() {
@@ -453,31 +445,14 @@ class SearchBlogFragment : Fragment() {
     private fun reactTo(
         effect: SearchViewEffect
     ) = when (effect) {
-        is Navigate -> navigateToBlogDetail(effect.blogPk)
         is ShowSnackBarError -> {
             binding.progressBar.visibility = GONE
             showSnackBar(effect.message, LENGTH_LONG)
         }
     }
 
-    private fun navigateToBlogDetail(blogPk: Int) {
-        exitTransition = MaterialElevationScale(false).apply {
-            duration = resources.getInteger(reply_motion_duration_large).toLong()
-        }
-        reenterTransition = MaterialElevationScale(true).apply {
-            duration = resources.getInteger(reply_motion_duration_large).toLong()
-        }
-        val bundle = bundleOf("blogPostPk" to blogPk)
-        val action = R.id.action_searchFragment_to_nav_blog_detail
-        findNavController().navigate(action, bundle)
-    }
-
     private fun onNewSearch(searchQuery: String) {
         viewModel.setEvent(NewSearch(searchQuery))
-    }
-
-    private fun onBlogDetail(blogPk: Int) {
-        viewModel.setEvent(BlogItemClicked(blogPk))
     }
 
     private fun onNextPage() {
