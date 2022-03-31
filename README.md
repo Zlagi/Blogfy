@@ -1,11 +1,17 @@
 # Blogfy
 
 [![Build (API)](https://github.com/Zlagi/blogfy-api/actions/workflows/run-build.yml/badge.svg)](https://github.com/Zlagi/blogfy-api/actions/workflows/run-build.yml)
+[![Android Lint](https://github.com/Zlagi/Blogfy/actions/workflows/Lint.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Lint.yml)
+[![Testing](https://github.com/Zlagi/Blogfy/actions/workflows/Testing.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Testing.yml)
 [![Release](https://github.com/Zlagi/Blogfy/actions/workflows/Release.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Release.yml)
 
-**Blogfy** is a complete Kotlin-stack blog post taking 🖊️ application 📱 built to demonstrate a use of Kotlin programming language in *server-side* and *Modern Android development* tools. Dedicated to all Android Developers with ❤️. 
-
 ## 💡 About the Project
+
+**Blogfy** is complete Kotlin-stack project that presents a modern approach to [Android](https://en.wikipedia.org/wiki/Android_(operating_system)) application development.
+
+The goal of the project is to combine popular libraries/tools and demonstrate best developement practices by utilizing up to date tech-stack and presenting modern Android application [Architecture](#architecture) that is modular, scalable, maintainable, and testable.
+
+This project is being maintained to match industry standards. Please check [CONTRIBUTING](CONTRIBUTING.md) page if you want to help.
 
 ### 🔹 [Blogfy API](/blogfy-api)
 
@@ -26,14 +32,15 @@ The codebase containes the following features:
 - [x] Basic and social media authentication
 - [x] Bottom navigation bar, bottom sheet, loading and confirmation dialogs 🎨
 - [x] Create, update, delete blog 
+- [x] Push notifications. 
 - [x] Fetch blogs with pagination support
-- [x] Animate blog search results using spring physics 💫
+- [x] Display blog search results using spring physics 💫
 - [x] Expose search suggestions before making search and possibility to clear them all or individually 👀
 - [x] Fetch user account properties periodically
 - [x] Update user password
-- [x] Refresh access token periodically (20 minutes) 🔄
+- [x] Refresh access token periodically (20 minutes lifetime) 🔄
 - [x] Revoke refresh token when the user sign out
-- [x] Tests
+- [x] Tests (mockk and fakes)
 
 ## Screenshots ✨
 
@@ -84,6 +91,16 @@ CI is utilizing [GitHub Actions](https://github.com/features/actions). Complete 
 Series of workflows runs (in parallel) for every opened PR and after merging PR to `main` branch:
 * `./gradlew lintDebug` - runs Android lint
 * `./gradlew testDebugUnitTest` - run unit tests
+
+## Upcoming improvements
+- Increase tests coverage in the data layer.
+- Improve code quality
+
+## Known issues
+- Leaky memory: this issue produced when the user navigate from FeedFrgment to BlogDetailFragment before the image loading is complete and vice-versa.
+- search query is not saved when the orientation is changed.
+- app crashing when the bottom sheet is displayed and the orientation is changed.
+- social media authentication seems not working properly
 
 ## Inspiration
 
