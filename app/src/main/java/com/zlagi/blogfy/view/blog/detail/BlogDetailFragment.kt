@@ -20,8 +20,6 @@ import com.airbnb.lottie.LottieDrawable.INFINITE
 import com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.blogfy.R
-import com.zlagi.blogfy.R.id.action_delete_blog
-import com.zlagi.blogfy.R.id.action_edit_blog
 import com.zlagi.blogfy.R.raw
 import com.zlagi.blogfy.databinding.FragmentBlogDetailBinding
 import com.zlagi.blogfy.view.utils.LoadingDialogFragment
@@ -32,6 +30,7 @@ import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetai
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect.*
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewState
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailViewModel
+import com.zlagi.presentation.viewmodel.blog.feed.SHEET_DIALOG_ITEM
 import com.zlagi.presentation.viewmodel.blog.feed.SHOULD_REFRESH
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.rosariopfernandes.firecoil.load
@@ -70,6 +69,20 @@ class BlogDetailFragment : Fragment() {
         observeViewEffect()
         onCheckBlogAuthor()
         onBackButtonClicked()
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Int>(SHEET_DIALOG_ITEM)?.observe(viewLifecycleOwner) { shouldRefresh ->
+            shouldRefresh?.run {
+                when {
+                    this == 1 -> {
+                        findNavController().currentBackStackEntry?.savedStateHandle?.set(SHEET_DIALOG_ITEM, null)
+                        onUpdateBlog()
+                    }
+                    else -> {
+                        findNavController().currentBackStackEntry?.savedStateHandle?.set(SHEET_DIALOG_ITEM, null)
+                        onDeleteBlog()
+                    }
+                }
+            }
+        }
     }
 
     private fun initialization() {
@@ -77,12 +90,7 @@ class BlogDetailFragment : Fragment() {
     }
 
     private fun createMenuBottomSheet(): MenuBottomSheetDialogFragment {
-        return MenuBottomSheetDialogFragment {
-            when (it) {
-                action_edit_blog -> onUpdateBlog()
-                action_delete_blog -> onDeleteBlog()
-            }
-        }
+        return MenuBottomSheetDialogFragment()
     }
 
     private fun onUpdateBlog() {
