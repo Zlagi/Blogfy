@@ -109,8 +109,10 @@ Series of workflows runs (in parallel) for every opened PR and after merging PR 
 
 ## Known issues
 - Leaky memory: this issue produced when the user navigate from FeedFragment to BlogDetailFragment before the image loading is complete and vice-versa.
-- Search query is not saved when the orientation is changed.
-- App crashing when the bottom sheet is displayed and the orientation is changed. Fixed ✅
+- Search query text is not saved when the device rotation is changed. Fixed ✅
+- Search blog results are not saved when the device rotation is changed. Fixed ✅ 
+- App crashing when the bottom sheet is displayed and the device rotation is changed. Fixed ✅
+- Alert dialogs destroyed when the device rotation is changed. Fixed ✅
 - Social media authentication seems not working properly on device hardware.
 
 ## Inspiration

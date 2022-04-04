@@ -49,6 +49,8 @@ class SearchBlogFragment : Fragment() {
     private var searchSuggestionsAdapter: SearchSuggestionsAdapter? = null
     private var searchBlogAdapter: SearchBlogAdapter? = null
 
+    private var query: String? = null
+
     @Inject
     lateinit var imageLoader: ImageLoader
 
@@ -79,6 +81,18 @@ class SearchBlogFragment : Fragment() {
         validateSearchSuggestionsViewCollapsion()
         observeViewState()
         observeViewEffect()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("query", query)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        savedInstanceState?.getString("query")?.let { query ->
+            binding.searchInputText.setText(query)
+        }
     }
 
     private fun createSearchSuggestionsAdapter(): SearchSuggestionsAdapter {
@@ -146,8 +160,8 @@ class SearchBlogFragment : Fragment() {
                 if (view.hasFocus()) {
                     setupSearchBlogResultView(
                         clearFocus = false,
-                        noSearchResult = GONE,
-                        searchBlogsRecyclerView = GONE
+                        noSearchResult = VISIBLE,
+                        searchBlogsRecyclerView = VISIBLE
                     )
                     viewModel.setEvent(SearchTextFocusedChanged(true))
                     updateSearchTextFocusListenerViews()
@@ -191,12 +205,13 @@ class SearchBlogFragment : Fragment() {
     private fun updateTextChangedListenerViews() {
         binding.apply {
             searchInputText.addTextChangedListener {
+                query = it.toString()
                 if (it?.isEmpty() == true) searchSuggestionClearButton.visibility = GONE
                 else {
                     setupSearchBlogResultView(
                         clearFocus = false,
-                        noSearchResult = GONE,
-                        searchBlogsRecyclerView = GONE
+                        noSearchResult = VISIBLE,
+                        searchBlogsRecyclerView = VISIBLE
                     )
                     setupSearchSuggestionsView(
                         searchSuggestionsRecyclerView = GONE,
@@ -227,6 +242,7 @@ class SearchBlogFragment : Fragment() {
                 viewModel.currentState.searchBlogResultView -> onCollapseSearchSuggestionsView()
                 viewModel.currentState.searchSuggestionViewCollapsed -> onExpandSearchSuggestionsView()
                 (viewModel.currentState.searchSuggestionViewExpanded && viewModel.currentState.searchTextFocused) -> {
+                    binding.searchInputText.text = null
                     setupSearchBlogResultView(
                         clearFocus = true,
                         noSearchResult = GONE,
@@ -244,6 +260,7 @@ class SearchBlogFragment : Fragment() {
                 viewModel.currentState.searchBlogResultView -> onCollapseSearchSuggestionsView()
                 viewModel.currentState.searchSuggestionViewCollapsed -> onExpandSearchSuggestionsView()
                 (viewModel.currentState.searchSuggestionViewExpanded && viewModel.currentState.searchTextFocused) -> {
+                    binding.searchInputText.text = null
                     setupSearchBlogResultView(
                         clearFocus = true,
                         noSearchResult = GONE,
@@ -317,7 +334,6 @@ class SearchBlogFragment : Fragment() {
                     setupSearchSuggestions()
                     binding.apply {
                         searchBackButton.setImageResource(ic_search)
-                        searchInputText.text = null
                         searchSuggestionClearButton.visibility = GONE
                     }
                 }
@@ -449,6 +465,7 @@ class SearchBlogFragment : Fragment() {
             binding.progressBar.visibility = GONE
             showSnackBar(effect.message, LENGTH_LONG)
         }
+        else -> null
     }
 
     private fun onNewSearch(searchQuery: String) {
