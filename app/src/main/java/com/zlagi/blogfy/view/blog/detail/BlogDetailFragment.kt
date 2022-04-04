@@ -51,6 +51,8 @@ class BlogDetailFragment : Fragment() {
     @Inject
     lateinit var firebaseStorage: FirebaseStorage
 
+    private var alertDialogDisplayed = false
+
     private var menuBottomSheetDialogFragment: MenuBottomSheetDialogFragment? = null
 
     override fun onCreateView(
@@ -69,19 +71,39 @@ class BlogDetailFragment : Fragment() {
         observeViewEffect()
         onCheckBlogAuthor()
         onBackButtonClicked()
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Int>(SHEET_DIALOG_ITEM)?.observe(viewLifecycleOwner) { shouldRefresh ->
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Int>(
+            SHEET_DIALOG_ITEM
+        )?.observe(viewLifecycleOwner) { shouldRefresh ->
             shouldRefresh?.run {
                 when {
                     this == 1 -> {
-                        findNavController().currentBackStackEntry?.savedStateHandle?.set(SHEET_DIALOG_ITEM, null)
+                        findNavController().currentBackStackEntry?.savedStateHandle?.set(
+                            SHEET_DIALOG_ITEM,
+                            null
+                        )
                         onUpdateBlog()
                     }
                     else -> {
-                        findNavController().currentBackStackEntry?.savedStateHandle?.set(SHEET_DIALOG_ITEM, null)
+                        findNavController().currentBackStackEntry?.savedStateHandle?.set(
+                            SHEET_DIALOG_ITEM,
+                            null
+                        )
                         onDeleteBlog()
                     }
                 }
             }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("AlertDialog", alertDialogDisplayed)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        savedInstanceState?.getBoolean("AlertDialog")?.let { state ->
+            showDeleteBlogDialog(state)
         }
     }
 
@@ -139,8 +161,7 @@ class BlogDetailFragment : Fragment() {
                     load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}")) {
                         placeholder(lottieDrawable)
                     }
-                }
-                else {
+                } else {
                     load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}")) {
                         placeholder(lottieDrawable)
                     }
@@ -185,7 +206,7 @@ class BlogDetailFragment : Fragment() {
     private fun reactTo(effect: BlogDetailViewEffect) {
         when (effect) {
             is NavigateToUpdateBlog -> navigateToUpdateBlog(effect.blogPk)
-            is ShowDeleteBlogDialog -> showDeleteBlogDialog()
+            is ShowDeleteBlogDialog -> showDeleteBlogDialog(true)
             is NavigateUp -> navigateUp(refreshFeed = true)
             is ShowSnackBarError -> showSnackBarError(effect.message)
         }
@@ -199,23 +220,31 @@ class BlogDetailFragment : Fragment() {
         }
     }
 
-    private fun showDeleteBlogDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(getString(R.string.confirm_delete_blog))
-        builder.setMessage(getString(R.string.delete_blog_message))
-        builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-            viewModel.setEvent(ConfirmDialogButtonClicked)
-            dialog.cancel()
+    private fun showDeleteBlogDialog(state: Boolean) {
+        if (state) {
+            alertDialogDisplayed = true
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(getString(R.string.confirm_delete_blog))
+            builder.setMessage(getString(R.string.delete_blog_message))
+            builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+                viewModel.setEvent(ConfirmDialogButtonClicked)
+                alertDialogDisplayed = false
+                dialog.cancel()
+            }
+            builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                alertDialogDisplayed = false
+                dialog.cancel()
+            }
+            val alertDialog = builder.create()
+            alertDialog.show()
         }
-        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-            dialog.cancel()
-        }
-        val alert = builder.create()
-        alert.show()
     }
 
     private fun navigateUp(refreshFeed: Boolean) {
-        if (refreshFeed)findNavController().previousBackStackEntry?.savedStateHandle?.set(SHOULD_REFRESH, true)
+        if (refreshFeed) findNavController().previousBackStackEntry?.savedStateHandle?.set(
+            SHOULD_REFRESH,
+            true
+        )
         findNavController().navigateUp()
     }
 
