@@ -47,7 +47,7 @@ https://github.com/Zlagi/blogfy-api 🔥
   <img src="https://user-images.githubusercontent.com/63319103/160952466-1f7c491e-5bc3-4d74-a01b-55f5c52ccd8d.png" width="230px" />
   <img src="https://user-images.githubusercontent.com/63319103/160952856-0407ea51-c097-4c83-bee9-1739879ce9b6.png" width="230px" />
   <img src="https://user-images.githubusercontent.com/63319103/160952516-95f53eff-b59b-4e72-8265-e7f284c247d8.png" width="230px" />
-  <img src="https://user-images.githubusercontent.com/63319103/160952721-fe0c6506-b8f9-4806-8a3a-9f2f6c51cafa.png" width="230px" />
+  <img src="https://user-images.githubusercontent.com/63319103/161479220-e872ea47-3aa9-4c47-8b14-9516ef1a6538.png" width="230px" />
   <img src="https://user-images.githubusercontent.com/63319103/160952811-940782c2-3f3e-4fd3-97dc-29416fdd124d.png" width="230px" />
   <img src="https://user-images.githubusercontent.com/63319103/160953300-ac2b0d4e-4f8b-402f-81b8-df5585120c7a.png" width="230px" />
   <img src="https://user-images.githubusercontent.com/63319103/160953344-00476cc3-a879-4303-ac36-3889cf04f036.png" width="230px" />

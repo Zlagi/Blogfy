@@ -19,6 +19,8 @@ import org.junit.Before
 import org.junit.Test
 import kotlin.time.ExperimentalTime
 
+@ExperimentalCoroutinesApi
+@ExperimentalTime
 @MediumTest
 class AccountRepositoryTest {
 
@@ -230,14 +232,13 @@ class AccountRepositoryTest {
             Truth.assertThat(actual).isEqualTo(expected)
         }
 
-    @ExperimentalCoroutinesApi
-    @ExperimentalTime
     @Test
     fun `getAccount() returns account from CacheDataSource`() = runBlockingTest {
         // Given
         val expected = accountDataDomainMapper.from(FakeDataGenerator.account)
 
         // When
+        sut.storeAccount(expected)
         val result = sut.getAccount()
 
         // Then
