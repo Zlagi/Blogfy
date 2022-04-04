@@ -39,6 +39,8 @@ class UpdatePasswordFragment : Fragment() {
 
     private var loadingDialog: LoadingDialogFragment? = null
 
+    private var alertDialogDisplayed = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,6 +55,18 @@ class UpdatePasswordFragment : Fragment() {
         setupUI()
         observeViewState()
         observeViewEffect()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("AlertDialog", alertDialogDisplayed)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        savedInstanceState?.getBoolean("AlertDialog")?.let { state ->
+            showDiscardChangesDialog(state)
+        }
     }
 
     private fun setupUI() {
@@ -164,24 +178,29 @@ class UpdatePasswordFragment : Fragment() {
         when (effect) {
             is ShowToast -> showToast(R.string.updated)
             is ShowSnackBarError -> showSnackBar(effect.message, LENGTH_SHORT)
-            is ShowDiscardChangesDialog -> showDiscardChangesDialog()
+            is ShowDiscardChangesDialog -> showDiscardChangesDialog(true)
             is NavigateUp -> navigateToAccountDetail()
         }
     }
 
-    private fun showDiscardChangesDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(getString(R.string.discard_changes))
-        builder.setMessage(getString(R.string.discard_changes_message))
-        builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-            viewModel.setEvent(ConfirmDialogButtonClicked)
-            dialog.cancel()
+    private fun showDiscardChangesDialog(state: Boolean) {
+        if (state) {
+            alertDialogDisplayed = true
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(getString(R.string.discard_changes))
+            builder.setMessage(getString(R.string.discard_changes_message))
+            builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+                viewModel.setEvent(ConfirmDialogButtonClicked)
+                alertDialogDisplayed = false
+                dialog.cancel()
+            }
+            builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                alertDialogDisplayed = false
+                dialog.cancel()
+            }
+            val alert = builder.create()
+            alert.show()
         }
-        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-            dialog.cancel()
-        }
-        val alert = builder.create()
-        alert.show()
     }
 
     private fun navigateToAccountDetail() {

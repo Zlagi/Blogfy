@@ -42,6 +42,9 @@ class AccountDetailFragment : Fragment() {
     private var _binding: FragmentAccountDetailBinding? = null
 
     private var loadingDialog: LoadingDialogFragment? = null
+
+    private var alertDialogDisplayed = false
+
     private lateinit var gso: GoogleSignInOptions
 
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -69,6 +72,18 @@ class AccountDetailFragment : Fragment() {
         clickSignOutButton()
         observeViewState()
         observeViewEffect()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("AlertDialog", alertDialogDisplayed)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        savedInstanceState?.getBoolean("AlertDialog")?.let { state ->
+            showSignOutDialog(state)
+        }
     }
 
     private fun initialization() {
@@ -149,7 +164,7 @@ class AccountDetailFragment : Fragment() {
         when (effect) {
             is ShowSnackBarError -> showSnackBar(effect.message, LENGTH_SHORT)
             is NavigateToUpdatePassword -> navigateToUpdatePassword()
-            is ShowDiscardChangesDialog -> showSignOutDialog()
+            is ShowDiscardChangesDialog -> showSignOutDialog(true)
             is NavigateToAuth -> navigateToAuth()
         }
     }
@@ -159,19 +174,24 @@ class AccountDetailFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun showSignOutDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(getString(R.string.confirm_sign_out))
-        builder.setMessage(getString(R.string.sign_out_confirmation_message))
-        builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-            viewModel.setEvent(ConfirmDialogButtonClicked)
-            dialog.cancel()
+    private fun showSignOutDialog(state: Boolean) {
+        if (state) {
+            alertDialogDisplayed = true
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(getString(R.string.confirm_sign_out))
+            builder.setMessage(getString(R.string.sign_out_confirmation_message))
+            builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
+                viewModel.setEvent(ConfirmDialogButtonClicked)
+                alertDialogDisplayed = false
+                dialog.cancel()
+            }
+            builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                alertDialogDisplayed = false
+                dialog.cancel()
+            }
+            val alert = builder.create()
+            alert.show()
         }
-        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-            dialog.cancel()
-        }
-        val alert = builder.create()
-        alert.show()
     }
 
     private fun navigateToAuth() {
