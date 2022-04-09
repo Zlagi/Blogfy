@@ -3,7 +3,7 @@ package com.zlagi.cache.di
 import android.content.Context
 import androidx.room.Room
 import com.zlagi.cache.database.account.AccountDao
-import com.zlagi.cache.database.feed.BlogDao
+import com.zlagi.cache.database.feed.FeedDao
 import com.zlagi.cache.database.BlogfyDatabase
 import com.zlagi.cache.database.search.suggestions.SearchSuggestionsDao
 import com.zlagi.cache.source.DefaultAccountCacheDataSource
@@ -56,7 +56,7 @@ abstract class TestCacheModule {
         @Provides
         fun provideBlogDao(
             blogfyDatabase: BlogfyDatabase
-        ): BlogDao = blogfyDatabase.blogDao()
+        ): FeedDao = blogfyDatabase.blogDao()
 
         @Provides
         fun provideAccountDao(
