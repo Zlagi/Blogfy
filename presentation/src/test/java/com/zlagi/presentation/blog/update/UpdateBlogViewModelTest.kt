@@ -12,6 +12,7 @@ import com.zlagi.common.exception.NetworkException
 import com.zlagi.common.utils.BlogError
 import com.zlagi.common.utils.validator.result.UpdateBlogResult
 import com.zlagi.common.utils.wrapper.DataResult
+import com.zlagi.domain.usecase.blog.dateformat.DateFormatUseCase
 import com.zlagi.domain.usecase.blog.detail.GetBlogUseCase
 import com.zlagi.domain.usecase.blog.update.UpdateBlogUseCase
 import com.zlagi.presentation.R
@@ -53,6 +54,9 @@ class UpdateBlogViewModelTest {
     @MockK
     private lateinit var updateBlogUseCase: UpdateBlogUseCase
 
+    @MockK
+    private lateinit var dateFormatUseCase: DateFormatUseCase
+
     private lateinit var blogDomainPresentationMapper: BlogDomainPresentationMapper
 
     @Before
@@ -68,6 +72,7 @@ class UpdateBlogViewModelTest {
         sut = UpdateBlogViewModel(
             getBlogUseCase = getBlogUseCase,
             updateBlogUseCase = updateBlogUseCase,
+            dateFormatUseCase = dateFormatUseCase,
             blogDomainPresentationMapper = blogDomainPresentationMapper,
             storageReference = FirebaseStorage.getInstance(),
             savedStateHandle = SavedStateHandle()
