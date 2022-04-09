@@ -1,6 +1,5 @@
 package com.zlagi.presentation.viewmodel.blog.create
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +7,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.common.mapper.getStringResId
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.usecase.blog.create.CreateBlogUseCase
+import com.zlagi.domain.usecase.blog.dateformat.DateFormatUseCase
 import com.zlagi.presentation.R.string.*
 import com.zlagi.presentation.viewmodel.blog.create.CreateBlogContract.*
 import com.zlagi.presentation.viewmodel.blog.create.CreateBlogContract.CreateBlogEvent.*
@@ -19,13 +19,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class CreateBlogViewModel @Inject constructor(
     private val createBlogUseCase: CreateBlogUseCase,
+    private val dateFormatUseCase: DateFormatUseCase,
     private val storageReference: FirebaseStorage
 ) : ViewModel() {
 
@@ -37,11 +37,6 @@ class CreateBlogViewModel @Inject constructor(
 
     private val _viewEffect: Channel<CreateBlogViewEffect> = Channel()
     val viewEffect = _viewEffect.receiveAsFlow()
-
-    @SuppressLint("SimpleDateFormat")
-    private val formatter = SimpleDateFormat("'Date: 'yyyy-MM-dd' Time: 'HH:mm:ss")
-    private val now = Date()
-    private val imageCreationTime = formatter.format(now)
 
     private var job: Job? = null
 
@@ -85,6 +80,7 @@ class CreateBlogViewModel @Inject constructor(
      */
     private fun onCreateBlog(imageUri: Uri?) {
         val (title, description, blogImage) = currentState
+        val imageCreationTime = dateFormatUseCase()
         job?.cancel()
         job = viewModelScope.launch {
             setState { copy(loading = true) }

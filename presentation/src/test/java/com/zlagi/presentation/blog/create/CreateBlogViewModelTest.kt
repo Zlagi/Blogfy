@@ -12,6 +12,7 @@ import com.zlagi.common.utils.BlogError
 import com.zlagi.common.utils.validator.result.UpdateBlogResult
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.usecase.blog.create.CreateBlogUseCase
+import com.zlagi.domain.usecase.blog.dateformat.DateFormatUseCase
 import com.zlagi.presentation.R
 import com.zlagi.presentation.TestCoroutineRule
 import com.zlagi.presentation.fakes.FakeDataGenerator
@@ -47,6 +48,9 @@ class CreateBlogViewModelTest {
     @MockK
     private lateinit var createBlogUseCase: CreateBlogUseCase
 
+    @MockK
+    private lateinit var dateFormatUseCase: DateFormatUseCase
+
     @Before
     fun setup() {
         // Turn relaxUnitFun on for all mocks
@@ -55,7 +59,11 @@ class CreateBlogViewModelTest {
         mockkStatic(FirebaseStorage::class)
         every { FirebaseStorage.getInstance() } returns mockk(relaxed = true)
 
-        sut = CreateBlogViewModel(createBlogUseCase = createBlogUseCase, storageReference = FirebaseStorage.getInstance())
+        sut = CreateBlogViewModel(
+            createBlogUseCase = createBlogUseCase,
+            dateFormatUseCase = dateFormatUseCase,
+            storageReference = FirebaseStorage.getInstance()
+        )
     }
 
     @Test

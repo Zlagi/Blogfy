@@ -1,6 +1,5 @@
 package com.zlagi.presentation.viewmodel.blog.update
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -8,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.common.mapper.getStringResId
 import com.zlagi.common.utils.wrapper.DataResult
+import com.zlagi.domain.usecase.blog.dateformat.DateFormatUseCase
 import com.zlagi.domain.usecase.blog.detail.GetBlogUseCase
 import com.zlagi.domain.usecase.blog.update.UpdateBlogUseCase
 import com.zlagi.presentation.R.string.description_error_message
@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -31,6 +30,7 @@ import javax.inject.Inject
 class UpdateBlogViewModel @Inject constructor(
     private val getBlogUseCase: GetBlogUseCase,
     private val updateBlogUseCase: UpdateBlogUseCase,
+    private val dateFormatUseCase: DateFormatUseCase,
     private val blogDomainPresentationMapper: BlogDomainPresentationMapper,
     private val storageReference: FirebaseStorage,
     savedStateHandle: SavedStateHandle
@@ -44,11 +44,6 @@ class UpdateBlogViewModel @Inject constructor(
 
     private val _viewEffect: Channel<UpdateBlogViewEffect> = Channel()
     val viewEffect = _viewEffect.receiveAsFlow()
-
-    @SuppressLint("SimpleDateFormat")
-    private val formatter = SimpleDateFormat("'Date: 'yyyy-MM-dd' Time: 'HH:mm:ss")
-    private val now = Date()
-    private val imageUpdateTime = formatter.format(now)
 
     private var job: Job? = null
 
@@ -138,6 +133,7 @@ class UpdateBlogViewModel @Inject constructor(
      * Start updating blog
      */
     private fun onUpdateBlog(blogPk: Int?, imageUri: Uri?) {
+        val imageUpdateTime = dateFormatUseCase()
         val updateTime = if (imageUri == null) "" else imageUpdateTime
         setState { copy(loading = true) }
         job?.cancel()

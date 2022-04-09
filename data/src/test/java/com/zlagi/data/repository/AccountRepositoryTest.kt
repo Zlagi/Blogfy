@@ -241,6 +241,7 @@ class AccountRepositoryTest {
         sut.storeAccount(expected)
         val result = sut.getAccount()
 
+
         // Then
         result.test {
             val actual = awaitItem()
