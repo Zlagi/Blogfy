@@ -1,16 +1,16 @@
 package com.zlagi.cache.mapper
 
-import com.zlagi.cache.model.BlogCacheModel
+import com.zlagi.cache.model.FeedBlogCacheModel
 import com.zlagi.common.mapper.Mapper
 import com.zlagi.data.model.BlogDataModel
 import javax.inject.Inject
 
 /**
- * Mapper class for convert [BlogCacheModel] to [BlogDataModel] and vice versa
+ * Mapper class for convert [FeedBlogCacheModel] to [BlogDataModel] and vice versa
  */
-class BlogCacheDataMapper @Inject constructor() : Mapper<BlogCacheModel, BlogDataModel> {
+class FeedBlogCacheDataMapper @Inject constructor() : Mapper<FeedBlogCacheModel, BlogDataModel> {
 
-    override fun from(i: BlogCacheModel): BlogDataModel {
+    override fun from(i: FeedBlogCacheModel): BlogDataModel {
         return BlogDataModel(
             pk = i.pk,
             title = i.title,
@@ -21,8 +21,8 @@ class BlogCacheDataMapper @Inject constructor() : Mapper<BlogCacheModel, BlogDat
         )
     }
 
-    override fun to(o: BlogDataModel): BlogCacheModel {
-        return BlogCacheModel(
+    override fun to(o: BlogDataModel): FeedBlogCacheModel {
+        return FeedBlogCacheModel(
             pk = o.pk,
             title = o.title,
             description = o.description,

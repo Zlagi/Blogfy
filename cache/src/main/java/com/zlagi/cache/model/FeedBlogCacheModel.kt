@@ -3,8 +3,8 @@ package com.zlagi.cache.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "blog")
-data class BlogCacheModel(
+@Entity(tableName = "feed")
+data class FeedBlogCacheModel(
     @PrimaryKey(autoGenerate = false)
     val pk: Int,
     val title: String,

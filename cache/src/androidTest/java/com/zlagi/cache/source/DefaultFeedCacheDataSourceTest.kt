@@ -4,10 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.MediumTest
 import app.cash.turbine.test
 import com.google.common.truth.Truth
-import com.zlagi.cache.database.feed.BlogDao
+import com.zlagi.cache.database.feed.FeedDao
 import com.zlagi.cache.database.BlogfyDatabase
 import com.zlagi.cache.fakes.FakeDataGenerator
-import com.zlagi.cache.mapper.BlogCacheDataMapper
+import com.zlagi.cache.mapper.FeedBlogCacheDataMapper
 import com.zlagi.data.model.BlogDataModel
 import com.zlagi.data.source.cache.feed.FeedCacheDataSource
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -40,16 +40,16 @@ class DefaultFeedCacheDataSourceTest {
     @Named("test_db")
     lateinit var database: BlogfyDatabase
 
-    private lateinit var blogDao: BlogDao
+    private lateinit var feedDao: FeedDao
 
-    private lateinit var blogCacheDataMapper: BlogCacheDataMapper
+    private lateinit var feedBlogCacheDataMapper: FeedBlogCacheDataMapper
 
     @Before
     fun setup() {
         hiltRule.inject()
-        blogDao = database.blogDao()
-        blogCacheDataMapper = BlogCacheDataMapper()
-        feedCacheDataSource = DefaultFeedCacheDataSource(blogDao, blogCacheDataMapper)
+        feedDao = database.blogDao()
+        feedBlogCacheDataMapper = FeedBlogCacheDataMapper()
+        feedCacheDataSource = DefaultFeedCacheDataSource(feedDao, feedBlogCacheDataMapper)
     }
 
     @After
