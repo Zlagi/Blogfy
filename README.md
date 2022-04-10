@@ -13,7 +13,7 @@ The trick of the project is to demonstrate best practices, provide a set of guid
 
 ***You can Install and test latest Blogfy Android app 👇***
 
-[![Blogfy](https://img.shields.io/badge/Blogfy✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Zlagi/Blogfy/releases/tag/1)
+[![Blogfy](https://img.shields.io/badge/Blogfy✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Zlagi/Blogfy/releases)
 
 ## 💡 API:
 
