@@ -160,8 +160,8 @@ class SearchBlogFragment : Fragment() {
                 if (view.hasFocus()) {
                     setupSearchBlogResultView(
                         clearFocus = false,
-                        noSearchResult = VISIBLE,
-                        searchBlogsRecyclerView = VISIBLE
+                        noSearchResult = GONE,
+                        searchBlogsRecyclerView = GONE
                     )
                     viewModel.setEvent(SearchTextFocusedChanged(true))
                     updateSearchTextFocusListenerViews()
