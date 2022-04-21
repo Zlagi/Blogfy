@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "911d7d168b5f281cff564ff8689d4753",
+    "identityHash": "72616b85a37d501cce43b004add9adfa",
     "entities": [
       {
-        "tableName": "blog",
+        "tableName": "feed",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pk` INTEGER NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `created` TEXT NOT NULL, `updated` TEXT NOT NULL, `username` TEXT NOT NULL, PRIMARY KEY(`pk`))",
         "fields": [
           {
@@ -166,7 +166,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '911d7d168b5f281cff564ff8689d4753')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '72616b85a37d501cce43b004add9adfa')"
     ]
   }
 }

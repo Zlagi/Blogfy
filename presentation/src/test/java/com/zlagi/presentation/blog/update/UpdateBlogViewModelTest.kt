@@ -154,6 +154,7 @@ class UpdateBlogViewModelTest {
                 UpdateBlogResult(result = DataResult.Error(NetworkException.NetworkUnavailable))
 
             coEvery { getBlogUseCase.invoke(any()) } returns getBlogResult
+            coEvery { dateFormatUseCase.invoke() } returns ""
             coEvery {
                 updateBlogUseCase.invoke(
                     any(),
@@ -212,6 +213,7 @@ class UpdateBlogViewModelTest {
             val updateBlogResult = UpdateBlogResult(titleError = BlogError.InputTooShort)
 
             coEvery { getBlogUseCase.invoke(any()) } returns getBlogResult
+            coEvery { dateFormatUseCase.invoke() } returns ""
             coEvery {
                 updateBlogUseCase.invoke(
                     any(),
@@ -268,6 +270,7 @@ class UpdateBlogViewModelTest {
             val updateBlogResult = UpdateBlogResult(descriptionError = BlogError.InputTooShort)
 
             coEvery { getBlogUseCase.invoke(any()) } returns getBlogResult
+            coEvery { dateFormatUseCase.invoke() } returns ""
             coEvery {
                 updateBlogUseCase.invoke(
                     any(),
