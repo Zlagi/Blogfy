@@ -112,6 +112,7 @@ class CreateBlogViewModelTest {
             val result =
                 UpdateBlogResult(result = DataResult.Error(NetworkException.NetworkUnavailable))
 
+            coEvery { dateFormatUseCase.invoke() } returns ""
             coEvery { createBlogUseCase.invoke(any(), any(), any(), any()) } returns result
 
             val expectedViewState = CreateBlogContract.CreateBlogViewState(
@@ -161,6 +162,7 @@ class CreateBlogViewModelTest {
             // Given
             val result = UpdateBlogResult(titleError = BlogError.InputTooShort)
 
+            coEvery { dateFormatUseCase.invoke() } returns ""
             coEvery { createBlogUseCase.invoke(any(), any(), any(), any()) } returns result
 
             val expectedViewState = CreateBlogContract.CreateBlogViewState(
@@ -211,6 +213,7 @@ class CreateBlogViewModelTest {
             // Given
             val result = UpdateBlogResult(descriptionError = BlogError.InputTooShort)
 
+            coEvery { dateFormatUseCase.invoke() } returns ""
             coEvery { createBlogUseCase.invoke(any(), any(), any(), any()) } returns result
 
             val expectedViewState = CreateBlogContract.CreateBlogViewState(
@@ -261,6 +264,7 @@ class CreateBlogViewModelTest {
             // Given
             val result = UpdateBlogResult(uriError = BlogError.InputTooShort)
 
+            coEvery { dateFormatUseCase.invoke() } returns ""
             coEvery { createBlogUseCase.invoke(any(), any(), any(), any()) } returns result
 
             val expectedViewState = CreateBlogContract.CreateBlogViewState(
