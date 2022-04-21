@@ -1,9 +1,8 @@
 # Blogfy 📷
 
 [![Build (API)](https://github.com/Zlagi/blogfy-api/actions/workflows/run-build.yml/badge.svg)](https://github.com/Zlagi/blogfy-api/actions/workflows/run-build.yml)
-[![Android Lint](https://github.com/Zlagi/Blogfy/actions/workflows/Lint.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Lint.yml)
-[![Testing](https://github.com/Zlagi/Blogfy/actions/workflows/Testing.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Testing.yml)
-[![Release](https://github.com/Zlagi/Blogfy/actions/workflows/Release.yml/badge.svg)](https://github.com/Zlagi/Blogfy/actions/workflows/Release.yml)
+[![Android Lint](https://github.com/Zlagi/Blogfy/actions/workflows/Lint.yml/badge.svg?branch=testing)](https://github.com/Zlagi/Blogfy/actions/workflows/Lint.yml)
+[![Testing](https://github.com/Zlagi/Blogfy/actions/workflows/Testing.yml/badge.svg?branch=testing)](https://github.com/Zlagi/Blogfy/actions/workflows/Testing.yml)[![!Release](https://github.com/Zlagi/Blogfy/actions/workflows/Release.yml/badge.svg?branch=testing)](https://github.com/Zlagi/Blogfy/actions/workflows/Release.yml)
 
 ## 💡 About the Project
 
