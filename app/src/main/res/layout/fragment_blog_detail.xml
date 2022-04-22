@@ -74,7 +74,7 @@
                     android:background="?attr/actionBarItemBackground"
                     android:contentDescription="@string/clear_search_suggestion_item"
                     android:padding="@dimen/dimen_12"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
