@@ -124,6 +124,7 @@ Other high-quality projects will help you to find solutions that work for your p
 - [Filmatic](https://github.com/prof18/Filmatic)
 - [Open-API-Android-App](https://github.com/mitchtabian/Open-API-Android-App)
 - [Taskify](https://github.com/Vaibhav2002/Taskify)
+- [Owl](https://github.com/material-components/material-components-android-examples/tree/develop/Owl)
 
 ## Contribute
 
