@@ -12,7 +12,6 @@ import com.airbnb.lottie.LottieDrawable
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.blogfy.R
 import com.zlagi.blogfy.databinding.SearchItemBinding
-import com.zlagi.presentation.model.BlogPk
 import com.zlagi.presentation.model.BlogPresentationModel
 import io.github.rosariopfernandes.firecoil.load
 

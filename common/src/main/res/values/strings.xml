@@ -5,7 +5,6 @@
     <string name="unknown_error_message">Something went wrong, please try again later…</string>
     <string name="unknown_network_error_message">Something unexpected happened, please try again later…</string>
     <string name="service_unavailable_message">Service unavailable, please try again later…</string>
-    <string name="sync_error">Synchronization failed</string>
     <string name="server_unreachable_message">Server unreachable, please try again later…</string>
     <string name="no_more_results">No results found :(</string>
 </resources>

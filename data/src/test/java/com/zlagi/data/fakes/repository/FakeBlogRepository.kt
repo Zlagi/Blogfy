@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class FakeFeedRepositoryReturnsSuccess @Inject constructor() : FeedRepository {
+class FakeBlogRepository @Inject constructor() : FeedRepository {
 
     override suspend fun requestMoreBlogs(
         searchQuery: String,

@@ -1,4 +1,4 @@
-package com.zlagi.common.utils
+package com.zlagi.network.utils
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

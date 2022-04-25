@@ -1,10 +1,8 @@
 package com.zlagi.domain.usecase.auth.signup
 
 import com.zlagi.common.qualifier.IoDispatcher
-import com.zlagi.common.utils.AuthError
-import com.zlagi.common.utils.validator.AuthValidator
-import com.zlagi.common.utils.validator.AuthValidator.isAlphaNumeric
-import com.zlagi.common.utils.validator.result.SignUpResult
+import com.zlagi.domain.validator.AuthValidator
+import com.zlagi.common.utils.result.SignUpResult
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.repository.auth.AuthRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,31 +20,10 @@ class SignUpUseCase @Inject constructor(
         confirmPassword: String
     ): SignUpResult {
 
-        val emailError = when {
-            email.isEmpty() -> AuthError.EmptyField
-            !AuthValidator.isValidEmail(email) -> AuthError.InvalidEmail
-            else -> null
-        }
-        val usernameError = when {
-            username.isEmpty() -> AuthError.EmptyField
-            username.count() < 2 -> AuthError.InputTooShort
-            !username.isAlphaNumeric() -> AuthError.InvalidUsername
-            else -> null
-        }
-        val passwordError = when {
-            password.isEmpty() -> AuthError.EmptyField
-            !AuthValidator.isValidPassword(password) -> AuthError.InputTooShort
-            else -> null
-        }
-        val confirmPasswordError = when {
-            confirmPassword.isEmpty() -> AuthError.EmptyField
-            !AuthValidator.isValidPassword(confirmPassword) -> AuthError.InputTooShort
-            !AuthValidator.passwordMatches(
-                password,
-                confirmPassword
-            ) -> AuthError.UnmatchedPassword
-            else -> null
-        }
+        val emailError = AuthValidator.emailError(email)
+        val usernameError = AuthValidator.usernameError(username)
+        val passwordError = AuthValidator.passwordError(password)
+        val confirmPasswordError = AuthValidator.confirmPasswordError(password, confirmPassword)
 
         if (emailError != null || usernameError != null || passwordError != null || confirmPasswordError != null) {
             return SignUpResult(emailError, usernameError, passwordError, confirmPasswordError)

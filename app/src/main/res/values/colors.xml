@@ -6,15 +6,10 @@
     <color name="reply_black_700">#C0424242</color>
     <color name="reply_black_800">#424242</color>
     <color name="reply_black_900">#000000</color>
-    <color name="lt_darkpblue">#4741a6</color>
     <color name="blue1">#005DF2</color>
     <color name="link_blue">#0000EE</color>
     <color name="tealLight">#9FDAF7</color>
-
     <color name="green1">#25C685</color>
-    <color name="green2">#3DD598</color>
-    <color name="green3">#D4F5E9</color>
-
     <color name="background">#FAFAFA</color>
     <color name="red">#e22b2b</color>
     <color name="deep_red">#B00020</color>

@@ -13,7 +13,6 @@ import com.zlagi.domain.usecase.auth.deletetokens.DeleteTokensUseCase
 import com.zlagi.domain.usecase.blog.search.suggestions.DeleteAllSearchSuggestionsUseCase
 import com.zlagi.presentation.R
 import com.zlagi.presentation.mapper.AccountDomainPresentationMapper
-import com.zlagi.presentation.viewmodel.account.detail.AccountDetailContract.*
 import com.zlagi.presentation.viewmodel.account.detail.AccountDetailContract.AccountDetailEvent.*
 import com.zlagi.presentation.viewmodel.account.detail.AccountDetailContract.AccountDetailViewEffect.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,13 +36,13 @@ class AccountDetailViewModel @Inject constructor(
     private val accountDomainPresentationMapper: AccountDomainPresentationMapper
 ) : ViewModel() {
 
-    private val currentState: AccountDetailViewState
+    private val currentState: AccountDetailContract.AccountDetailViewState
         get() = viewState.value
 
-    val viewState: StateFlow<AccountDetailViewState> get() = _viewState
-    private val _viewState = MutableStateFlow(AccountDetailViewState())
+    val viewState: StateFlow<AccountDetailContract.AccountDetailViewState> get() = _viewState
+    private val _viewState = MutableStateFlow(AccountDetailContract.AccountDetailViewState())
 
-    private val _viewEffect: Channel<AccountDetailViewEffect> = Channel()
+    private val _viewEffect: Channel<AccountDetailContract.AccountDetailViewEffect> = Channel()
     val viewEffect = _viewEffect.receiveAsFlow()
 
     private var job: Job? = null
@@ -51,7 +50,9 @@ class AccountDetailViewModel @Inject constructor(
     /**
      * Set new Ui State
      */
-    private fun setState(reduce: AccountDetailViewState.() -> AccountDetailViewState) {
+    private fun setState(
+        reduce: AccountDetailContract.AccountDetailViewState.() -> AccountDetailContract.AccountDetailViewState
+    ) {
         val newState = viewState.value.reduce()
         _viewState.value = newState
     }
@@ -59,7 +60,7 @@ class AccountDetailViewModel @Inject constructor(
     /**
      * Set new effect
      */
-    private fun setEffect(builder: () -> AccountDetailViewEffect) {
+    private fun setEffect(builder: () -> AccountDetailContract.AccountDetailViewEffect) {
         val effectValue = builder()
         setState { copy(isSigningOut = false, loading = false) }
         viewModelScope.launch { _viewEffect.send(effectValue) }
@@ -68,7 +69,7 @@ class AccountDetailViewModel @Inject constructor(
     /**
      * Set handle events
      */
-    fun setEvent(event: AccountDetailEvent) {
+    fun setEvent(event: AccountDetailContract.AccountDetailEvent) {
         when (event) {
             is Initialization -> onRequestAccount()
             is UpdatePasswordButtonClicked -> setEffect { NavigateToUpdatePassword }

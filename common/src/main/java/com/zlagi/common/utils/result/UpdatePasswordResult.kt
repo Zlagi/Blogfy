@@ -1,4 +1,4 @@
-package com.zlagi.common.utils.validator.result
+package com.zlagi.common.utils.result
 
 import com.zlagi.common.utils.AuthError
 import com.zlagi.common.utils.wrapper.SimpleResource

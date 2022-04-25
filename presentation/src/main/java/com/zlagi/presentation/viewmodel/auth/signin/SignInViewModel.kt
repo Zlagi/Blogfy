@@ -76,21 +76,32 @@ class SignInViewModel @Inject constructor(
             val signInResult = signInUseCase(email, password)
             setState { copy(loading = false) }
 
-            signInResult.emailError?.let {
-                if (it == AuthError.EmptyField) setState { copy(emailError = empty_field_message) }
-                else setState { copy(emailError = email_error_message) }
-            } ?: setState { copy(emailError = no_error_message) }
-
-            signInResult.passwordError?.let {
-                if (it == AuthError.EmptyField) setState { copy(passwordError = empty_field_message) }
-                else setState { copy(passwordError = password_error_message) }
-            } ?: setState { copy(passwordError = no_error_message) }
+            setEmailErrorState(signInResult.emailError)
+            setPasswordErrorState(signInResult.passwordError)
 
             when (signInResult.result) {
                 is DataResult.Success -> setEffect { NavigateToFeed }
-                is DataResult.Error -> setEffect { ShowSnackBarError((signInResult.result as DataResult.Error<Unit>).exception.getStringResId()) }
+                is DataResult.Error -> setEffect {
+                    ShowSnackBarError((
+                            signInResult.result as DataResult.Error<Unit>
+                            ).exception.getStringResId()) }
                 null -> return@launch
             }
         }
+    }
+
+    private fun setEmailErrorState(emailError: AuthError?) {
+        emailError?.let {
+            if (it == AuthError.EmptyField) setState { copy(emailError = empty_field_message) }
+            else setState { copy(emailError = email_error_message) }
+        } ?: setState { copy(emailError = no_error_message) }
+    }
+
+    private fun setPasswordErrorState(passwordError: AuthError?) {
+        passwordError?.let {
+            if (it == AuthError.EmptyField) setState { copy(passwordError = empty_field_message) }
+            else setState { copy(passwordError = password_error_message) }
+        } ?: setState { copy(passwordError = no_error_message) }
+
     }
 }

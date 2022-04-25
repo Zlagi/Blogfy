@@ -74,6 +74,7 @@ class UpdatePasswordViewModel @Inject constructor(
         job?.cancel()
         currentState.let {
             job = viewModelScope.launch {
+
                 setState { copy(loading = true) }
                 val updatePasswordResult = updatePasswordUseCase(
                     it.currentPassword,
@@ -81,57 +82,62 @@ class UpdatePasswordViewModel @Inject constructor(
                     it.confirmNewPassword
                 )
                 setState { copy(loading = false) }
-                when {
-                    updatePasswordResult.currentPasswordError != null -> setState {
-                        copy(
-                            currentPasswordError = password_error_message,
-                            newPasswordError = no_error_message,
-                            confirmNewPasswordError = no_error_message
-                        )
+
+                setCurrentPasswordErrorState(updatePasswordResult.currentPasswordError)
+                setNewPasswordErrorState(updatePasswordResult.newPasswordError)
+                setConfirmPasswordErrorState(updatePasswordResult.confirmPasswordError)
+
+                when (updatePasswordResult.result) {
+                    is DataResult.Success<*> -> {
+                        setEffect { ShowToast }
+                        setEffect { NavigateUp }
                     }
-                    updatePasswordResult.newPasswordError != null -> setState {
-                        copy(
-                            currentPasswordError = no_error_message,
-                            newPasswordError = password_error_message,
-                            confirmNewPasswordError = no_error_message
-                        )
+                    is DataResult.Error<*> -> {
+                        val exception =
+                            (updatePasswordResult.result as DataResult.Error<Unit>).exception
+                        setExceptionEffect(exception)
                     }
-                    updatePasswordResult.confirmPasswordError != null ->
-                        if (updatePasswordResult.confirmPasswordError == AuthError.InputTooShort)
-                            setState {
-                                copy(
-                                    currentPasswordError = no_error_message,
-                                    newPasswordError = no_error_message,
-                                    confirmNewPasswordError = password_error_message
-                                )
-                            }
-                        else setEffect { ShowSnackBarError(password_unmatched) }
-                    else -> {
-                        when (updatePasswordResult.result) {
-                            is DataResult.Success -> {
-                                setEffect { ShowToast }
-                                setEffect { NavigateUp }
-                            }
-                            is DataResult.Error -> {
-                                val exception = (updatePasswordResult.result as DataResult.Error<Unit>).exception
-                                if (exception == NetworkException.BadRequest) {
-                                    setEffect {
-                                        ShowSnackBarError(
-                                            invalid_credentials_message
-                                        )
-                                    }
-                                }
-                                else setEffect {
-                                    ShowSnackBarError(
-                                        exception.getStringResId()
-                                    )
-                                }
-                            }
-                            null -> return@launch
-                        }
-                    }
+                    null -> return@launch
                 }
             }
         }
+    }
+
+    private fun setExceptionEffect(exception: Exception) {
+        if (exception == NetworkException.BadRequest) {
+            setEffect {
+                ShowSnackBarError(
+                    invalid_credentials_message
+                )
+            }
+        } else setEffect {
+            ShowSnackBarError(
+                exception.getStringResId()
+            )
+        }
+    }
+
+    private fun setCurrentPasswordErrorState(currentPasswordError: AuthError?) {
+        currentPasswordError?.let {
+            if (it == AuthError.EmptyField) setState { copy(currentPasswordError = empty_field_message) }
+            else setState { copy(currentPasswordError = password_error_message) }
+        } ?: setState { copy(currentPasswordError = no_error_message) }
+    }
+
+    private fun setNewPasswordErrorState(newPasswordError: AuthError?) {
+        newPasswordError?.let {
+            if (it == AuthError.EmptyField) setState { copy(newPasswordError = empty_field_message) }
+            else setState { copy(newPasswordError = password_error_message) }
+        } ?: setState { copy(newPasswordError = no_error_message) }
+    }
+
+    private fun setConfirmPasswordErrorState(confirmNewPasswordError: AuthError?) {
+        confirmNewPasswordError?.let {
+            when (it) {
+                is AuthError.EmptyField -> setState { copy(confirmNewPasswordError = empty_field_message) }
+                is AuthError.InputTooShort -> setState { copy(confirmNewPasswordError = password_error_message) }
+                else -> setState { copy(confirmNewPasswordError = password_unmatched) }
+            }
+        } ?: setState { copy(confirmNewPasswordError = no_error_message) }
     }
 }

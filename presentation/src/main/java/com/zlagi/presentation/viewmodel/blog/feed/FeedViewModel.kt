@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 const val SHOULD_REFRESH = "should_refresh"
-const val SHEET_DIALOG_ITEM = "should_refresh"
+const val SHEET_DIALOG_ITEM = "sheet_dialog"
 
 @HiltViewModel
 class FeedViewModel @Inject constructor(

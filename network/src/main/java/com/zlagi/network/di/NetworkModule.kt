@@ -3,7 +3,6 @@ package com.zlagi.network.di
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.zlagi.common.utils.Extensions.moshi
 import com.zlagi.data.source.preferences.PreferencesDataSource
 import com.zlagi.data.source.network.account.AccountNetworkDataSource
 import com.zlagi.data.source.network.auth.AuthNetworkDataSource
@@ -17,6 +16,7 @@ import com.zlagi.network.model.NetworkConstants
 import com.zlagi.network.source.DefaultAccountNetworkDataSource
 import com.zlagi.network.source.DefaultAuthNetworkDataSource
 import com.zlagi.network.source.DefaultBlogNetworkDataSource
+import com.zlagi.network.utils.Extensions.moshi
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

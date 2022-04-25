@@ -6,7 +6,7 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth
 import com.zlagi.common.exception.NetworkException
 import com.zlagi.common.utils.AuthError
-import com.zlagi.common.utils.validator.result.UpdatePasswordResult
+import com.zlagi.common.utils.result.UpdatePasswordResult
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.usecase.account.update.UpdatePasswordUseCase
 import com.zlagi.presentation.R
