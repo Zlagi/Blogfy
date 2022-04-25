@@ -17,5 +17,7 @@ abstract class TestConnectivityModule {
 
     @Binds
     @Singleton
-    abstract fun bindConnectivityChecker(connectivityChecker: FakeConnectivityCheckReturnSuccess): ConnectivityChecker
+    abstract fun bindConnectivityChecker(
+        connectivityChecker: FakeConnectivityCheckReturnSuccess
+    ): ConnectivityChecker
 }

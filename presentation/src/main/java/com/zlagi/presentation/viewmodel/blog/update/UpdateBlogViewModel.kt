@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -175,7 +174,8 @@ class UpdateBlogViewModel @Inject constructor(
                                 is DataResult.Error -> {
                                     setEffect {
                                         ShowSnackBarError(
-                                            (updateBlogResult.result as DataResult.Error<Unit>).exception.getStringResId()
+                                            (updateBlogResult.result as DataResult.Error<Unit>)
+                                                .exception.getStringResId()
                                         )
                                     }
                                 }

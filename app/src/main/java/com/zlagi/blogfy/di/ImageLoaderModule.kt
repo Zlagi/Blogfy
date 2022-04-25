@@ -11,15 +11,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class ImageLoaderModule {
 
-    companion object {
-        @Provides
-        @Singleton
-        fun provideImageLoader(
-            @ApplicationContext context: Context
-        ): ImageLoader {
-            return ImageLoader.Builder(context).build()
-        }
+object ImageLoaderModule {
+
+    @Provides
+    @Singleton
+    fun provideImageLoader(
+        @ApplicationContext context: Context
+    ): ImageLoader {
+        return ImageLoader.Builder(context).build()
     }
 }

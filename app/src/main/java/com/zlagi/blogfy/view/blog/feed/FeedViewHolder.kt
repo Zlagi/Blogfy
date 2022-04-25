@@ -39,10 +39,18 @@ class FeedViewHolder(
                 }
             with(blogImageView) {
                 transitionName = item.pk.toString()
-                if (item.updated.isNotEmpty()) load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${item.updated}")) {
+                if (item.updated.isNotEmpty()) load(
+                    firebaseStorage.getReferenceFromUrl(
+                        "gs://blogfy-e5b41.appspot.com/image/${item.updated}"
+                    )
+                ) {
                     placeholder(lottieDrawable)
                 }
-                else load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${item.created}")) {
+                else load(
+                    firebaseStorage.getReferenceFromUrl(
+                        "gs://blogfy-e5b41.appspot.com/image/${item.created}"
+                    )
+                ) {
                     placeholder(lottieDrawable)
                 }
             }

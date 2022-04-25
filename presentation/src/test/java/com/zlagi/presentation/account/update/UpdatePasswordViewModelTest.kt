@@ -116,7 +116,8 @@ class UpdatePasswordViewModelTest {
     fun `when UpdatePasswordUseCase returns BadRequest then verify viewState and viewEffect`() =
         testCoroutineRule.runBlockingTest {
             // Given
-            val updatePasswordResult = UpdatePasswordResult(result = DataResult.Error(NetworkException.BadRequest))
+            val updatePasswordResult =
+                UpdatePasswordResult(result = DataResult.Error(NetworkException.BadRequest))
 
             coEvery {
                 updatePasswordUseCase.invoke(
@@ -176,7 +177,9 @@ class UpdatePasswordViewModelTest {
     fun `when UpdatePasswordUseCase returns NetworkUnavailable then verify viewState and viewEffect`() =
         testCoroutineRule.runBlockingTest {
             // Given
-            val updatePasswordResult = UpdatePasswordResult(result = DataResult.Error(NetworkException.NetworkUnavailable))
+            val updatePasswordResult = UpdatePasswordResult(
+                result = DataResult.Error(NetworkException.NetworkUnavailable)
+            )
 
             coEvery {
                 updatePasswordUseCase.invoke(
@@ -235,7 +238,8 @@ class UpdatePasswordViewModelTest {
     fun `when UpdatePasswordUseCase returns Network then verify viewState and viewEffect`() =
         testCoroutineRule.runBlockingTest {
             // Given
-            val updatePasswordResult = UpdatePasswordResult(result = DataResult.Error(NetworkException.Network))
+            val updatePasswordResult =
+                UpdatePasswordResult(result = DataResult.Error(NetworkException.Network))
 
             coEvery {
                 updatePasswordUseCase.invoke(

@@ -134,7 +134,8 @@ class SearchViewModelTest {
             } returns DataResult.Error(NetworkException.NetworkUnavailable)
             coEvery { getBlogsByUseCase.invoke(any()) } returns FakeDataGenerator.blogs
 
-            val expectedViewEffect = SearchContract.SearchViewEffect.ShowSnackBarError(R.string.network_unavailable_message)
+            val expectedViewEffect =
+                SearchContract.SearchViewEffect.ShowSnackBarError(R.string.network_unavailable_message)
 
             // When
             sut.setEvent(SearchContract.SearchEvent.NewSearch("something"))
@@ -163,7 +164,8 @@ class SearchViewModelTest {
             } returns DataResult.Error(NetworkException.Network)
             coEvery { getBlogsByUseCase.invoke(any()) } returns FakeDataGenerator.blogs
 
-            val expectedViewEffect = SearchContract.SearchViewEffect.ShowSnackBarError(R.string.server_unreachable_message)
+            val expectedViewEffect =
+                SearchContract.SearchViewEffect.ShowSnackBarError(R.string.server_unreachable_message)
 
             // When
             sut.setEvent(SearchContract.SearchEvent.NewSearch("something"))
@@ -254,7 +256,9 @@ class SearchViewModelTest {
             coEvery { getSearchSuggestionsUseCase.invoke() } returns result
 
             val expectedViewState = SearchContract.SearchViewState(
-                searchSuggestions = searchDomainPresentationMapper.fromList(FakeDataGenerator.searchSuggestions.asReversed())
+                searchSuggestions = searchDomainPresentationMapper.fromList(
+                    FakeDataGenerator.searchSuggestions.asReversed()
+                )
             )
 
             // When

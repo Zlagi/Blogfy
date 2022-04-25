@@ -4,9 +4,9 @@ import com.zlagi.domain.repository.auth.AuthRepository
 import javax.inject.Inject
 
 class AuthenticationStatusUseCase @Inject constructor(
-    private val repository: AuthRepository
+    private val authRepository: AuthRepository
 ) {
     operator fun invoke(): Boolean {
-        return repository.authenticationStatus()
+        return authRepository.authenticationStatus()
     }
 }

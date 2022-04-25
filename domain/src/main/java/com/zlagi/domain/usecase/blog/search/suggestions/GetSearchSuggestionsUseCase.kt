@@ -5,7 +5,9 @@ import com.zlagi.domain.repository.search.suggestions.SearchSuggestionsRepositor
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetSearchSuggestionsUseCase @Inject constructor(private val searchSuggestionsRepository: SearchSuggestionsRepository) {
+class GetSearchSuggestionsUseCase @Inject constructor(
+    private val searchSuggestionsRepository: SearchSuggestionsRepository
+) {
     operator fun invoke(): Flow<List<SearchSuggestionDomainModel>> {
         return searchSuggestionsRepository.getSearchSuggestions()
     }
