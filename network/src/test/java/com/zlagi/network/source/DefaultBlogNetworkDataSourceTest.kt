@@ -6,7 +6,6 @@ import com.google.common.truth.Truth
 import com.zlagi.common.exception.NetworkException
 import com.zlagi.common.mapper.ExceptionMapper
 import com.zlagi.common.utils.Constants
-import com.zlagi.common.utils.Extensions
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.data.source.network.blog.BlogNetworkDataSource
 import com.zlagi.network.apiservice.BlogApiService
@@ -17,6 +16,7 @@ import com.zlagi.network.fakes.FakeDataGenerator
 import com.zlagi.network.mapper.BlogNetworkDataMapper
 import com.zlagi.network.mapper.PaginationNetworkDataMapper
 import com.zlagi.network.model.*
+import com.zlagi.network.utils.Extensions
 import io.mockk.MockKAnnotations
 import io.mockk.mockkStatic
 import kotlinx.coroutines.runBlocking
