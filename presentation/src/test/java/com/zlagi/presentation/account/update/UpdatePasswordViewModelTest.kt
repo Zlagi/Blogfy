@@ -116,7 +116,8 @@ class UpdatePasswordViewModelTest {
     fun `when UpdatePasswordUseCase returns BadRequest then verify viewState and viewEffect`() =
         testCoroutineRule.runBlockingTest {
             // Given
-            val updatePasswordResult = UpdatePasswordResult(result = DataResult.Error(NetworkException.BadRequest))
+            val updatePasswordResult =
+                UpdatePasswordResult(result = DataResult.Error(NetworkException.BadRequest))
 
             coEvery {
                 updatePasswordUseCase.invoke(
@@ -176,7 +177,9 @@ class UpdatePasswordViewModelTest {
     fun `when UpdatePasswordUseCase returns NetworkUnavailable then verify viewState and viewEffect`() =
         testCoroutineRule.runBlockingTest {
             // Given
-            val updatePasswordResult = UpdatePasswordResult(result = DataResult.Error(NetworkException.NetworkUnavailable))
+            val updatePasswordResult = UpdatePasswordResult(
+                result = DataResult.Error(NetworkException.NetworkUnavailable)
+            )
 
             coEvery {
                 updatePasswordUseCase.invoke(
@@ -235,7 +238,8 @@ class UpdatePasswordViewModelTest {
     fun `when UpdatePasswordUseCase returns Network then verify viewState and viewEffect`() =
         testCoroutineRule.runBlockingTest {
             // Given
-            val updatePasswordResult = UpdatePasswordResult(result = DataResult.Error(NetworkException.Network))
+            val updatePasswordResult =
+                UpdatePasswordResult(result = DataResult.Error(NetworkException.Network))
 
             coEvery {
                 updatePasswordUseCase.invoke(
@@ -398,11 +402,9 @@ class UpdatePasswordViewModelTest {
             val expectedViewState = UpdatePasswordContract.UpdatePasswordViewState(
                 currentPassword = FakeDataGenerator.oldPassword,
                 newPassword = FakeDataGenerator.newPassword,
-                confirmNewPassword = FakeDataGenerator.newPassword
+                confirmNewPassword = FakeDataGenerator.oldPassword,
+                confirmNewPasswordError = R.string.password_unmatched
             )
-
-            val expectedViewEffect =
-                UpdatePasswordContract.UpdatePasswordViewEffect.ShowSnackBarError(R.string.password_unmatched)
 
             // When
             sut.setEvent(
@@ -417,7 +419,7 @@ class UpdatePasswordViewModelTest {
             )
             sut.setEvent(
                 UpdatePasswordContract.UpdatePasswordEvent.ConfirmNewPassword(
-                    FakeDataGenerator.newPassword
+                    FakeDataGenerator.oldPassword
                 )
             )
             sut.setEvent(UpdatePasswordContract.UpdatePasswordEvent.ConfirmUpdatePasswordButtonClicked)
@@ -428,14 +430,6 @@ class UpdatePasswordViewModelTest {
 
                 // Assertion
                 Truth.assertThat(actual).isEqualTo(expectedViewState)
-                expectNoEvents()
-            }
-
-            sut.viewEffect.test {
-                val actual = awaitItem()
-
-                // Assertion
-                Truth.assertThat(actual).isEqualTo(expectedViewEffect)
                 expectNoEvents()
             }
         }

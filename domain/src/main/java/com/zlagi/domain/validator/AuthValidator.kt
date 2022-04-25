@@ -4,6 +4,9 @@ import com.zlagi.common.utils.AuthError
 
 object AuthValidator {
 
+    private const val usernameLength = 3
+    private const val passwordLength = 7
+
     fun emailError(email: String): AuthError? {
         return when {
             email.isEmpty() -> AuthError.EmptyField
@@ -15,7 +18,7 @@ object AuthValidator {
     fun usernameError(username: String): AuthError? {
         return when {
             username.isEmpty() -> AuthError.EmptyField
-            username.count() < 3 -> AuthError.InputTooShort
+            username.count() < usernameLength -> AuthError.InputTooShort
             !username.isAlphaNumeric() -> AuthError.InvalidUsername
             else -> null
         }
@@ -47,7 +50,7 @@ object AuthValidator {
     private fun String.isAlphaNumeric() = matches("[a-zA-Z0-9]+".toRegex())
 
     private fun isValidPassword(password: String): Boolean =
-        password.count() > 7
+        password.count() > passwordLength
 
     private fun passwordMatches(newPassword: String, confirmNewPassword: String): Boolean =
         newPassword == confirmNewPassword

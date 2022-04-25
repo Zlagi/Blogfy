@@ -9,13 +9,16 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class GoogleIdpAuthenticationInUseCase @Inject constructor(
-    private val repository: AuthRepository,
+    private val authRepository: AuthRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
-){
+) {
     suspend operator fun invoke(data: Intent): DataResult<Unit> {
-        return when (val result = withContext(dispatcher) { repository.googleIdpAuthentication(data) }) {
+        return when (
+            val result = withContext(dispatcher) {
+                authRepository.googleIdpAuthentication(data)
+            }) {
             is DataResult.Success -> {
-                repository.storeTokens(result.data)
+                authRepository.storeTokens(result.data)
                 DataResult.Success(Unit)
             }
             is DataResult.Error -> {

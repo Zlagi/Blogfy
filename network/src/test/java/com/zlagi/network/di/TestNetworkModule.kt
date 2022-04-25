@@ -2,14 +2,16 @@ package com.zlagi.network.di
 
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.zlagi.common.utils.Extensions
 import com.zlagi.data.source.network.account.AccountNetworkDataSource
 import com.zlagi.data.source.network.auth.AuthNetworkDataSource
 import com.zlagi.data.source.network.blog.BlogNetworkDataSource
 import com.zlagi.network.apiservice.AccountApiService
 import com.zlagi.network.apiservice.AuthApiService
 import com.zlagi.network.apiservice.BlogApiService
-import com.zlagi.network.source.*
+import com.zlagi.network.source.DefaultAccountNetworkDataSource
+import com.zlagi.network.source.DefaultAuthNetworkDataSource
+import com.zlagi.network.source.DefaultBlogNetworkDataSource
+import com.zlagi.network.utils.Extensions
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -29,13 +31,19 @@ import javax.inject.Singleton
 abstract class TestNetworkModule {
 
     @Binds
-    abstract fun provideAuthNetworkDataSource(authNetworkDataSource: DefaultAuthNetworkDataSource): AuthNetworkDataSource
+    abstract fun provideAuthNetworkDataSource(
+        datasource: DefaultAuthNetworkDataSource
+    ): AuthNetworkDataSource
 
     @Binds
-    abstract fun provideBlogNetworkDataSource(blogNetworkDataSourceTest: DefaultBlogNetworkDataSource): BlogNetworkDataSource
+    abstract fun provideBlogNetworkDataSource(
+        datasource: DefaultBlogNetworkDataSource
+    ): BlogNetworkDataSource
 
     @Binds
-    abstract fun provideAccountNetworkDataSource(accountNetworkDataSourceTest: DefaultAccountNetworkDataSource): AccountNetworkDataSource
+    abstract fun provideAccountNetworkDataSource(
+        datasource: DefaultAccountNetworkDataSource
+    ): AccountNetworkDataSource
 
     companion object {
 

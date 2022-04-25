@@ -5,6 +5,9 @@ import com.zlagi.common.utils.BlogError
 
 object BlogValidator {
 
+    private const val titleLength = 2
+    private const val descriptionLength = 8
+
     fun blogTitleError(title: String): BlogError? {
         return if (!isValidTitle(title)) BlogError.InputTooShort else null
     }
@@ -18,10 +21,10 @@ object BlogValidator {
     }
 
     private fun isValidTitle(input: String): Boolean =
-        input.count() > 2
+        input.count() > titleLength
 
     private fun isValidDescription(input: String): Boolean =
-        input.count() > 8
+        input.count() > descriptionLength
 
     private fun isValidImage(input: Uri?): Boolean =
         input != null

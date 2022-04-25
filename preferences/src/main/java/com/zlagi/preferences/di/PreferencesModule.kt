@@ -12,5 +12,7 @@ import dagger.hilt.components.SingletonComponent
 abstract class PreferencesModule {
 
     @Binds
-    abstract fun providePreferences(preferencesDataSource: DefaultPreferencesDataSource): PreferencesDataSource
+    abstract fun providePreferences(
+        datasource: DefaultPreferencesDataSource
+    ): PreferencesDataSource
 }

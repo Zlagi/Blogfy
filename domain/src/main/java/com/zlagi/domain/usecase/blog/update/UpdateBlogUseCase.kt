@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class UpdateBlogUseCase @Inject constructor(
-    private val repository: FeedRepository,
+    private val feedRepository: FeedRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) {
     suspend operator fun invoke(
@@ -29,7 +29,7 @@ class UpdateBlogUseCase @Inject constructor(
 
         return when (
             val result = withContext(dispatcher) {
-                repository.updateBlog(
+                feedRepository.updateBlog(
                     blogPk,
                     blogTitle,
                     blogDescription,

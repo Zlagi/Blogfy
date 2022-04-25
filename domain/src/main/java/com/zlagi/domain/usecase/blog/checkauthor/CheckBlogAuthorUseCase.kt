@@ -15,12 +15,15 @@ class CheckBlogAuthorUseCase @Inject constructor(
     suspend operator fun invoke(
         blogPk: Int
     ): DataResult<Boolean> {
-        when (val result = withContext(dispatcher) { feedRepository.checkBlogAuthor(blogPk) }) {
+        return when (
+            val result = withContext(dispatcher) {
+                feedRepository.checkBlogAuthor(blogPk)
+            }) {
             is DataResult.Success -> {
-                if (result.data == Constants.HAVE_PERMISSION) return DataResult.Success(true)
-                else return DataResult.Success(false)
+                if (result.data == Constants.HAVE_PERMISSION) DataResult.Success(true)
+                else DataResult.Success(false)
             }
-            is DataResult.Error -> return DataResult.Error(result.exception)
+            is DataResult.Error -> DataResult.Error(result.exception)
         }
     }
 }

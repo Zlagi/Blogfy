@@ -36,15 +36,23 @@ import javax.inject.Singleton
 abstract class NetworkModule {
 
     @Binds
-    abstract fun provideAuthNetworkDataSource(authNetworkDataSource: DefaultAuthNetworkDataSource): AuthNetworkDataSource
+    abstract fun provideAuthNetworkDataSource(
+        datasource: DefaultAuthNetworkDataSource
+    ): AuthNetworkDataSource
 
     @Binds
-    abstract fun provideBlogNetworkDataSource(blogNetworkDataSource: DefaultBlogNetworkDataSource): BlogNetworkDataSource
+    abstract fun provideBlogNetworkDataSource(
+        datasource: DefaultBlogNetworkDataSource
+    ): BlogNetworkDataSource
 
     @Binds
-    abstract fun provideAccountNetworkDataSource(accountNetworkDataSource: DefaultAccountNetworkDataSource): AccountNetworkDataSource
+    abstract fun provideAccountNetworkDataSource(
+        datasource: DefaultAccountNetworkDataSource
+    ): AccountNetworkDataSource
 
     companion object {
+
+        private const val timeout: Long = 30
 
         @Provides
         @Singleton
@@ -103,9 +111,9 @@ abstract class NetworkModule {
                 Dispatchers.IO
             )
             return OkHttpClient.Builder()
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(timeout, TimeUnit.SECONDS)
+                .readTimeout(timeout, TimeUnit.SECONDS)
+                .writeTimeout(timeout, TimeUnit.SECONDS)
                 .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(authenticationInterceptor)
                 .build()

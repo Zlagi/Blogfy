@@ -184,7 +184,11 @@ class UpdateBlogFragment : Fragment() {
                 ) {
                     placeholder(lottieDrawable)
                 }
-                else load(storageReference.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}")) {
+                else load(
+                    storageReference.getReferenceFromUrl(
+                        "gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}"
+                    )
+                ) {
                     placeholder(lottieDrawable)
                 }
             }
