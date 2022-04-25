@@ -402,11 +402,9 @@ class UpdatePasswordViewModelTest {
             val expectedViewState = UpdatePasswordContract.UpdatePasswordViewState(
                 currentPassword = FakeDataGenerator.oldPassword,
                 newPassword = FakeDataGenerator.newPassword,
-                confirmNewPassword = FakeDataGenerator.newPassword
+                confirmNewPassword = FakeDataGenerator.oldPassword,
+                confirmNewPasswordError = R.string.password_unmatched
             )
-
-            val expectedViewEffect =
-                UpdatePasswordContract.UpdatePasswordViewEffect.ShowSnackBarError(R.string.password_unmatched)
 
             // When
             sut.setEvent(
@@ -421,7 +419,7 @@ class UpdatePasswordViewModelTest {
             )
             sut.setEvent(
                 UpdatePasswordContract.UpdatePasswordEvent.ConfirmNewPassword(
-                    FakeDataGenerator.newPassword
+                    FakeDataGenerator.oldPassword
                 )
             )
             sut.setEvent(UpdatePasswordContract.UpdatePasswordEvent.ConfirmUpdatePasswordButtonClicked)
@@ -432,14 +430,6 @@ class UpdatePasswordViewModelTest {
 
                 // Assertion
                 Truth.assertThat(actual).isEqualTo(expectedViewState)
-                expectNoEvents()
-            }
-
-            sut.viewEffect.test {
-                val actual = awaitItem()
-
-                // Assertion
-                Truth.assertThat(actual).isEqualTo(expectedViewEffect)
                 expectNoEvents()
             }
         }
