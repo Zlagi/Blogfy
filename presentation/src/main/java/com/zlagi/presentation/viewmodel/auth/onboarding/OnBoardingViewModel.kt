@@ -38,8 +38,10 @@ class OnBoardingViewModel @Inject constructor(
      */
     fun setEvent(event: OnBoardingContract.OnBoardingEvent) {
         when (event) {
-            is OnBoardingContract.OnBoardingEvent.GoogleSignInButtonClicked -> setGoogleSignIn(event.data)
-            is OnBoardingContract.OnBoardingEvent.EmailSignInButtonClicked -> setEffect { OnBoardingContract.OnBoardingViewEffect.NavigateToSignIn }
+            is OnBoardingContract.OnBoardingEvent.GoogleSignInButtonClicked ->
+                setGoogleSignIn(event.data)
+            is OnBoardingContract.OnBoardingEvent.EmailSignInButtonClicked ->
+                setEffect { OnBoardingContract.OnBoardingViewEffect.NavigateToSignIn }
         }
     }
 

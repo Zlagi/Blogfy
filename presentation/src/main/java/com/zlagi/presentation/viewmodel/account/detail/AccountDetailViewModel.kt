@@ -29,10 +29,10 @@ import javax.inject.Inject
 class AccountDetailViewModel @Inject constructor(
     private val syncAccountUseCase: SyncAccountUseCase,
     private val getAccountUseCase: GetAccountUseCase,
-    private val taskManager: TaskManager,
     private val deleteAccountUseCase: DeleteAccountUseCase,
     private val deleteTokensUseCase: DeleteTokensUseCase,
     private val deleteAllSearchSuggestionsUseCase: DeleteAllSearchSuggestionsUseCase,
+    private val taskManager: TaskManager,
     private val accountDomainPresentationMapper: AccountDomainPresentationMapper
 ) : ViewModel() {
 

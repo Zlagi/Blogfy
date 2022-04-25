@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class SignUpUseCase @Inject constructor(
-    private val repository: AuthRepository,
+    private val authRepository: AuthRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) {
     suspend operator fun invoke(
@@ -31,7 +31,7 @@ class SignUpUseCase @Inject constructor(
 
         return when (val result =
             withContext(dispatcher) {
-                repository.signUp(
+                authRepository.signUp(
                     email,
                     username,
                     password,
@@ -39,7 +39,7 @@ class SignUpUseCase @Inject constructor(
                 )
             }) {
             is DataResult.Success -> {
-                repository.storeTokens(result.data)
+                authRepository.storeTokens(result.data)
                 SignUpResult(result = DataResult.Success(Unit))
             }
             is DataResult.Error -> {

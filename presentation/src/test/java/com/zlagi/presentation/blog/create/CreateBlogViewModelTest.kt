@@ -9,7 +9,7 @@ import com.google.common.truth.Truth
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.common.exception.NetworkException
 import com.zlagi.common.utils.BlogError
-import com.zlagi.common.utils.validator.result.UpdateBlogResult
+import com.zlagi.common.utils.result.UpdateBlogResult
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.usecase.blog.create.CreateBlogUseCase
 import com.zlagi.domain.usecase.blog.dateformat.DateFormatUseCase
@@ -125,8 +125,16 @@ class CreateBlogViewModelTest {
                 CreateBlogContract.CreateBlogViewEffect.ShowSnackBarError(R.string.network_unavailable_message)
 
             // When
-            sut.setEvent(CreateBlogContract.CreateBlogEvent.TitleChanged(title = FakeDataGenerator.blogTitle))
-            sut.setEvent(CreateBlogContract.CreateBlogEvent.DescriptionChanged(description = FakeDataGenerator.blogDescription))
+            sut.setEvent(
+                CreateBlogContract.CreateBlogEvent.TitleChanged(
+                    title = FakeDataGenerator.blogTitle
+                )
+            )
+            sut.setEvent(
+                CreateBlogContract.CreateBlogEvent.DescriptionChanged(
+                    description = FakeDataGenerator.blogDescription
+                )
+            )
             sut.setEvent(
                 CreateBlogContract.CreateBlogEvent.OriginalUriChanged(
                     uri = FakeDataGenerator.blogImage.toUri(),
@@ -176,8 +184,16 @@ class CreateBlogViewModelTest {
             )
 
             // When
-            sut.setEvent(CreateBlogContract.CreateBlogEvent.TitleChanged(title = ""))
-            sut.setEvent(CreateBlogContract.CreateBlogEvent.DescriptionChanged(description = FakeDataGenerator.blogDescription))
+            sut.setEvent(
+                CreateBlogContract.CreateBlogEvent.TitleChanged(
+                    title = ""
+                )
+            )
+            sut.setEvent(
+                CreateBlogContract.CreateBlogEvent.DescriptionChanged(
+                    description = FakeDataGenerator.blogDescription
+                )
+            )
             sut.setEvent(
                 CreateBlogContract.CreateBlogEvent.OriginalUriChanged(
                     uri = FakeDataGenerator.blogImage.toUri(),
@@ -278,8 +294,16 @@ class CreateBlogViewModelTest {
             )
 
             // When
-            sut.setEvent(CreateBlogContract.CreateBlogEvent.TitleChanged(title = FakeDataGenerator.blogTitle))
-            sut.setEvent(CreateBlogContract.CreateBlogEvent.DescriptionChanged(description = FakeDataGenerator.blogDescription))
+            sut.setEvent(
+                CreateBlogContract.CreateBlogEvent.TitleChanged(
+                    title = FakeDataGenerator.blogTitle
+                )
+            )
+            sut.setEvent(
+                CreateBlogContract.CreateBlogEvent.DescriptionChanged(
+                    description = FakeDataGenerator.blogDescription
+                )
+            )
             sut.setEvent(
                 CreateBlogContract.CreateBlogEvent.OriginalUriChanged(
                     uri = FakeDataGenerator.blogImage.toUri(),

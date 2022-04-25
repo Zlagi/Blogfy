@@ -7,12 +7,12 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class DeleteBlogUseCase @Inject constructor(
-    private val repository: FeedRepository,
+    private val feedRepository: FeedRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) {
     suspend operator fun invoke(
         blogPk: Int
     ) = withContext(dispatcher) {
-        repository.deleteBlog(blogPk)
+        feedRepository.deleteBlog(blogPk)
     }
 }

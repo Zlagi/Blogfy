@@ -158,11 +158,19 @@ class BlogDetailFragment : Fragment() {
             blogImageView.apply {
                 transitionName = state.blog?.pk.toString()
                 if (state.blog?.updated?.isNotEmpty() == true) {
-                    load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}")) {
+                    load(
+                        firebaseStorage.getReferenceFromUrl(
+                            "gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}"
+                        )
+                    ) {
                         placeholder(lottieDrawable)
                     }
                 } else {
-                    load(firebaseStorage.getReferenceFromUrl("gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}")) {
+                    load(
+                        firebaseStorage.getReferenceFromUrl(
+                            "gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}"
+                        )
+                    ) {
                         placeholder(lottieDrawable)
                     }
                 }

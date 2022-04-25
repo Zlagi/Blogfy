@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class GetBlogsByUseCase @Inject constructor(
-    private val repository: SearchBlogRepository
+    private val searchBlogRepository: SearchBlogRepository
 ) {
     suspend operator fun invoke(
         query: String
-    ) = repository.getBlogs(query).first()
+    ) = searchBlogRepository.getBlogs(query).first()
 }

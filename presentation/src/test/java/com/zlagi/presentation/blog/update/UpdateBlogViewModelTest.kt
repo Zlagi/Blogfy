@@ -10,7 +10,7 @@ import com.google.common.truth.Truth
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.common.exception.NetworkException
 import com.zlagi.common.utils.BlogError
-import com.zlagi.common.utils.validator.result.UpdateBlogResult
+import com.zlagi.common.utils.result.UpdateBlogResult
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.usecase.blog.dateformat.DateFormatUseCase
 import com.zlagi.domain.usecase.blog.detail.GetBlogUseCase
@@ -178,9 +178,14 @@ class UpdateBlogViewModelTest {
 
             // When
             sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization)
-            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.TitleChanged(FakeDataGenerator.updatedBlog.title))
-            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.DescriptionChanged(FakeDataGenerator.updatedBlog.description))
-            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.OriginalUriChanged(uri = FakeDataGenerator.blogImage.toUri()))
+            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.TitleChanged(
+                FakeDataGenerator.updatedBlog.title))
+            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.DescriptionChanged(
+                FakeDataGenerator.updatedBlog.description))
+            sut.setEvent(
+                UpdateBlogContract.UpdateBlogEvent.OriginalUriChanged
+                    (uri = FakeDataGenerator.blogImage.toUri())
+            )
             sut.setEvent(
                 UpdateBlogContract.UpdateBlogEvent.ConfirmUpdateButtonClicked(
                     FakeDataGenerator.blogImage.toUri()
