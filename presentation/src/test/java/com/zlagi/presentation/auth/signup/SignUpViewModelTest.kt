@@ -5,7 +5,7 @@ import androidx.test.filters.MediumTest
 import app.cash.turbine.test
 import com.google.common.truth.Truth
 import com.zlagi.common.utils.AuthError
-import com.zlagi.common.utils.validator.result.SignUpResult
+import com.zlagi.common.utils.result.SignUpResult
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.usecase.auth.signup.SignUpUseCase
 import com.zlagi.presentation.R

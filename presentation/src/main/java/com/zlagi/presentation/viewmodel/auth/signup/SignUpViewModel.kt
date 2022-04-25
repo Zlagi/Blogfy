@@ -40,7 +40,8 @@ class SignUpViewModel @Inject constructor(
             is SignUpContract.SignUpEvent.EmailChanged -> setState { copy(email = event.email) }
             is SignUpContract.SignUpEvent.UsernameChanged -> setState { copy(username = event.username) }
             is SignUpContract.SignUpEvent.PasswordChanged -> setState { copy(password = event.password) }
-            is SignUpContract.SignUpEvent.ConfirmPasswordChanged -> setState { copy(confirmPassword = event.confirmPassword) }
+            is SignUpContract.SignUpEvent.ConfirmPasswordChanged ->
+                setState { copy(confirmPassword = event.confirmPassword) }
             is SignUpContract.SignUpEvent.SignUpButtonClicked -> onSignUp()
         }
     }
@@ -74,34 +75,14 @@ class SignUpViewModel @Inject constructor(
                     signUpUseCase(it.email, it.username, it.password, it.confirmPassword)
                 setState { copy(loading = false) }
 
-                signUpResult.emailError?.let {
-                    if (it == AuthError.EmptyField) setState { copy(emailError = R.string.empty_field_message) }
-                    else setState { copy(emailError = R.string.email_error_message) }
-                } ?: setState { copy(emailError = R.string.no_error_message) }
-
-                signUpResult.usernameError?.let {when (it) {
-                    is AuthError.EmptyField -> setState { copy(usernameError = R.string.empty_field_message) }
-                    is AuthError.InputTooShort -> setState { copy(usernameError = R.string.username_error_message2) }
-                    else -> setState { copy(usernameError = R.string.username_error_message) }
-                }
-                } ?: setState { copy(usernameError = R.string.no_error_message) }
-
-                signUpResult.passwordError?.let {
-                    if (it == AuthError.EmptyField) setState { copy(passwordError = R.string.empty_field_message) }
-                    else setState { copy(passwordError = R.string.password_error_message) }
-                } ?: setState { copy(passwordError = R.string.no_error_message) }
-
-                signUpResult.confirmPasswordError?.let {
-                    when (it) {
-                        is AuthError.EmptyField -> setState { copy(confirmPasswordError = R.string.empty_field_message) }
-                        is AuthError.InputTooShort -> setState { copy(confirmPasswordError = R.string.password_error_message) }
-                        else -> setState { copy(confirmPasswordError = R.string.password_unmatched) }
-                    }
-                } ?: setState { copy(confirmPasswordError = R.string.no_error_message) }
+                setEmailErrorState(signUpResult.emailError)
+                setUsernameErrorState(signUpResult.usernameError)
+                setPasswordErrorState(signUpResult.passwordError)
+                setConfirmPasswordErrorState(signUpResult.confirmPasswordError)
 
                 when (signUpResult.result) {
-                    is DataResult.Success -> setEffect { SignUpContract.SignUpViewEffect.NavigateToFeed }
-                    is DataResult.Error -> setEffect {
+                    is DataResult.Success<*> -> setEffect { SignUpContract.SignUpViewEffect.NavigateToFeed }
+                    is DataResult.Error<*> -> setEffect {
                         SignUpContract.SignUpViewEffect.ShowSnackBarError(
                             (signUpResult.result as DataResult.Error<Unit>).exception.getStringResId()
                         )
@@ -110,5 +91,39 @@ class SignUpViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun setEmailErrorState(emailError: AuthError?) {
+        emailError?.let {
+            if (it == AuthError.EmptyField) setState { copy(emailError = R.string.empty_field_message) }
+            else setState { copy(emailError = R.string.email_error_message) }
+        } ?: setState { copy(emailError = R.string.no_error_message) }
+    }
+
+    private fun setUsernameErrorState(usernameError: AuthError?) {
+        usernameError?.let {
+            when (it) {
+                is AuthError.EmptyField -> setState { copy(usernameError = R.string.empty_field_message) }
+                is AuthError.InputTooShort -> setState { copy(usernameError = R.string.username_error_message2) }
+                else -> setState { copy(usernameError = R.string.username_error_message) }
+            }
+        } ?: setState { copy(usernameError = R.string.no_error_message) }
+    }
+
+    private fun setPasswordErrorState(passwordError: AuthError?) {
+        passwordError?.let {
+            if (it == AuthError.EmptyField) setState { copy(passwordError = R.string.empty_field_message) }
+            else setState { copy(passwordError = R.string.password_error_message) }
+        } ?: setState { copy(passwordError = R.string.no_error_message) }
+    }
+
+    private fun setConfirmPasswordErrorState(confirmPasswordError: AuthError?) {
+        confirmPasswordError?.let {
+            when (it) {
+                is AuthError.EmptyField -> setState { copy(confirmPasswordError = R.string.empty_field_message) }
+                is AuthError.InputTooShort -> setState { copy(confirmPasswordError = R.string.password_error_message) }
+                else -> setState { copy(confirmPasswordError = R.string.password_unmatched) }
+            }
+        } ?: setState { copy(confirmPasswordError = R.string.no_error_message) }
     }
 }

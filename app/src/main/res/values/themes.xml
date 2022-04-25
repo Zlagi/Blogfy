@@ -91,9 +91,6 @@
         <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
     </style>
 
-    <style name="GoogleSignInText" parent="TextAppearance.MdcTypographyStyles.Caption">
-        <item name="android:textColor">@color/gray4</item>
-    </style>
 
     <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
         <item name="android:windowEnterAnimation">@anim/fade_in</item>

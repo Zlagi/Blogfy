@@ -4,8 +4,10 @@ import com.zlagi.domain.repository.search.SearchBlogRepository
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
-class GetBlogsByUseCase @Inject constructor(private val searchBlogRepository: SearchBlogRepository) {
+class GetBlogsByUseCase @Inject constructor(
+    private val repository: SearchBlogRepository
+) {
     suspend operator fun invoke(
         query: String
-    ) = searchBlogRepository.getBlogs(query).first()
+    ) = repository.getBlogs(query).first()
 }

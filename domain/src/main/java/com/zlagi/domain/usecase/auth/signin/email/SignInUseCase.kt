@@ -1,9 +1,8 @@
 package com.zlagi.domain.usecase.auth.signin.email
 
 import com.zlagi.common.qualifier.IoDispatcher
-import com.zlagi.common.utils.AuthError
-import com.zlagi.common.utils.validator.AuthValidator
-import com.zlagi.common.utils.validator.result.SignInResult
+import com.zlagi.domain.validator.AuthValidator
+import com.zlagi.common.utils.result.SignInResult
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.repository.auth.AuthRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -16,21 +15,17 @@ class SignInUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(email: String, password: String): SignInResult {
 
-        val emailError = when {
-            email.isEmpty() -> AuthError.EmptyField
-            !AuthValidator.isValidEmail(email) -> AuthError.InvalidEmail
-            else -> null
-        }
-
-        val passwordError =
-            if (!AuthValidator.isValidPassword(password)) AuthError.InvalidPassword else null
+        val emailError = AuthValidator.emailError(email)
+        val passwordError = AuthValidator.passwordError(password)
 
         if (emailError != null || passwordError != null) {
             return SignInResult(emailError, passwordError)
         }
 
-        return when (val result =
-            withContext(dispatcher) { repository.signIn(email, password) }) {
+        return when (
+            val result = withContext(dispatcher) {
+                repository.signIn(email, password)
+            }) {
             is DataResult.Success -> {
                 repository.storeTokens(result.data)
                 SignInResult(result = DataResult.Success(Unit))

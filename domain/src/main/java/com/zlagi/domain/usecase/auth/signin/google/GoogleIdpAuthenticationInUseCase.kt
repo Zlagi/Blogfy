@@ -13,13 +13,13 @@ class GoogleIdpAuthenticationInUseCase @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ){
     suspend operator fun invoke(data: Intent): DataResult<Unit> {
-        when (val result = withContext(dispatcher) { repository.googleIdpAuthentication(data) }) {
+        return when (val result = withContext(dispatcher) { repository.googleIdpAuthentication(data) }) {
             is DataResult.Success -> {
                 repository.storeTokens(result.data)
-                return DataResult.Success(Unit)
+                DataResult.Success(Unit)
             }
             is DataResult.Error -> {
-                return DataResult.Error(result.exception)
+                DataResult.Error(result.exception)
             }
         }
     }

@@ -37,6 +37,7 @@ class SearchBlogViewModel @Inject constructor(
 ) : ViewModel() {
 
     companion object {
+        private const val searchSuggestionsNumber: Int = 5
         private const val page_size = PaginationDomainModel.DEFAULT_PAGE_SIZE
     }
 
@@ -79,7 +80,8 @@ class SearchBlogViewModel @Inject constructor(
     private fun onSuggestionsObtained() {
         viewModelScope.launch {
             getSearchSuggestionsUseCase().collect { suggestions ->
-                searchDomainPresentationMapper.fromList(suggestions).takeLast(5).reversed().let {
+                searchDomainPresentationMapper.fromList(suggestions)
+                    .takeLast(searchSuggestionsNumber).reversed().let {
                     setState { copy(searchSuggestions = it) }
                 }
             }
@@ -182,7 +184,15 @@ class SearchBlogViewModel @Inject constructor(
      * Start searching blogs
      */
     private fun onSearch(query: String) {
-        setState { copy(query = query, searchSuggestionViewCollapsed = false, searchSuggestionViewExpanded = false, searchBlogResultView = true, searchTextFocused = true) }
+        setState {
+            copy(
+                query = query,
+                searchSuggestionViewCollapsed = false,
+                searchSuggestionViewExpanded = false,
+                searchBlogResultView = true,
+                searchTextFocused = true
+            )
+        }
         resetPagination()
         onNextPage(true)
     }

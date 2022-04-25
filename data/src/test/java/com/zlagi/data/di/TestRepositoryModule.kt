@@ -1,7 +1,7 @@
 package com.zlagi.data.di
 
 import com.zlagi.data.fakes.repository.FakeAccountRepository
-import com.zlagi.data.fakes.repository.FakeFeedRepositoryReturnsSuccess
+import com.zlagi.data.fakes.repository.FakeBlogRepository
 import com.zlagi.data.fakes.repository.FakeSearchSuggestionsRepository
 import com.zlagi.data.repository.auth.DefaultAuthRepository
 import com.zlagi.domain.repository.account.AccountRepository
@@ -21,14 +21,22 @@ import dagger.hilt.testing.TestInstallIn
 abstract class TestRepositoryModule {
 
     @Binds
-    abstract fun provideAuthRepository(authRepository: DefaultAuthRepository): AuthRepository
+    abstract fun provideAuthRepository(
+        repository: DefaultAuthRepository
+    ): AuthRepository
 
     @Binds
-    abstract fun provideBlogRepository(blogRepository: FakeFeedRepositoryReturnsSuccess): FeedRepository
+    abstract fun provideBlogRepository(
+        repository: FakeBlogRepository
+    ): FeedRepository
 
     @Binds
-    abstract fun provideSearchSuggestionsRepository(searchSuggestionsRepository: FakeSearchSuggestionsRepository): SearchSuggestionsRepository
+    abstract fun provideSearchSuggestionsRepository(
+        repository: FakeSearchSuggestionsRepository
+    ): SearchSuggestionsRepository
 
     @Binds
-    abstract fun provideAccountRepository(accountRepository: FakeAccountRepository): AccountRepository
+    abstract fun provideAccountRepository(
+        repository: FakeAccountRepository
+    ): AccountRepository
 }

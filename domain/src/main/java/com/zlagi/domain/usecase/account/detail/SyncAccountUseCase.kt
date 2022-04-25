@@ -12,7 +12,10 @@ class SyncAccountUseCase @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) {
     suspend operator fun invoke(): DataResult<Unit> {
-        return when (val result = withContext(dispatcher) { accountRepository.requestAccount() }) {
+        return when (
+            val result = withContext(dispatcher) {
+                accountRepository.requestAccount()
+            }) {
             is DataResult.Success -> {
                 accountRepository.storeAccount(result.data)
                 DataResult.Success(Unit)

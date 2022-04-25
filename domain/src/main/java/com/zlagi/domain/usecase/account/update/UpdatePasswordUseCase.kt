@@ -1,11 +1,10 @@
 package com.zlagi.domain.usecase.account.update
 
 import com.zlagi.common.qualifier.IoDispatcher
-import com.zlagi.common.utils.*
-import com.zlagi.common.utils.validator.AuthValidator
-import com.zlagi.common.utils.validator.result.UpdatePasswordResult
+import com.zlagi.common.utils.result.UpdatePasswordResult
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.repository.account.AccountRepository
+import com.zlagi.domain.validator.AuthValidator
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -18,20 +17,10 @@ class UpdatePasswordUseCase @Inject constructor(
         currentPassword: String, newPassword: String, confirmNewPassword: String
     ): UpdatePasswordResult {
 
-        val currentPasswordError =
-            if (!AuthValidator.isValidPassword(currentPassword)) AuthError.InputTooShort else null
-
-        val newPasswordError =
-            if (!AuthValidator.isValidPassword(newPassword)) AuthError.InputTooShort else null
-
-        val confirmNewPasswordError = when {
-            !AuthValidator.isValidPassword(confirmNewPassword) -> AuthError.InputTooShort
-            !AuthValidator.passwordMatches(
-                newPassword,
-                confirmNewPassword
-            ) -> AuthError.UnmatchedPassword
-            else -> null
-        }
+        val currentPasswordError = AuthValidator.passwordError(currentPassword)
+        val newPasswordError = AuthValidator.passwordError(newPassword)
+        val confirmNewPasswordError =
+            AuthValidator.confirmPasswordError(newPassword, confirmNewPassword)
 
         if (currentPasswordError != null || newPasswordError != null || confirmNewPasswordError != null) {
             return UpdatePasswordResult(
@@ -41,12 +30,12 @@ class UpdatePasswordUseCase @Inject constructor(
             )
         }
 
-        return when (val result = withContext(dispatcher) {
-            accountRepository.updatePassword(
-                currentPassword, newPassword, confirmNewPassword
-            )
-        }
-        ) {
+        return when (
+            val result = withContext(dispatcher) {
+                accountRepository.updatePassword(
+                    currentPassword, newPassword, confirmNewPassword
+                )
+            }) {
             is DataResult.Success -> {
                 UpdatePasswordResult(result = DataResult.Success(Unit))
             }
