@@ -11,13 +11,18 @@ class SpringAddItemAnimator : DefaultItemAnimator() {
 
     private val pendingAdds = mutableListOf<RecyclerView.ViewHolder>()
 
+    companion object {
+        private const val alpha = 0f
+        private const val translationY = 3f
+    }
+
     /**
      * Setup initial values to animate. Derive initial translationY from the view's bottom to
      * produce a stagger effect, as lower items arrive from father displaced.
      */
     override fun animateAdd(holder: RecyclerView.ViewHolder): Boolean {
-        holder.itemView.alpha = 0f
-        holder.itemView.translationY = holder.itemView.bottom / 3f
+        holder.itemView.alpha = alpha
+        holder.itemView.translationY = holder.itemView.bottom / translationY
         pendingAdds.add(holder)
         return true
     }

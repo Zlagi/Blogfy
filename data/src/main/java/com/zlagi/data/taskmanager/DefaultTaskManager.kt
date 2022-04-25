@@ -15,7 +15,11 @@ class DefaultTaskManager @Inject constructor(
     private val workManager: WorkManager
 ) : TaskManager {
 
-    private val workName = "blogfy"
+    companion object {
+        const val workName = "blogfy"
+        const val repeatInterval: Long = 15
+        const val backOffDelay: Long = 1
+    }
 
     override fun syncAccount(): UUID {
         val workerConstraints = Constraints.Builder()
@@ -23,16 +27,17 @@ class DefaultTaskManager @Inject constructor(
             .build()
 
         val workerRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(
-            15,
+            repeatInterval,
             TimeUnit.MINUTES
         ).setBackoffCriteria(
             BackoffPolicy.LINEAR,
-            1,
+            backOffDelay,
             TimeUnit.MINUTES
         ).setConstraints(
             workerConstraints
         ).setInitialDelay(
-            15, TimeUnit.MINUTES
+            repeatInterval,
+            TimeUnit.MINUTES
         ).build()
 
         workManager.enqueueUniquePeriodicWork(

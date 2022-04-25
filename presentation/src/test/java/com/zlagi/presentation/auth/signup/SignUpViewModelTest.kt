@@ -109,10 +109,26 @@ class SignUpViewModelTest {
             )
 
             // When
-            sut.setEvent(SignUpContract.SignUpEvent.EmailChanged(email = ""))
-            sut.setEvent(SignUpContract.SignUpEvent.UsernameChanged(username = FakeDataGenerator.correctUsername))
-            sut.setEvent(SignUpContract.SignUpEvent.PasswordChanged(password = FakeDataGenerator.correctPassword))
-            sut.setEvent(SignUpContract.SignUpEvent.ConfirmPasswordChanged(confirmPassword = FakeDataGenerator.correctPassword))
+            sut.setEvent(
+                SignUpContract.SignUpEvent.EmailChanged(
+                    email = ""
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.UsernameChanged(
+                    username = FakeDataGenerator.correctUsername
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.PasswordChanged(
+                    password = FakeDataGenerator.correctPassword
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.ConfirmPasswordChanged(
+                    confirmPassword = FakeDataGenerator.correctPassword
+                )
+            )
             sut.setEvent(SignUpContract.SignUpEvent.SignUpButtonClicked)
 
             // Then
@@ -274,10 +290,22 @@ class SignUpViewModelTest {
             )
 
             // When
-            sut.setEvent(SignUpContract.SignUpEvent.EmailChanged(email = FakeDataGenerator.correctEmail))
-            sut.setEvent(SignUpContract.SignUpEvent.UsernameChanged(username = FakeDataGenerator.correctUsername))
+            sut.setEvent(
+                SignUpContract.SignUpEvent.EmailChanged(
+                    email = FakeDataGenerator.correctEmail
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.UsernameChanged(
+                    username = FakeDataGenerator.correctUsername
+                )
+            )
             sut.setEvent(SignUpContract.SignUpEvent.PasswordChanged(password = ""))
-            sut.setEvent(SignUpContract.SignUpEvent.ConfirmPasswordChanged(confirmPassword = FakeDataGenerator.correctPassword))
+            sut.setEvent(
+                SignUpContract.SignUpEvent.ConfirmPasswordChanged(
+                    confirmPassword = FakeDataGenerator.correctPassword
+                )
+            )
             sut.setEvent(SignUpContract.SignUpEvent.SignUpButtonClicked)
 
             // Then
@@ -307,10 +335,26 @@ class SignUpViewModelTest {
             )
 
             // When
-            sut.setEvent(SignUpContract.SignUpEvent.EmailChanged(email = FakeDataGenerator.correctEmail))
-            sut.setEvent(SignUpContract.SignUpEvent.UsernameChanged(username = FakeDataGenerator.correctUsername))
-            sut.setEvent(SignUpContract.SignUpEvent.PasswordChanged(password = FakeDataGenerator.incorrectPassword))
-            sut.setEvent(SignUpContract.SignUpEvent.ConfirmPasswordChanged(confirmPassword = FakeDataGenerator.correctPassword))
+            sut.setEvent(
+                SignUpContract.SignUpEvent.EmailChanged(
+                    email = FakeDataGenerator.correctEmail
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.UsernameChanged(
+                    username = FakeDataGenerator.correctUsername
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.PasswordChanged(
+                    password = FakeDataGenerator.incorrectPassword
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.ConfirmPasswordChanged(
+                    confirmPassword = FakeDataGenerator.correctPassword
+                )
+            )
             sut.setEvent(SignUpContract.SignUpEvent.SignUpButtonClicked)
 
             // Then
@@ -373,10 +417,26 @@ class SignUpViewModelTest {
             )
 
             // When
-            sut.setEvent(SignUpContract.SignUpEvent.EmailChanged(email = FakeDataGenerator.correctEmail))
-            sut.setEvent(SignUpContract.SignUpEvent.UsernameChanged(username = FakeDataGenerator.correctUsername))
-            sut.setEvent(SignUpContract.SignUpEvent.PasswordChanged(password = FakeDataGenerator.correctPassword))
-            sut.setEvent(SignUpContract.SignUpEvent.ConfirmPasswordChanged(confirmPassword = FakeDataGenerator.incorrectPassword))
+            sut.setEvent(
+                SignUpContract.SignUpEvent.EmailChanged(
+                    email = FakeDataGenerator.correctEmail
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.UsernameChanged(
+                    username = FakeDataGenerator.correctUsername
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.PasswordChanged(
+                    password = FakeDataGenerator.correctPassword
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.ConfirmPasswordChanged(
+                    confirmPassword = FakeDataGenerator.incorrectPassword
+                )
+            )
             sut.setEvent(SignUpContract.SignUpEvent.SignUpButtonClicked)
 
             // Then
@@ -406,10 +466,26 @@ class SignUpViewModelTest {
             )
 
             // When
-            sut.setEvent(SignUpContract.SignUpEvent.EmailChanged(email = FakeDataGenerator.correctEmail))
-            sut.setEvent(SignUpContract.SignUpEvent.UsernameChanged(username = FakeDataGenerator.correctUsername))
-            sut.setEvent(SignUpContract.SignUpEvent.PasswordChanged(password = FakeDataGenerator.correctPassword))
-            sut.setEvent(SignUpContract.SignUpEvent.ConfirmPasswordChanged(confirmPassword = FakeDataGenerator.incorrectPassword))
+            sut.setEvent(
+                SignUpContract.SignUpEvent.EmailChanged(
+                    email = FakeDataGenerator.correctEmail
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.UsernameChanged(
+                    username = FakeDataGenerator.correctUsername
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.PasswordChanged(
+                    password = FakeDataGenerator.correctPassword
+                )
+            )
+            sut.setEvent(
+                SignUpContract.SignUpEvent.ConfirmPasswordChanged(
+                    confirmPassword = FakeDataGenerator.incorrectPassword
+                )
+            )
             sut.setEvent(SignUpContract.SignUpEvent.SignUpButtonClicked)
 
             // Then

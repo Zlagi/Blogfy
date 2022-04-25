@@ -14,5 +14,7 @@ abstract class ConnectivityModule {
 
     @Binds
     @Singleton
-    abstract fun bindConnectivityChecker(connectivityChecker: DefaultConnectivityChecker): ConnectivityChecker
+    abstract fun bindConnectivityChecker(
+        connectivityChecker: DefaultConnectivityChecker
+    ): ConnectivityChecker
 }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RequestMoreBlogsUseCase @Inject constructor(
-    private val repository: SearchBlogRepository,
+    private val searchBlogRepository: SearchBlogRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) {
     suspend operator fun invoke(
@@ -21,13 +21,13 @@ class RequestMoreBlogsUseCase @Inject constructor(
     ): DataResult<PaginatedBlogsDomainModel> {
         return when (
             val result = withContext(dispatcher) {
-                repository.requestMoreBlogs(searchQuery, page, pageSize)
+                searchBlogRepository.requestMoreBlogs(searchQuery, page, pageSize)
             }) {
             is DataResult.Success -> {
-                if (refreshLoad) repository.deleteAllBlogs()
+                if (refreshLoad) searchBlogRepository.deleteAllBlogs()
                 val results = result.data.results
                 if (results.isEmpty()) return DataResult.Error(NetworkException.NoResults)
-                repository.storeBlogs(results)
+                searchBlogRepository.storeBlogs(results)
                 DataResult.Success(result.data)
             }
             is DataResult.Error -> {

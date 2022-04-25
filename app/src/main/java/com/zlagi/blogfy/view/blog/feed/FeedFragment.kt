@@ -73,10 +73,15 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         setupSwipeRefresh()
         observeViewState()
         observeViewEffect()
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(SHOULD_REFRESH)?.observe(viewLifecycleOwner) { shouldRefresh ->
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(
+            SHOULD_REFRESH
+        )?.observe(viewLifecycleOwner) { shouldRefresh ->
             shouldRefresh?.run {
                 viewModel.setEvent(SwipeRefresh)
-                findNavController().currentBackStackEntry?.savedStateHandle?.set(SHOULD_REFRESH, null)
+                findNavController().currentBackStackEntry?.savedStateHandle?.set(
+                    SHOULD_REFRESH,
+                    null
+                )
             }
         }
     }
@@ -151,8 +156,7 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 (createBlogIcon.icon as AnimatedVectorDrawable).reset()
                 if (state.noResults) {
                     setupFeedResultView(GONE, VISIBLE)
-                }
-                else {
+                } else {
                     feedAdapter?.submitList(state.results)
                     setupFeedResultView(VISIBLE, GONE)
                 }

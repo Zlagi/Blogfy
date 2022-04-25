@@ -54,40 +54,41 @@ class SignInViewModelTest {
     }
 
     @Test
-    fun `when SignInUseCase returns success then verify viewState and viewEffect`() = testCoroutineRule.runBlockingTest {
-        // Given
-        val result = SignInResult(result = DataResult.Success(Unit))
+    fun `when SignInUseCase returns success then verify viewState and viewEffect`() =
+        testCoroutineRule.runBlockingTest {
+            // Given
+            val result = SignInResult(result = DataResult.Success(Unit))
 
-        coEvery { signInUseCase.invoke(any(), any()) } returns result
+            coEvery { signInUseCase.invoke(any(), any()) } returns result
 
-        val expectedViewState = SignInContract.SignInViewState(
-            email = correctEmail,
-            password = correctPassword
-        )
-        val expectedViewEffect = SignInContract.SignInViewEffect.NavigateToFeed
+            val expectedViewState = SignInContract.SignInViewState(
+                email = correctEmail,
+                password = correctPassword
+            )
+            val expectedViewEffect = SignInContract.SignInViewEffect.NavigateToFeed
 
-        // When
-        sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
-        sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
-        sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
+            // When
+            sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
+            sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
+            sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
 
-        // Then
-        sut.viewState.test {
-            val actual = awaitItem()
+            // Then
+            sut.viewState.test {
+                val actual = awaitItem()
 
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewState)
-            expectNoEvents()
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewState)
+                expectNoEvents()
+            }
+
+            sut.viewEffect.test {
+                val actual = awaitItem()
+
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewEffect)
+                expectNoEvents()
+            }
         }
-
-        sut.viewEffect.test {
-            val actual = awaitItem()
-
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewEffect)
-            expectNoEvents()
-        }
-    }
 
     @Test
     fun `when SignUpTextViewClicked then verify viewEffect`() = testCoroutineRule.runBlockingTest {
@@ -108,169 +109,178 @@ class SignInViewModelTest {
     }
 
     @Test
-    fun `when SignInUseCase returns emailError then verify viewState`() = testCoroutineRule.runBlockingTest {
-        // Given
-        val result = SignInResult(emailError = AuthError.InvalidEmail)
+    fun `when SignInUseCase returns emailError then verify viewState`() =
+        testCoroutineRule.runBlockingTest {
+            // Given
+            val result = SignInResult(emailError = AuthError.InvalidEmail)
 
-        coEvery { signInUseCase.invoke(any(), any()) } returns result
+            coEvery { signInUseCase.invoke(any(), any()) } returns result
 
-        val expectedViewState = SignInContract.SignInViewState(
-            email = incorrectEmail,
-            password = correctPassword,
-            emailError = R.string.email_error_message
-        )
+            val expectedViewState = SignInContract.SignInViewState(
+                email = incorrectEmail,
+                password = correctPassword,
+                emailError = R.string.email_error_message
+            )
 
-        // When
-        sut.setEvent(SignInContract.SignInEvent.EmailChanged(incorrectEmail))
-        sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
-        sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
+            // When
+            sut.setEvent(SignInContract.SignInEvent.EmailChanged(incorrectEmail))
+            sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
+            sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
 
-        // Then
-        sut.viewState.test {
-            val actual = awaitItem()
+            // Then
+            sut.viewState.test {
+                val actual = awaitItem()
 
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewState)
-            expectNoEvents()
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewState)
+                expectNoEvents()
+            }
         }
-    }
 
     @Test
-    fun `when SignInUseCase returns passwordError then verify viewState`() = testCoroutineRule.runBlockingTest {
-        // Given
-        val result = SignInResult(passwordError = AuthError.InvalidPassword)
+    fun `when SignInUseCase returns passwordError then verify viewState`() =
+        testCoroutineRule.runBlockingTest {
+            // Given
+            val result = SignInResult(passwordError = AuthError.InvalidPassword)
 
-        coEvery { signInUseCase.invoke(any(), any()) } returns result
+            coEvery { signInUseCase.invoke(any(), any()) } returns result
 
-        val expectedViewState = SignInContract.SignInViewState(
-            email = correctEmail,
-            password = incorrectPassword,
-            passwordError = R.string.password_error_message
-        )
+            val expectedViewState = SignInContract.SignInViewState(
+                email = correctEmail,
+                password = incorrectPassword,
+                passwordError = R.string.password_error_message
+            )
 
-        // When
-        sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
-        sut.setEvent(SignInContract.SignInEvent.PasswordChanged(incorrectPassword))
-        sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
+            // When
+            sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
+            sut.setEvent(SignInContract.SignInEvent.PasswordChanged(incorrectPassword))
+            sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
 
-        // Then
-        sut.viewState.test {
-            val actual = awaitItem()
+            // Then
+            sut.viewState.test {
+                val actual = awaitItem()
 
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewState)
-            expectNoEvents()
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewState)
+                expectNoEvents()
+            }
         }
-    }
 
     @Test
-    fun `when SignInUseCase returns NotAuthorized then verify viewState and viewEffect`() = testCoroutineRule.runBlockingTest {
-        // Given
-        val result = SignInResult(result = DataResult.Error(NetworkException.NotAuthorized))
+    fun `when SignInUseCase returns NotAuthorized then verify viewState and viewEffect`() =
+        testCoroutineRule.runBlockingTest {
+            // Given
+            val result = SignInResult(result = DataResult.Error(NetworkException.NotAuthorized))
 
-        coEvery { signInUseCase.invoke(any(), any()) } returns result
+            coEvery { signInUseCase.invoke(any(), any()) } returns result
 
-        val expectedViewState = SignInContract.SignInViewState(
-            email = correctEmail,
-            password = correctPassword
-        )
+            val expectedViewState = SignInContract.SignInViewState(
+                email = correctEmail,
+                password = correctPassword
+            )
 
-        val expectedViewEffect = SignInContract.SignInViewEffect.ShowSnackBarError(R.string.invalid_credentials_message)
+            val expectedViewEffect =
+                SignInContract.SignInViewEffect.ShowSnackBarError(R.string.invalid_credentials_message)
 
-        // When
-        sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
-        sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
-        sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
+            // When
+            sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
+            sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
+            sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
 
-        // Then
-        sut.viewState.test {
-            val actual = awaitItem()
+            // Then
+            sut.viewState.test {
+                val actual = awaitItem()
 
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewState)
-            expectNoEvents()
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewState)
+                expectNoEvents()
+            }
+
+            sut.viewEffect.test {
+                val actual = awaitItem()
+
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewEffect)
+                expectNoEvents()
+            }
         }
-
-        sut.viewEffect.test {
-            val actual = awaitItem()
-
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewEffect)
-            expectNoEvents()
-        }
-    }
 
     @Test
-    fun `when SignInUseCase returns NetworkUnavailable then verify viewState and viewEffect`() = testCoroutineRule.runBlockingTest {
-        // Given
-        val result = SignInResult(result = DataResult.Error(NetworkException.NetworkUnavailable))
+    fun `when SignInUseCase returns NetworkUnavailable then verify viewState and viewEffect`() =
+        testCoroutineRule.runBlockingTest {
+            // Given
+            val result =
+                SignInResult(result = DataResult.Error(NetworkException.NetworkUnavailable))
 
-        coEvery { signInUseCase.invoke(any(), any()) } returns result
+            coEvery { signInUseCase.invoke(any(), any()) } returns result
 
-        val expectedViewState = SignInContract.SignInViewState(
-            email = correctEmail,
-            password = correctPassword
-        )
+            val expectedViewState = SignInContract.SignInViewState(
+                email = correctEmail,
+                password = correctPassword
+            )
 
-        val expectedViewEffect = SignInContract.SignInViewEffect.ShowSnackBarError(R.string.network_unavailable_message)
+            val expectedViewEffect =
+                SignInContract.SignInViewEffect.ShowSnackBarError(R.string.network_unavailable_message)
 
-        // When
-        sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
-        sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
-        sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
+            // When
+            sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
+            sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
+            sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
 
-        // Then
-        sut.viewState.test {
-            val actual = awaitItem()
+            // Then
+            sut.viewState.test {
+                val actual = awaitItem()
 
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewState)
-            expectNoEvents()
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewState)
+                expectNoEvents()
+            }
+
+            sut.viewEffect.test {
+                val actual = awaitItem()
+
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewEffect)
+                expectNoEvents()
+            }
         }
-
-        sut.viewEffect.test {
-            val actual = awaitItem()
-
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewEffect)
-            expectNoEvents()
-        }
-    }
 
     @Test
-    fun `when SignInUseCase returns Network then verify viewState and viewEffect`() = testCoroutineRule.runBlockingTest {
-        // Given
-        val result = SignInResult(result = DataResult.Error(NetworkException.Network))
+    fun `when SignInUseCase returns Network then verify viewState and viewEffect`() =
+        testCoroutineRule.runBlockingTest {
+            // Given
+            val result = SignInResult(result = DataResult.Error(NetworkException.Network))
 
-        coEvery { signInUseCase.invoke(any(), any()) } returns result
+            coEvery { signInUseCase.invoke(any(), any()) } returns result
 
-        val expectedViewState = SignInContract.SignInViewState(
-            email = correctEmail,
-            password = correctPassword
-        )
+            val expectedViewState = SignInContract.SignInViewState(
+                email = correctEmail,
+                password = correctPassword
+            )
 
-        val expectedViewEffect = SignInContract.SignInViewEffect.ShowSnackBarError(R.string.server_unreachable_message)
+            val expectedViewEffect =
+                SignInContract.SignInViewEffect.ShowSnackBarError(R.string.server_unreachable_message)
 
-        // When
-        sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
-        sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
-        sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
+            // When
+            sut.setEvent(SignInContract.SignInEvent.EmailChanged(correctEmail))
+            sut.setEvent(SignInContract.SignInEvent.PasswordChanged(correctPassword))
+            sut.setEvent(SignInContract.SignInEvent.SignInButtonClicked)
 
-        // Then
-        sut.viewState.test {
-            val actual = awaitItem()
+            // Then
+            sut.viewState.test {
+                val actual = awaitItem()
 
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewState)
-            expectNoEvents()
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewState)
+                expectNoEvents()
+            }
+
+            sut.viewEffect.test {
+                val actual = awaitItem()
+
+                // Assertion
+                Truth.assertThat(actual).isEqualTo(expectedViewEffect)
+                expectNoEvents()
+            }
         }
-
-        sut.viewEffect.test {
-            val actual = awaitItem()
-
-            // Assertion
-            Truth.assertThat(actual).isEqualTo(expectedViewEffect)
-            expectNoEvents()
-        }
-    }
 }

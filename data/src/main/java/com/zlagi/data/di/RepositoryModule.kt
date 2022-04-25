@@ -20,17 +20,27 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun provideAuthRepository(authRepository: DefaultAuthRepository): AuthRepository
+    abstract fun provideAuthRepository(
+        repository: DefaultAuthRepository
+    ): AuthRepository
 
     @Binds
-    abstract fun provideFeedRepository(feedRepository: DefaultFeedRepository): FeedRepository
+    abstract fun provideFeedRepository(
+        repository: DefaultFeedRepository
+    ): FeedRepository
 
     @Binds
-    abstract fun provideSearchBlogRepository(searchBLogRepository: DefaultSearchBlogRepository): SearchBlogRepository
+    abstract fun provideSearchBlogRepository(
+        repository: DefaultSearchBlogRepository
+    ): SearchBlogRepository
 
     @Binds
-    abstract fun provideSearchSuggestionsRepository(searchSuggestionsRepository: DefaultSearchSuggestionsRepository): SearchSuggestionsRepository
+    abstract fun provideSearchSuggestionsRepository(
+        repository: DefaultSearchSuggestionsRepository
+    ): SearchSuggestionsRepository
 
     @Binds
-    abstract fun provideAccountRepository(accountRepository: DefaultAccountRepository): AccountRepository
+    abstract fun provideAccountRepository(
+        repository: DefaultAccountRepository
+    ): AccountRepository
 }
