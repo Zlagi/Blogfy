@@ -28,16 +28,24 @@ import javax.inject.Singleton
 abstract class CacheModule {
 
     @Binds
-    abstract fun provideFeedCacheDataSource(feedCacheDataSource: DefaultFeedCacheDataSource): FeedCacheDataSource
+    abstract fun provideFeedCacheDataSource(
+        datasource: DefaultFeedCacheDataSource
+    ): FeedCacheDataSource
 
     @Binds
-    abstract fun provideSearchBlogCacheDataSource(searchBlogCacheDataSource: DefaultSearchBlogCacheDataSource): SearchBlogCacheDataSource
+    abstract fun provideSearchBlogCacheDataSource(
+        datasource: DefaultSearchBlogCacheDataSource
+    ): SearchBlogCacheDataSource
 
     @Binds
-    abstract fun provideAccountCacheDataSource(accountCacheDataSource: DefaultAccountCacheDataSource): AccountCacheDataSource
+    abstract fun provideAccountCacheDataSource(
+        datasource: DefaultAccountCacheDataSource
+    ): AccountCacheDataSource
 
     @Binds
-    abstract fun provideSearchSuggestionsCacheDataSource(searchSuggestionsCacheDataSource: DefaultSearchSuggestionsCacheDataSource): SearchSuggestionsCacheDataSource
+    abstract fun provideSearchSuggestionsCacheDataSource(
+        datasource: DefaultSearchSuggestionsCacheDataSource
+    ): SearchSuggestionsCacheDataSource
 
     companion object {
 
