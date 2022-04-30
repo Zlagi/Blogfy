@@ -7,7 +7,7 @@ class UpdateBlogContract {
 
     sealed class UpdateBlogEvent {
 
-        object Initialization : UpdateBlogEvent()
+        data class Initialization(val pk: Int) : UpdateBlogEvent()
 
         data class TitleChanged(
             val title: String
