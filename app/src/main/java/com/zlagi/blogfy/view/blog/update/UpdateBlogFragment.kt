@@ -28,6 +28,7 @@ import com.zlagi.blogfy.R
 import com.zlagi.blogfy.R.raw.image_loader
 import com.zlagi.blogfy.databinding.FragmentUpdateBlogBinding
 import com.zlagi.blogfy.view.utils.*
+import com.zlagi.common.utils.Constants
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogEvent.*
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogViewEffect
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogViewEffect.*
@@ -179,14 +180,14 @@ class UpdateBlogFragment : Fragment() {
                     }
                 } ?: if (state.blog?.updated?.isNotEmpty() == true) load(
                     storageReference.getReferenceFromUrl(
-                        "gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}"
+                        "${Constants.FIREBASE_IMAGE_URL}${state.blog?.updated}"
                     )
                 ) {
                     placeholder(lottieDrawable)
                 }
                 else load(
                     storageReference.getReferenceFromUrl(
-                        "gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}"
+                        "${Constants.FIREBASE_IMAGE_URL}${state.blog?.created}"
                     )
                 ) {
                     placeholder(lottieDrawable)

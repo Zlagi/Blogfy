@@ -25,6 +25,7 @@ import com.zlagi.blogfy.databinding.FragmentBlogDetailBinding
 import com.zlagi.blogfy.view.utils.LoadingDialogFragment
 import com.zlagi.blogfy.view.utils.MenuBottomSheetDialogFragment
 import com.zlagi.blogfy.view.utils.showSnackBar
+import com.zlagi.common.utils.Constants.FIREBASE_IMAGE_URL
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailEvent.*
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect.*
@@ -160,7 +161,7 @@ class BlogDetailFragment : Fragment() {
                 if (state.blog?.updated?.isNotEmpty() == true) {
                     load(
                         firebaseStorage.getReferenceFromUrl(
-                            "gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}"
+                            "$FIREBASE_IMAGE_URL${state.blog?.updated}"
                         )
                     ) {
                         placeholder(lottieDrawable)
@@ -168,7 +169,7 @@ class BlogDetailFragment : Fragment() {
                 } else {
                     load(
                         firebaseStorage.getReferenceFromUrl(
-                            "gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}"
+                            "$FIREBASE_IMAGE_URL${state.blog?.created}"
                         )
                     ) {
                         placeholder(lottieDrawable)
