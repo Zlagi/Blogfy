@@ -11,7 +11,7 @@ import com.zlagi.domain.usecase.account.delete.DeleteAccountUseCase
 import com.zlagi.domain.usecase.account.detail.GetAccountUseCase
 import com.zlagi.domain.usecase.account.detail.SyncAccountUseCase
 import com.zlagi.domain.usecase.auth.deletetokens.DeleteTokensUseCase
-import com.zlagi.domain.usecase.blog.search.suggestions.DeleteAllSearchSuggestionsUseCase
+import com.zlagi.domain.usecase.blog.search.history.ClearHistoryUseCase
 import com.zlagi.presentation.R
 import com.zlagi.presentation.TestCoroutineRule
 import com.zlagi.presentation.fakes.FakeDataGenerator.account
@@ -57,7 +57,7 @@ class AccountDetailViewModelTest {
     private lateinit var taskManager: TaskManager
 
     @MockK
-    private lateinit var deleteAllSearchSuggestionsUseCase: DeleteAllSearchSuggestionsUseCase
+    private lateinit var clearHistoryUseCase: ClearHistoryUseCase
 
     private lateinit var accountDomainPresentationMapper: AccountDomainPresentationMapper
 
@@ -73,7 +73,7 @@ class AccountDetailViewModelTest {
             getAccountUseCase = getAccountUseCase,
             taskManager = taskManager,
             deleteTokensUseCase = deleteTokensUseCase,
-            deleteAllSearchSuggestionsUseCase = deleteAllSearchSuggestionsUseCase,
+            clearHistoryUseCase = clearHistoryUseCase,
             accountDomainPresentationMapper = accountDomainPresentationMapper,
             deleteAccountUseCase = deleteAccountUseCase
         )

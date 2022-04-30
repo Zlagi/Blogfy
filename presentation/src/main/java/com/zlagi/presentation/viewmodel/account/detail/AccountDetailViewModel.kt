@@ -10,7 +10,7 @@ import com.zlagi.domain.usecase.account.delete.DeleteAccountUseCase
 import com.zlagi.domain.usecase.account.detail.GetAccountUseCase
 import com.zlagi.domain.usecase.account.detail.SyncAccountUseCase
 import com.zlagi.domain.usecase.auth.deletetokens.DeleteTokensUseCase
-import com.zlagi.domain.usecase.blog.search.suggestions.DeleteAllSearchSuggestionsUseCase
+import com.zlagi.domain.usecase.blog.search.history.ClearHistoryUseCase
 import com.zlagi.presentation.R
 import com.zlagi.presentation.mapper.AccountDomainPresentationMapper
 import com.zlagi.presentation.viewmodel.account.detail.AccountDetailContract.AccountDetailEvent.*
@@ -31,7 +31,7 @@ class AccountDetailViewModel @Inject constructor(
     private val getAccountUseCase: GetAccountUseCase,
     private val deleteAccountUseCase: DeleteAccountUseCase,
     private val deleteTokensUseCase: DeleteTokensUseCase,
-    private val deleteAllSearchSuggestionsUseCase: DeleteAllSearchSuggestionsUseCase,
+    private val clearHistoryUseCase: ClearHistoryUseCase,
     private val taskManager: TaskManager,
     private val accountDomainPresentationMapper: AccountDomainPresentationMapper
 ) : ViewModel() {
@@ -132,7 +132,7 @@ class AccountDetailViewModel @Inject constructor(
         job = viewModelScope.launch {
             taskManager.abortAllTasks()
             deleteAccountUseCase()
-            deleteAllSearchSuggestionsUseCase()
+            clearHistoryUseCase()
             deleteTokensUseCase()
             setEffect { NavigateToAuth }
         }

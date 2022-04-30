@@ -5,13 +5,14 @@ import androidx.room.Room
 import com.zlagi.cache.database.account.AccountDao
 import com.zlagi.cache.database.feed.FeedDao
 import com.zlagi.cache.database.BlogfyDatabase
-import com.zlagi.cache.database.search.suggestions.SearchSuggestionsDao
-import com.zlagi.cache.source.DefaultAccountCacheDataSource
-import com.zlagi.cache.source.DefaultFeedCacheDataSource
-import com.zlagi.cache.source.DefaultSearchSuggestionsCacheDataSource
+import com.zlagi.cache.database.search.SearchDao
+import com.zlagi.cache.database.search.history.HistoryDao
+import com.zlagi.cache.source.account.DefaultAccountCacheDataSource
+import com.zlagi.cache.source.feed.DefaultFeedCacheDataSource
+import com.zlagi.cache.source.search.history.DefaultHistoryCacheDataSource
 import com.zlagi.data.source.cache.account.AccountCacheDataSource
 import com.zlagi.data.source.cache.feed.FeedCacheDataSource
-import com.zlagi.data.source.cache.search.suggestions.SearchSuggestionsCacheDataSource
+import com.zlagi.data.source.cache.search.history.HistoryCacheDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -29,15 +30,19 @@ import javax.inject.Singleton
 abstract class TestCacheModule {
 
     @Binds
-    abstract fun provideBlogCacheDataSource(defaultFeedCacheDataSource: DefaultFeedCacheDataSource): FeedCacheDataSource
+    abstract fun provideBlogCacheDataSource(
+        datasource: DefaultFeedCacheDataSource
+    ): FeedCacheDataSource
 
     @Binds
-    abstract fun provideAccountCacheDataSource(defaultAccountCacheDataSource: DefaultAccountCacheDataSource): AccountCacheDataSource
+    abstract fun provideAccountCacheDataSource(
+        datasource: DefaultAccountCacheDataSource
+    ): AccountCacheDataSource
 
     @Binds
-    abstract fun provideSearchSuggestionsCacheDataSource(
-        defaultSearchSuggestionsDefaultCacheDataSource: DefaultSearchSuggestionsCacheDataSource
-    ): SearchSuggestionsCacheDataSource
+    abstract fun provideHistoryCacheDataSource(
+        datasource: DefaultHistoryCacheDataSource
+    ): HistoryCacheDataSource
 
     companion object {
 
@@ -56,16 +61,22 @@ abstract class TestCacheModule {
         @Provides
         fun provideBlogDao(
             blogfyDatabase: BlogfyDatabase
-        ): FeedDao = blogfyDatabase.blogDao()
+        ): FeedDao = blogfyDatabase.feedDao()
 
         @Provides
         fun provideAccountDao(
             blogfyDatabase: BlogfyDatabase
         ): AccountDao = blogfyDatabase.accountDao()
 
+
         @Provides
-        fun provideSearchSuggestionsDao(
+        fun provideSearchDao(
             blogfyDatabase: BlogfyDatabase
-        ): SearchSuggestionsDao = blogfyDatabase.searchSuggestionsDao()
+        ): SearchDao = blogfyDatabase.searchDao()
+
+        @Provides
+        fun provideHistoryDao(
+            blogfyDatabase: BlogfyDatabase
+        ): HistoryDao = blogfyDatabase.historyDao()
     }
 }

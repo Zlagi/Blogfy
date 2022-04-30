@@ -3,13 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_search"
-    app:startDestination="@id/searchBlogFragment">
+    app:startDestination="@id/searchHistoryFragment">
 
     <fragment
-        android:id="@+id/searchBlogFragment"
-        android:name="com.zlagi.blogfy.view.blog.search.SearchBlogFragment"
-        android:label="searchBlogFragment"
+        android:id="@+id/searchHistoryFragment"
+        android:name="com.zlagi.blogfy.view.blog.search.history.SearchHistoryFragment"
+        android:label="SearchHistoryFragment"
+        tools:layout="@layout/fragment_search_blog">
+        <action
+            android:id="@+id/action_searchHistoryFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.zlagi.blogfy.view.blog.search.result.SearchResultFragment"
+        android:label="SearchResultFragment"
         tools:layout="@layout/fragment_search_blog" >
+        <argument
+            android:name="query"
+            app:argType="string"/>
+
     </fragment>
 
 </navigation>

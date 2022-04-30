@@ -8,6 +8,7 @@ import com.zlagi.cache.database.account.AccountDao
 import com.zlagi.cache.database.BlogfyDatabase
 import com.zlagi.cache.fakes.FakeDataGenerator
 import com.zlagi.cache.mapper.AccountCacheDataMapper
+import com.zlagi.cache.source.account.DefaultAccountCacheDataSource
 import com.zlagi.data.source.cache.account.AccountCacheDataSource
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

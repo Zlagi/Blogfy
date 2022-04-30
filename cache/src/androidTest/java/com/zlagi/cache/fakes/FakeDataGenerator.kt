@@ -2,7 +2,7 @@ package com.zlagi.cache.fakes
 
 import com.zlagi.data.model.AccountDataModel
 import com.zlagi.data.model.BlogDataModel
-import com.zlagi.data.model.SearchSuggestionDataModel
+import com.zlagi.data.model.HistoryDataModel
 
 object FakeDataGenerator {
     const val emptySearchQuery = ""
@@ -54,9 +54,9 @@ object FakeDataGenerator {
 
     val account = AccountDataModel(1, "test@gmail.com", "testtest")
 
-    val searchSuggestions = listOf(
-        SearchSuggestionDataModel(1, "first"),
-        SearchSuggestionDataModel(2, "second"),
-        SearchSuggestionDataModel(3, "third")
+    val historyList = listOf(
+        HistoryDataModel(query = "first"),
+        HistoryDataModel(query = "second"),
+        HistoryDataModel(query = "third")
     )
 }
