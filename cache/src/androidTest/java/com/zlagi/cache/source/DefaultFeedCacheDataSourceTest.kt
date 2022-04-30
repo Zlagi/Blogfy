@@ -8,6 +8,7 @@ import com.zlagi.cache.database.feed.FeedDao
 import com.zlagi.cache.database.BlogfyDatabase
 import com.zlagi.cache.fakes.FakeDataGenerator
 import com.zlagi.cache.mapper.FeedBlogCacheDataMapper
+import com.zlagi.cache.source.feed.DefaultFeedCacheDataSource
 import com.zlagi.data.model.BlogDataModel
 import com.zlagi.data.source.cache.feed.FeedCacheDataSource
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -47,7 +48,7 @@ class DefaultFeedCacheDataSourceTest {
     @Before
     fun setup() {
         hiltRule.inject()
-        feedDao = database.blogDao()
+        feedDao = database.feedDao()
         feedBlogCacheDataMapper = FeedBlogCacheDataMapper()
         feedCacheDataSource = DefaultFeedCacheDataSource(feedDao, feedBlogCacheDataMapper)
     }
@@ -63,7 +64,7 @@ class DefaultFeedCacheDataSourceTest {
         val expected = FakeDataGenerator.blogs
 
         // When
-        feedCacheDataSource.storeBlogs(FakeDataGenerator.blogs)
+        feedCacheDataSource.storeBlogs(expected)
 
         // Then
         feedCacheDataSource.fetchBlogs(FakeDataGenerator.emptySearchQuery).test {

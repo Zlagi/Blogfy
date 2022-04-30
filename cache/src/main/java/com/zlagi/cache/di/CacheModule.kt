@@ -5,16 +5,16 @@ import androidx.room.Room
 import com.zlagi.cache.database.BlogfyDatabase
 import com.zlagi.cache.database.account.AccountDao
 import com.zlagi.cache.database.feed.FeedDao
-import com.zlagi.cache.database.search.SearchBlogDao
-import com.zlagi.cache.database.search.suggestions.SearchSuggestionsDao
-import com.zlagi.cache.source.DefaultAccountCacheDataSource
-import com.zlagi.cache.source.DefaultFeedCacheDataSource
-import com.zlagi.cache.source.DefaultSearchBlogCacheDataSource
-import com.zlagi.cache.source.DefaultSearchSuggestionsCacheDataSource
+import com.zlagi.cache.database.search.SearchDao
+import com.zlagi.cache.database.search.history.HistoryDao
+import com.zlagi.cache.source.account.DefaultAccountCacheDataSource
+import com.zlagi.cache.source.feed.DefaultFeedCacheDataSource
+import com.zlagi.cache.source.search.DefaultSearchBlogCacheDataSource
+import com.zlagi.cache.source.search.history.DefaultHistoryCacheDataSource
 import com.zlagi.data.source.cache.account.AccountCacheDataSource
 import com.zlagi.data.source.cache.feed.FeedCacheDataSource
 import com.zlagi.data.source.cache.search.SearchBlogCacheDataSource
-import com.zlagi.data.source.cache.search.suggestions.SearchSuggestionsCacheDataSource
+import com.zlagi.data.source.cache.search.history.HistoryCacheDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -43,9 +43,9 @@ abstract class CacheModule {
     ): AccountCacheDataSource
 
     @Binds
-    abstract fun provideSearchSuggestionsCacheDataSource(
-        datasource: DefaultSearchSuggestionsCacheDataSource
-    ): SearchSuggestionsCacheDataSource
+    abstract fun provideHistoryCacheDataSource(
+        datasource: DefaultHistoryCacheDataSource
+    ): HistoryCacheDataSource
 
     companion object {
 
@@ -65,12 +65,12 @@ abstract class CacheModule {
         @Provides
         fun provideBlogDao(
             blogfyDatabase: BlogfyDatabase
-        ): FeedDao = blogfyDatabase.blogDao()
+        ): FeedDao = blogfyDatabase.feedDao()
 
         @Provides
         fun provideSearchBlogDao(
             blogfyDatabase: BlogfyDatabase
-        ): SearchBlogDao = blogfyDatabase.searchDao()
+        ): SearchDao = blogfyDatabase.searchDao()
 
         @Provides
         fun provideAccountDao(
@@ -80,6 +80,6 @@ abstract class CacheModule {
         @Provides
         fun provideSearchSuggestionsDao(
             blogfyDatabase: BlogfyDatabase
-        ): SearchSuggestionsDao = blogfyDatabase.searchSuggestionsDao()
+        ): HistoryDao = blogfyDatabase.historyDao()
     }
 }

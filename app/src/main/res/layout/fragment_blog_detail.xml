@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?attr/actionBarItemBackground"
-                    android:contentDescription="@string/clear_search_suggestion_item"
+                    android:contentDescription="@string/delete"
                     android:padding="@dimen/dimen_12"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "72616b85a37d501cce43b004add9adfa",
+    "identityHash": "de968d70db9c39b396ad0f87521370df",
     "entities": [
       {
         "tableName": "feed",
@@ -137,15 +137,9 @@
         "foreignKeys": []
       },
       {
-        "tableName": "search_suggestion",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pk` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `query` TEXT NOT NULL)",
+        "tableName": "history",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`query` TEXT NOT NULL, PRIMARY KEY(`query`))",
         "fields": [
-          {
-            "fieldPath": "pk",
-            "columnName": "pk",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "query",
             "columnName": "query",
@@ -155,9 +149,9 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "pk"
+            "query"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -166,7 +160,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '72616b85a37d501cce43b004add9adfa')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'de968d70db9c39b396ad0f87521370df')"
     ]
   }
 }

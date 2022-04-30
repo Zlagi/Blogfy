@@ -1,7 +1,6 @@
 package com.zlagi.presentation.fakes
 
 import com.zlagi.domain.model.*
-import kotlinx.coroutines.flow.flow
 
 object FakeDataGenerator {
     const val correctEmail = "test@gmail.com"
@@ -83,6 +82,8 @@ object FakeDataGenerator {
         "Zlagii"
     )
 
+    const val query = "something"
+
     private val pagination = PaginationDomainModel(
         currentPage = 1,
         totalPages = 2
@@ -93,17 +94,11 @@ object FakeDataGenerator {
         pagination = pagination
     )
 
-    val searchSuggestions = listOf(
-        SearchSuggestionDomainModel(1, "first"),
-        SearchSuggestionDomainModel(2, "second"),
-        SearchSuggestionDomainModel(3, "third")
+    val history = listOf(
+        HistoryDomainModel(query = "first"),
+        HistoryDomainModel(query = "second"),
+        HistoryDomainModel(query = "third")
     )
 
-    val searchSuggestionUpdated = listOf(
-        SearchSuggestionDomainModel(3, "third")
-    )
-
-    val searchSuggestionList = flow { emit(searchSuggestions) }
-
-    val account = AccountDomainModel(1, "test@gmail.com", "testtest")
+    val account = AccountDomainModel(pk = 1, email = "test@gmail.com", username = "testtest")
 }
