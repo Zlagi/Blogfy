@@ -78,7 +78,7 @@ abstract class CacheModule {
         ): AccountDao = blogfyDatabase.accountDao()
 
         @Provides
-        fun provideSearchSuggestionsDao(
+        fun provideHistoryDao(
             blogfyDatabase: BlogfyDatabase
         ): HistoryDao = blogfyDatabase.historyDao()
     }
