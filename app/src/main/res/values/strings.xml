@@ -51,8 +51,8 @@
     <string name="blog_date_updated">Date: 2021–12–12 Time: 07:46:49</string>
     <string name="delete">Delete blog</string>
     <string name="search_item">search item</string>
-    <string name="clear_search_suggestions">Clear search suggestions</string>
-    <string name="clear_search_suggestion_item">Clear search suggestion item</string>
+    <string name="clear_search_history">Clear search history</string>
+    <string name="clear_search_history_item">Clear search history item</string>
     <string name="created">Created</string>
     <string name="updated">Updated</string>
 </resources>

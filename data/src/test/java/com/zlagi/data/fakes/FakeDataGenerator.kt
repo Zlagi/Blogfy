@@ -117,15 +117,9 @@ object FakeDataGenerator {
     val account = AccountDataModel(1, "test@gmail.com", "testtest")
     val accountDomain = AccountDomainModel(1, "test@gmail.com", "testtest")
 
-    val searchSuggestions = listOf(
-        SearchSuggestionDataModel(1, "first"),
-        SearchSuggestionDataModel(2, "second"),
-        SearchSuggestionDataModel(3, "third")
-    )
-
-    val searchSuggestionsDomain = listOf(
-        SearchSuggestionDomainModel(1, "first"),
-        SearchSuggestionDomainModel(2, "second"),
-        SearchSuggestionDomainModel(3, "third")
+    val historyList = listOf(
+        HistoryDataModel(query = "first"),
+        HistoryDataModel(query = "second"),
+        HistoryDataModel(query = "third")
     )
 }

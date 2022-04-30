@@ -36,11 +36,6 @@ fun Fragment.showToast(text: Int) {
     toast.show()
 }
 
-fun Activity.showKeyboard() {
-    val insetsControllerCompat = ViewCompat.getWindowInsetsController(window.decorView)
-    insetsControllerCompat?.show(WindowInsetsCompat.Type.ime())
-}
-
 fun Fragment.showSnackBar(failure: Int, timeLength: Int) {
     Snackbar.make(requireView(), failure, timeLength).show()
 }
