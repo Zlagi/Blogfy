@@ -127,10 +127,13 @@ class SearchHistoryFragment : Fragment() {
                 binding.searchInputText.clearFocus()
                 viewModel.setEvent(SearchHistoryContract.SearchHistoryEvent.NavigateUp)
             }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this) {
-            binding.searchInputText.clearFocus()
-            viewModel.setEvent(SearchHistoryContract.SearchHistoryEvent.NavigateUp)
+            requireActivity().onBackPressedDispatcher.addCallback(this@SearchHistoryFragment) {
+                searchInputText.apply {
+                    if (!this.isFocused) findNavController().navigateUp()
+                    this.clearFocus()
+                    viewModel.setEvent(SearchHistoryContract.SearchHistoryEvent.NavigateUp)
+                }
+            }
         }
     }
 
@@ -146,7 +149,6 @@ class SearchHistoryFragment : Fragment() {
             render(state)
         }
     }
-
     private fun render(state: SearchHistoryContract.SearchHistoryViewState) {
         binding.apply {
             searchHistory.apply {
