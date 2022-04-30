@@ -30,14 +30,6 @@ class SearchHistoryFragment : Fragment() {
 
     private var searchHistoryAdapter: SearchHistoryAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) viewModel.setEvent(
-            SearchHistoryContract.SearchHistoryEvent.LoadHistory
-        )
-        savedInstanceState?.putBoolean("init", false)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +40,7 @@ class SearchHistoryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.setEvent(SearchHistoryContract.SearchHistoryEvent.LoadHistory)
         searchHistoryAdapter = createSearchHistoryAdapter()
         setupHistoryRecyclerView()
         setupViews()
@@ -67,16 +60,16 @@ class SearchHistoryFragment : Fragment() {
                     )
                 }
                 SearchAction.GET -> {
-                        viewModel.setEvent(
-                            SearchHistoryContract.SearchHistoryEvent.UpdateFocusState(
-                                state = true
-                            )
+                    viewModel.setEvent(
+                        SearchHistoryContract.SearchHistoryEvent.UpdateFocusState(
+                            state = true
                         )
-                        viewModel.setEvent(
-                            SearchHistoryContract.SearchHistoryEvent.HistoryItemClicked(
-                                query = search.query
-                            )
+                    )
+                    viewModel.setEvent(
+                        SearchHistoryContract.SearchHistoryEvent.HistoryItemClicked(
+                            query = search.query
                         )
+                    )
                     viewModel.setEvent(
                         SearchHistoryContract.SearchHistoryEvent.NavigateTo
                     )
