@@ -112,7 +112,7 @@ class AccountDetailViewModel @Inject constructor(
     }
 
     /**
-     * Start fetching account properties
+     * Start fetching cached account
      */
     private fun onGetAccount() {
         viewModelScope.launch {

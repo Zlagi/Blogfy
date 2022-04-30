@@ -11,7 +11,8 @@ fun Throwable.getStringResId(): Int {
         is NetworkException.Network -> R.string.server_unreachable_message
         is NetworkException.NotAuthorized -> R.string.invalid_credentials_message
         is NetworkException.NoResults -> R.string.no_more_results
-        is NetworkException.ServiceNotWorking, is NetworkException.ServiceUnavailable -> R.string.service_unavailable_message
+        is NetworkException.ServiceNotWorking,
+        is NetworkException.ServiceUnavailable -> R.string.service_unavailable_message
         is NetworkException.Unknown -> R.string.unknown_network_error_message
         is UnknownError -> R.string.unknown_error_message
         else -> R.string.unknown_error_message
