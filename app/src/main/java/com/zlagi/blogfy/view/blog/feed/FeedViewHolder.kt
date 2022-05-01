@@ -6,6 +6,7 @@ import com.airbnb.lottie.LottieDrawable
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.blogfy.R
 import com.zlagi.blogfy.databinding.FeedItemLayoutBinding
+import com.zlagi.common.utils.Constants
 import com.zlagi.presentation.model.BlogPresentationModel
 import io.github.rosariopfernandes.firecoil.load
 
@@ -41,14 +42,14 @@ class FeedViewHolder(
                 transitionName = item.pk.toString()
                 if (item.updated.isNotEmpty()) load(
                     firebaseStorage.getReferenceFromUrl(
-                        "gs://blogfy-e5b41.appspot.com/image/${item.updated}"
+                        "${Constants.FIREBASE_IMAGE_URL}${item.updated}"
                     )
                 ) {
                     placeholder(lottieDrawable)
                 }
                 else load(
                     firebaseStorage.getReferenceFromUrl(
-                        "gs://blogfy-e5b41.appspot.com/image/${item.created}"
+                        "${Constants.FIREBASE_IMAGE_URL}${item.created}"
                     )
                 ) {
                     placeholder(lottieDrawable)

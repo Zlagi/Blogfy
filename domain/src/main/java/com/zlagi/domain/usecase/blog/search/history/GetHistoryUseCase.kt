@@ -10,9 +10,12 @@ import javax.inject.Inject
 class GetHistoryUseCase @Inject constructor(
     private val historyRepository: HistoryRepository
 ) {
+    companion object {
+        private const val historyItems = 5
+    }
     suspend operator fun invoke(): DataResult<List<HistoryDomainModel>> {
         val data = historyRepository.getHistory().first()
-            .takeLast(5).reversed()
+            .takeLast(historyItems).reversed()
         if (data.isEmpty()) {
             return DataResult.Error(CacheException.NoResults)
         }

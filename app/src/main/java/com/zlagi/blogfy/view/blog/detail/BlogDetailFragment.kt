@@ -6,7 +6,6 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,6 +24,7 @@ import com.zlagi.blogfy.databinding.FragmentBlogDetailBinding
 import com.zlagi.blogfy.view.utils.LoadingDialogFragment
 import com.zlagi.blogfy.view.utils.MenuBottomSheetDialogFragment
 import com.zlagi.blogfy.view.utils.showSnackBar
+import com.zlagi.common.utils.Constants.FIREBASE_IMAGE_URL
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailEvent.*
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect.*
@@ -160,7 +160,7 @@ class BlogDetailFragment : Fragment() {
                 if (state.blog?.updated?.isNotEmpty() == true) {
                     load(
                         firebaseStorage.getReferenceFromUrl(
-                            "gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}"
+                            "$FIREBASE_IMAGE_URL${state.blog?.updated}"
                         )
                     ) {
                         placeholder(lottieDrawable)
@@ -168,7 +168,7 @@ class BlogDetailFragment : Fragment() {
                 } else {
                     load(
                         firebaseStorage.getReferenceFromUrl(
-                            "gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}"
+                            "$FIREBASE_IMAGE_URL${state.blog?.created}"
                         )
                     ) {
                         placeholder(lottieDrawable)
@@ -213,19 +213,24 @@ class BlogDetailFragment : Fragment() {
 
     private fun reactTo(effect: BlogDetailViewEffect) {
         when (effect) {
-            is NavigateToUpdateBlog -> navigateToUpdateBlog(effect.blogPk)
+            is NavigateToUpdateBlog -> navigateToUpdateBlog(
+                effect.pk,
+                effect.title,
+                effect.description
+            )
             is ShowDeleteBlogDialog -> showDeleteBlogDialog(true)
             is NavigateUp -> navigateUp(refreshFeed = true)
             is ShowSnackBarError -> showSnackBarError(effect.message)
         }
     }
 
-    private fun navigateToUpdateBlog(blogPk: Int?) {
-        blogPk?.let {
-            val bundle = bundleOf("blogPostPk" to it)
-            val action = R.id.action_blogDetailFragment_to_updateBlogFragment
-            findNavController().navigate(action, bundle)
-        }
+    private fun navigateToUpdateBlog(pk: Int?, title: String?, description: String?) {
+        val action = BlogDetailFragmentDirections.actionBlogDetailFragmentToUpdateBlogFragment(
+            pk!!,
+            title!!,
+            description!!
+        )
+        findNavController().navigate(action)
     }
 
     private fun showDeleteBlogDialog(state: Boolean) {

@@ -12,9 +12,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import coil.ImageLoader
 import coil.load
 import com.airbnb.lottie.LottieCompositionFactory.fromRawRes
@@ -28,6 +30,7 @@ import com.zlagi.blogfy.R
 import com.zlagi.blogfy.R.raw.image_loader
 import com.zlagi.blogfy.databinding.FragmentUpdateBlogBinding
 import com.zlagi.blogfy.view.utils.*
+import com.zlagi.common.utils.Constants
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogEvent.*
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogViewEffect
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogViewEffect.*
@@ -48,6 +51,8 @@ class UpdateBlogFragment : Fragment() {
     private var loadingDialog: LoadingDialogFragment? = null
 
     private var alertDialogDisplayed = false
+
+    private val args: UpdateBlogFragmentArgs by navArgs()
 
     @Inject
     lateinit var imageLoader: ImageLoader
@@ -76,7 +81,6 @@ class UpdateBlogFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initialization()
-
         cropActivityResultLauncher = registerForActivityResult(cropActivityResultContract) {}
     }
 
@@ -108,21 +112,34 @@ class UpdateBlogFragment : Fragment() {
     }
 
     private fun initialization() {
-        viewModel.setEvent(Initialization)
+        viewModel.setEvent(Initialization(pk = args.pk))
     }
 
     private fun setupUI() {
-        setupUri()
+        setupBlog()
         clickConfirmUpdateButton()
         clickCancelUpdateButton()
-        pressBackButton()
+        setupBackButton()
     }
 
-
-    private fun setupUri() {
-        binding.blogImageView.setOnClickListener {
-            if (isStoragePermissionGranted()) {
-                cropActivityResultLauncher.launch(null)
+    private fun setupBlog() {
+        binding.apply {
+            blogTitleInputText.apply {
+                this.setText(args.title)
+                this.addTextChangedListener {
+                    viewModel.setEvent(TitleChanged(it.toString()))
+                }
+            }
+            blogDescriptionInputText.apply {
+                this.setText(args.description)
+                this.addTextChangedListener {
+                    viewModel.setEvent(DescriptionChanged(it.toString()))
+                }
+            }
+            blogImageView.setOnClickListener {
+                if (isStoragePermissionGranted()) {
+                    cropActivityResultLauncher.launch(null)
+                }
             }
         }
     }
@@ -130,10 +147,6 @@ class UpdateBlogFragment : Fragment() {
     private fun clickConfirmUpdateButton() {
         binding.apply {
             confirmUpdateBlogButton.setOnClickListener {
-                val title = blogTitleInputText.text.toString()
-                val description = blogDescriptionInputText.text.toString()
-                viewModel.setEvent(TitleChanged(title))
-                viewModel.setEvent(DescriptionChanged(description))
                 viewModel.setEvent(ConfirmUpdateButtonClicked(imageUri))
                 requireActivity().hideKeyboard()
             }
@@ -146,7 +159,7 @@ class UpdateBlogFragment : Fragment() {
         }
     }
 
-    private fun pressBackButton() {
+    private fun setupBackButton() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             requireActivity().hideKeyboard()
             viewModel.setEvent(CancelUpdateButtonClicked)
@@ -179,21 +192,19 @@ class UpdateBlogFragment : Fragment() {
                     }
                 } ?: if (state.blog?.updated?.isNotEmpty() == true) load(
                     storageReference.getReferenceFromUrl(
-                        "gs://blogfy-e5b41.appspot.com/image/${state.blog?.updated}"
+                        "${Constants.FIREBASE_IMAGE_URL}${state.blog?.updated}"
                     )
                 ) {
                     placeholder(lottieDrawable)
                 }
                 else load(
                     storageReference.getReferenceFromUrl(
-                        "gs://blogfy-e5b41.appspot.com/image/${state.blog?.created}"
+                        "${Constants.FIREBASE_IMAGE_URL}${state.blog?.created}"
                     )
                 ) {
                     placeholder(lottieDrawable)
                 }
             }
-            blogTitleInputText.setText(state.blog?.title)
-            blogDescriptionInputText.setText(state.blog?.description)
         }
     }
 
@@ -255,18 +266,6 @@ class UpdateBlogFragment : Fragment() {
     private fun navigateUp() {
         requireActivity().hideKeyboard()
         findNavController().navigateUp()
-    }
-
-    private fun cacheState() {
-        val title = binding.blogTitleInputText.text.toString()
-        val description = binding.blogDescriptionInputText.text.toString()
-        viewModel.setEvent(TitleChanged(title))
-        viewModel.setEvent(DescriptionChanged(description))
-    }
-
-    override fun onPause() {
-        super.onPause()
-        cacheState()
     }
 
     override fun onDestroyView() {
