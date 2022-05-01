@@ -129,12 +129,22 @@ class BlogDetailViewModelTest {
     fun `when UpdateBlogButtonClicked then verify viewEffect`() =
         testCoroutineRule.runBlockingTest {
             // Given
+            val getBlogResult = FakeDataGenerator.oldBlog
+
+            coEvery { getBlogUseCase.invoke(any()) } returns getBlogResult
+
             sut.blogPk = FakeDataGenerator.oldBlog.pk
 
+
             val expectedViewEffect =
-                BlogDetailContract.BlogDetailViewEffect.NavigateToUpdateBlog(FakeDataGenerator.oldBlog.pk)
+                BlogDetailContract.BlogDetailViewEffect.NavigateToUpdateBlog(
+                    pk = FakeDataGenerator.oldBlog.pk,
+                    title = FakeDataGenerator.oldBlog.title,
+                    description = FakeDataGenerator.oldBlog.description
+                )
 
             // When
+            sut.setEvent(BlogDetailContract.BlogDetailEvent.Initialization)
             sut.setEvent(BlogDetailContract.BlogDetailEvent.UpdateBlogButtonClicked)
 
             // Then

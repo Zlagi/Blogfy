@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -93,8 +94,6 @@ class UpdateBlogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.blogTitleInputText.setText(args.title)
-        binding.blogDescriptionInputText.setText(args.description)
         setupUI()
         observeViewState()
         observeViewEffect()
@@ -117,17 +116,30 @@ class UpdateBlogFragment : Fragment() {
     }
 
     private fun setupUI() {
-        setupUri()
+        setupBlog()
         clickConfirmUpdateButton()
         clickCancelUpdateButton()
-        pressBackButton()
+        setupBackButton()
     }
 
-
-    private fun setupUri() {
-        binding.blogImageView.setOnClickListener {
-            if (isStoragePermissionGranted()) {
-                cropActivityResultLauncher.launch(null)
+    private fun setupBlog() {
+        binding.apply {
+            blogTitleInputText.apply {
+                this.setText(args.title)
+                this.addTextChangedListener {
+                    viewModel.setEvent(TitleChanged(it.toString()))
+                }
+            }
+            blogDescriptionInputText.apply {
+                this.setText(args.description)
+                this.addTextChangedListener {
+                    viewModel.setEvent(DescriptionChanged(it.toString()))
+                }
+            }
+            blogImageView.setOnClickListener {
+                if (isStoragePermissionGranted()) {
+                    cropActivityResultLauncher.launch(null)
+                }
             }
         }
     }
@@ -135,10 +147,6 @@ class UpdateBlogFragment : Fragment() {
     private fun clickConfirmUpdateButton() {
         binding.apply {
             confirmUpdateBlogButton.setOnClickListener {
-                val title = blogTitleInputText.text.toString()
-                val description = blogDescriptionInputText.text.toString()
-                viewModel.setEvent(TitleChanged(title))
-                viewModel.setEvent(DescriptionChanged(description))
                 viewModel.setEvent(ConfirmUpdateButtonClicked(imageUri))
                 requireActivity().hideKeyboard()
             }
@@ -151,7 +159,7 @@ class UpdateBlogFragment : Fragment() {
         }
     }
 
-    private fun pressBackButton() {
+    private fun setupBackButton() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             requireActivity().hideKeyboard()
             viewModel.setEvent(CancelUpdateButtonClicked)
