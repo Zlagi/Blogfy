@@ -24,6 +24,16 @@
         android:id="@+id/updateBlogFragment"
         android:name="com.zlagi.blogfy.view.blog.update.UpdateBlogFragment"
         android:label="fragment_update_blog"
-        tools:layout="@layout/fragment_update_blog"/>
+        tools:layout="@layout/fragment_update_blog">
+        <argument
+            android:name="pk"
+            app:argType="integer"/>
+        <argument
+            android:name="title"
+            app:argType="string"/>
+        <argument
+            android:name="description"
+            app:argType="string"/>
+    </fragment>
 
 </navigation>

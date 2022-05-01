@@ -14,7 +14,9 @@ class BlogDetailContract {
     }
 
     sealed class BlogDetailViewEffect {
-        data class NavigateToUpdateBlog(val blogPk: Int?) : BlogDetailViewEffect()
+        data class NavigateToUpdateBlog(val pk: Int?, val title: String?, val description: String?) :
+            BlogDetailViewEffect()
+
         object ShowDeleteBlogDialog : BlogDetailViewEffect()
         data class NavigateUp(val refreshLoad: Boolean) : BlogDetailViewEffect()
         data class ShowSnackBarError(val message: Int) : BlogDetailViewEffect()

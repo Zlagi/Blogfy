@@ -67,10 +67,16 @@ class BlogDetailViewModel @Inject constructor(
         when (event) {
             is Initialization -> onBlogObtained(blogPk)
             is CheckBlogAuthor -> onCheckBlogAuthor()
-            is UpdateBlogButtonClicked -> setEffect { NavigateToUpdateBlog(blogPk) }
+            is UpdateBlogButtonClicked -> setEffect {
+                NavigateToUpdateBlog(
+                    pk = blogPk,
+                    title = currentState.blog?.title,
+                    description = currentState.blog?.description
+                )
+            }
             is DeleteBlogButtonClicked -> setEffect { ShowDeleteBlogDialog }
             is ConfirmDialogButtonClicked -> onDeleteBlog()
-            is RefreshData -> onBlogObtained(currentState.blog?.pk!!)
+            is RefreshData -> onBlogObtained(blogPk = currentState.blog?.pk!!)
         }
     }
 
@@ -96,7 +102,12 @@ class BlogDetailViewModel @Inject constructor(
         blogPk?.let {
             job = viewModelScope.launch {
                 when (val result = checkBlogAuthorUseCase(it)) {
-                    is DataResult.Success -> setState { copy(loading = false, isAuthor = result.data) }
+                    is DataResult.Success -> setState {
+                        copy(
+                            loading = false,
+                            isAuthor = result.data
+                        )
+                    }
                     is DataResult.Error -> setEffect {
                         ShowSnackBarError(result.exception.getStringResId())
                     }

@@ -3,7 +3,6 @@ package com.zlagi.presentation.blog.update
 import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.core.net.toUri
-import androidx.lifecycle.SavedStateHandle
 import androidx.test.filters.MediumTest
 import app.cash.turbine.test
 import com.google.common.truth.Truth
@@ -74,8 +73,7 @@ class UpdateBlogViewModelTest {
             updateBlogUseCase = updateBlogUseCase,
             dateFormatUseCase = dateFormatUseCase,
             blogDomainPresentationMapper = blogDomainPresentationMapper,
-            storageReference = FirebaseStorage.getInstance(),
-            savedStateHandle = SavedStateHandle()
+            storageReference = FirebaseStorage.getInstance()
         )
     }
 
@@ -87,14 +85,12 @@ class UpdateBlogViewModelTest {
 
             coEvery { getBlogUseCase.invoke(any()) } returns result
 
-            sut.blogPk = FakeDataGenerator.oldBlog.pk
-
             val expectedViewState = UpdateBlogContract.UpdateBlogViewState(
                 blog = blogDomainPresentationMapper.from(FakeDataGenerator.oldBlog)
             )
 
             // When
-            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization)
+            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization(pk = FakeDataGenerator.oldBlog.pk))
 
             // Then
             sut.viewState.test {
@@ -164,8 +160,6 @@ class UpdateBlogViewModelTest {
                 )
             } returns updateBlogResult
 
-            sut.blogPk = FakeDataGenerator.oldBlog.pk
-
             val blog = blogDomainPresentationMapper.from(FakeDataGenerator.updatedBlog)
 
             val expectedViewState = UpdateBlogContract.UpdateBlogViewState(
@@ -177,7 +171,7 @@ class UpdateBlogViewModelTest {
                 UpdateBlogContract.UpdateBlogViewEffect.ShowSnackBarError(R.string.network_unavailable_message)
 
             // When
-            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization)
+            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization(pk = FakeDataGenerator.oldBlog.pk))
             sut.setEvent(UpdateBlogContract.UpdateBlogEvent.TitleChanged(
                 FakeDataGenerator.updatedBlog.title))
             sut.setEvent(UpdateBlogContract.UpdateBlogEvent.DescriptionChanged(
@@ -228,8 +222,6 @@ class UpdateBlogViewModelTest {
                 )
             } returns updateBlogResult
 
-            sut.blogPk = FakeDataGenerator.oldBlog.pk
-
             val blog = blogDomainPresentationMapper.from(FakeDataGenerator.blogMissingTitle)
 
             val expectedViewState = UpdateBlogContract.UpdateBlogViewState(
@@ -241,7 +233,7 @@ class UpdateBlogViewModelTest {
             )
 
             // When
-            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization)
+            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization(pk = FakeDataGenerator.oldBlog.pk))
             sut.setEvent(UpdateBlogContract.UpdateBlogEvent.TitleChanged(title = ""))
             sut.setEvent(
                 UpdateBlogContract.UpdateBlogEvent.ConfirmUpdateButtonClicked(
@@ -285,8 +277,6 @@ class UpdateBlogViewModelTest {
                 )
             } returns updateBlogResult
 
-            sut.blogPk = FakeDataGenerator.oldBlog.pk
-
             val blog = blogDomainPresentationMapper.from(FakeDataGenerator.blogMissingDescription)
 
             val expectedViewState = UpdateBlogContract.UpdateBlogViewState(
@@ -298,7 +288,7 @@ class UpdateBlogViewModelTest {
             )
 
             // When
-            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization)
+            sut.setEvent(UpdateBlogContract.UpdateBlogEvent.Initialization(pk = FakeDataGenerator.oldBlog.pk))
             sut.setEvent(UpdateBlogContract.UpdateBlogEvent.DescriptionChanged(description = ""))
             sut.setEvent(
                 UpdateBlogContract.UpdateBlogEvent.ConfirmUpdateButtonClicked(

@@ -1,7 +1,6 @@
 package com.zlagi.presentation.viewmodel.blog.update
 
 import android.net.Uri
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.storage.FirebaseStorage
@@ -31,8 +30,7 @@ class UpdateBlogViewModel @Inject constructor(
     private val updateBlogUseCase: UpdateBlogUseCase,
     private val dateFormatUseCase: DateFormatUseCase,
     private val blogDomainPresentationMapper: BlogDomainPresentationMapper,
-    private val storageReference: FirebaseStorage,
-    savedStateHandle: SavedStateHandle
+    private val storageReference: FirebaseStorage
 ) : ViewModel() {
 
     private val currentState: UpdateBlogViewState
@@ -46,18 +44,19 @@ class UpdateBlogViewModel @Inject constructor(
 
     private var job: Job? = null
 
-    var blogPk = savedStateHandle.get<Int>("blogPostPk")
-
     /**
      * handle events
      */
     fun setEvent(event: UpdateBlogEvent) {
         when (event) {
-            is Initialization -> onBlogObtained(blogPk)
-            is TitleChanged -> onUpdateTitle(event.title)
-            is DescriptionChanged -> onUpdateDescription(event.description)
-            is OriginalUriChanged -> onUpdateOriginalUri(event.uri)
-            is ConfirmUpdateButtonClicked -> onUpdateBlog(blogPk, event.imageUri)
+            is Initialization -> onBlogObtained(blogPk = event.pk)
+            is TitleChanged -> onUpdateTitle(title = event.title)
+            is DescriptionChanged -> onUpdateDescription(description = event.description)
+            is OriginalUriChanged -> onUpdateOriginalUri(uri = event.uri)
+            is ConfirmUpdateButtonClicked -> onUpdateBlog(
+                blogPk = currentState.blog?.pk,
+                imageUri = event.imageUri
+            )
             is CancelUpdateButtonClicked -> setEffect { ShowDiscardChangesDialog }
             is ConfirmDialogButtonClicked -> setEffect { NavigateUp }
         }
