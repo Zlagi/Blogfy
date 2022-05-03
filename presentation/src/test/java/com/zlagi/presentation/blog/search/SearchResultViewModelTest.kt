@@ -88,7 +88,7 @@ class SearchResultViewModelTest {
             // When
             sut.setEvent(
                 SearchResultContract.SearchResultEvent.ExecuteSearch(
-                    init = true,
+                    initSearch = true,
                     query = FakeDataGenerator.query
                 )
             )
@@ -129,7 +129,7 @@ class SearchResultViewModelTest {
             // When
             sut.setEvent(
                 SearchResultContract.SearchResultEvent.ExecuteSearch(
-                    init = true,
+                    initSearch = true,
                     query = FakeDataGenerator.query
                 )
             )
@@ -166,7 +166,7 @@ class SearchResultViewModelTest {
             // When
             sut.setEvent(
                 SearchResultContract.SearchResultEvent.ExecuteSearch(
-                    init = true,
+                    initSearch = true,
                     query = FakeDataGenerator.query,
                 )
             )
@@ -203,7 +203,7 @@ class SearchResultViewModelTest {
             // When
             sut.setEvent(
                 SearchResultContract.SearchResultEvent.ExecuteSearch(
-                    init = true,
+                    initSearch = true,
                     query = FakeDataGenerator.query
                 )
             )

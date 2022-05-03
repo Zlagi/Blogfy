@@ -51,11 +51,10 @@ class SearchResultViewModel @Inject constructor(
      */
     fun setEvent(event: SearchResultContract.SearchResultEvent) {
         when (event) {
-            is SearchResultContract.SearchResultEvent.UpdateFocusState -> {
+            is SearchResultContract.SearchResultEvent.UpdateIcon -> {
                 setState {
                     copy(
-                        focus = event.state,
-                        icon = getIcon(event.state)
+                        icon = getIcon(state = true)
                     )
                 }
             }
@@ -63,15 +62,21 @@ class SearchResultViewModel @Inject constructor(
                 setState { copy(query = event.query) }
             }
             is SearchResultContract.SearchResultEvent.ExecuteSearch -> {
-                resetPagination()
-                saveQuery(saved = event.init, query = event.query)
-                onSearch(refreshLoad = true, query = event.query)
+                if (event.query.isNotEmpty()) {
+                    resetPagination()
+                    addQueryToHistory(alreadySaved = event.initSearch, query = event.query)
+                    onSearch(refreshLoad = true, query = event.query)
+                }
             }
             SearchResultContract.SearchResultEvent.NextPage -> {
                 onSearch(refreshLoad = false, query = currentState.query)
             }
-            SearchResultContract.SearchResultEvent.NavigateUp -> {
-                setEffect { SearchResultContract.SearchResultViewEffect.NavigateUp(query = currentState.query) }
+            is SearchResultContract.SearchResultEvent.NavigateUp -> {
+                event.icon?.let {
+                    if (it == R.drawable.ic_arrow_left) {
+                        setEffect { SearchResultContract.SearchResultViewEffect.NavigateUp(query = currentState.query) }
+                    }
+                } ?: setEffect { SearchResultContract.SearchResultViewEffect.NavigateUp(query = currentState.query) }
             }
         }
     }
@@ -98,9 +103,9 @@ class SearchResultViewModel @Inject constructor(
     /**
      * Save search query
      */
-    private fun saveQuery(saved: Boolean, query: String) {
+    private fun addQueryToHistory(alreadySaved: Boolean, query: String) {
         viewModelScope.launch {
-            if (!saved) saveQueryUseCase(query = query)
+            if (!alreadySaved) saveQueryUseCase(query = query)
         }
     }
 
@@ -108,7 +113,7 @@ class SearchResultViewModel @Inject constructor(
      * Start requesting more blogs
      */
     private fun onSearch(refreshLoad: Boolean, query: String) {
-        setState { copy(query = query) }
+        setState { copy(query = query, icon = getIcon(state = false)) }
         viewModelScope.launch {
             isLoadingNextPage = true
             setState { copy(loading = true) }
@@ -136,7 +141,11 @@ class SearchResultViewModel @Inject constructor(
                             )
                         }
                         val error = result.exception.getStringResId()
-                        setEffect { SearchResultContract.SearchResultViewEffect.ShowSnackBarError(error) }
+                        setEffect {
+                            SearchResultContract.SearchResultViewEffect.ShowSnackBarError(
+                                error
+                            )
+                        }
                     }
                 }
             }
