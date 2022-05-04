@@ -32,7 +32,7 @@ https://github.com/Zlagi/blogfy-api 🔥
 - [x] Push notifications.
 - [x] Fetch blogs with pagination support.
 - [x] Display blog search results using spring physics. 💫
-- [x] Display search suggestions before making search query and possibility to clear them all or individually. 👀
+- [x] Display search history before making search query and possibility to clear them all or individually. 👀
 - [x] Fetch user account properties periodically.
 - [x] Update user password.
 - [x] Refresh access token periodically (20 minutes lifetime). 🔄
