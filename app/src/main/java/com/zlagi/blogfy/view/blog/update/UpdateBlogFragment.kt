@@ -190,24 +190,33 @@ class UpdateBlogFragment : Fragment() {
                     load(it, imageLoader) {
                         placeholder(lottieDrawable)
                     }
-                } ?: if (state.blog?.updated?.isNotEmpty() == true) load(
-                    storageReference.getReferenceFromUrl(
-                        "${Constants.FIREBASE_IMAGE_URL}${state.blog?.updated}"
-                    )
-                ) {
-                    placeholder(lottieDrawable)
-                }
-                else load(
-                    storageReference.getReferenceFromUrl(
-                        "${Constants.FIREBASE_IMAGE_URL}${state.blog?.created}"
-                    )
-                ) {
-                    placeholder(lottieDrawable)
-                }
+                } ?: loadImageFromFirebase(binding, state, lottieDrawable)
             }
         }
     }
 
+    private fun loadImageFromFirebase(
+        binding: FragmentUpdateBlogBinding,
+        state: UpdateBlogViewState,
+        lottieDrawable: LottieDrawable
+    ) {
+        binding.blogImageView.apply {
+            if (state.blog?.updated?.isNotEmpty() == true) load(
+                storageReference.getReferenceFromUrl(
+                    "${Constants.FIREBASE_IMAGE_URL}${state.blog?.updated}"
+                )
+            ) {
+                placeholder(lottieDrawable)
+            }
+            else load(
+                storageReference.getReferenceFromUrl(
+                    "${Constants.FIREBASE_IMAGE_URL}${state.blog?.created}"
+                )
+            ) {
+                placeholder(lottieDrawable)
+            }
+        }
+    }
 
     private fun showLoadingDialog(state: Boolean) {
         if (state) {
