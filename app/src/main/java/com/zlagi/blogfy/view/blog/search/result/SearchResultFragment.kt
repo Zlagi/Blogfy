@@ -45,7 +45,7 @@ class SearchResultFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) viewModel.setEvent(
             SearchResultEvent.ExecuteSearch(
-                init = true,
+                initSearch = true,
                 query = args.query
             )
         )
@@ -74,20 +74,15 @@ class SearchResultFragment : Fragment() {
         return SearchResultAdapter(imageLoader)
     }
 
-    private fun setupBackButtons(state: Int) {
+    private fun setupNavigateUp(state: Int) {
         binding.apply {
             searchBackButton.setImageResource(state)
-            if (state == R.drawable.ic_arrow_left) {
-                searchBackButton.setOnClickListener {
-                    requireActivity().hideKeyboard()
-                    binding.searchInputText.clearFocus()
-                    viewModel.setEvent(SearchResultEvent.NavigateUp)
-                }
+            searchBackButton.setOnClickListener {
+                viewModel.setEvent(SearchResultEvent.NavigateUp(icon = state))
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            binding.searchInputText.clearFocus()
-            viewModel.setEvent(SearchResultEvent.NavigateUp)
+            viewModel.setEvent(SearchResultEvent.NavigateUp(icon = null))
         }
     }
 
@@ -96,9 +91,7 @@ class SearchResultFragment : Fragment() {
             searchInputText.setOnFocusChangeListener { view, _ ->
                 if (view.hasFocus()) {
                     viewModel.setEvent(
-                        SearchResultEvent.UpdateFocusState(
-                            state = true
-                        )
+                        SearchResultEvent.UpdateIcon
                     )
                 }
             }
@@ -108,21 +101,12 @@ class SearchResultFragment : Fragment() {
             searchInputText.setOnEditorActionListener { view, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_UNSPECIFIED || actionId == EditorInfo.IME_ACTION_SEARCH) {
                     val query = view.text.toString()
-                    if (query.isNotEmpty()) {
-                        requireActivity().hideKeyboard()
-                        searchInputText.clearFocus()
-                        viewModel.setEvent(
-                            SearchResultEvent.UpdateFocusState(
-                                state = false
-                            )
+                    viewModel.setEvent(
+                        SearchResultEvent.ExecuteSearch(
+                            initSearch = false,
+                            query = query
                         )
-                        viewModel.setEvent(
-                            SearchResultEvent.ExecuteSearch(
-                                init = false,
-                                query = query
-                            )
-                        )
-                    }
+                    )
                 }
                 true
             }
@@ -171,7 +155,7 @@ class SearchResultFragment : Fragment() {
                 blogsRecyclerView.visibility = View.VISIBLE
             }
             appbar.setExpanded(false)
-            setupBackButtons(state.icon)
+            setupNavigateUp(state.icon)
             searchResultAdapter?.submitList(state.blogs)
         }
     }
@@ -198,6 +182,8 @@ class SearchResultFragment : Fragment() {
                     )
                     findNavController().navigateUp()
                 }
+                SearchResultContract.SearchResultViewEffect.ClearFocus -> searchInputText.clearFocus()
+                SearchResultContract.SearchResultViewEffect.HideKeyboard -> requireActivity().hideKeyboard()
             }
         }
     }
