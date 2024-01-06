@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "838355569325",
-    "project_id": "blogfy-e5b41",
-    "storage_bucket": "blogfy-e5b41.appspot.com"
+    "project_number": "66754852917",
+    "project_id": "blogfy-c2a4d",
+    "storage_bucket": "blogfy-c2a4d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:838355569325:android:d31ef3aff483fc0f719424",
+        "mobilesdk_app_id": "1:66754852917:android:8b010e9041f3c0c921d97c",
         "android_client_info": {
           "package_name": "com.zlagi.blogfy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "838355569325-d59a1jf6rv6dt58ud42607m12a2u9ptr.apps.googleusercontent.com",
+          "client_id": "66754852917-erl61uo7gnbh89fjc70g4v4sr9ea6auq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.zlagi.blogfy",
-            "certificate_hash": "415fc9d85df46a5e5a2012fda1f8d8fa8cd4fbaa"
+            "certificate_hash": "62bb36c8a5f933470ca35217597e17f727ccbdca"
           }
         },
         {
-          "client_id": "838355569325-upi38j8btaun1p60nvcd3uptvahli9fq.apps.googleusercontent.com",
+          "client_id": "66754852917-a7ik8thhbdtmk3vuemgveah5k7ce7kcp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDq12VRJ3Ay-U7CZ_TUAu7GEPvDg76hkts"
+          "current_key": "AIzaSyC2BIBGDe9ZkIL20RM8ZkVctCx-c5wjEnA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "838355569325-upi38j8btaun1p60nvcd3uptvahli9fq.apps.googleusercontent.com",
+              "client_id": "66754852917-a7ik8thhbdtmk3vuemgveah5k7ce7kcp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
