@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.common.mapper.getStringResId
+import com.zlagi.common.utils.Constants
 import com.zlagi.common.utils.wrapper.DataResult
 import com.zlagi.domain.usecase.blog.dateformat.DateFormatUseCase
 import com.zlagi.domain.usecase.blog.detail.GetBlogUseCase
@@ -160,7 +161,7 @@ class UpdateBlogViewModel @Inject constructor(
                             when (updateBlogResult.result) {
                                 is DataResult.Success -> {
                                     if (imageUri != null) {
-                                        storageReference.getReference("image/$updateTime")
+                                        storageReference.getReference("${Constants.FIREBASE_IMAGE_BUCKET}/$updateTime")
                                             .putFile(imageUri).addOnSuccessListener {
                                                 setEffect { ShowToast }
                                                 setEffect { NavigateUp }
