@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dimen_16"
+        android:paddingTop="@dimen/dimen_48"
+        android:paddingRight="@dimen/dimen_16"
+        android:paddingBottom="@dimen/dimen_16"
+        tools:context=".view.auth.onboarding.OnBoardingFragment">
+
+        <ImageView
+            android:id="@+id/application_logo"
+            android:layout_width="@dimen/dimen_172"
+            android:layout_height="@dimen/dimen_172"
+            android:layout_marginTop="@dimen/dimen_32"
+            android:layout_marginBottom="@dimen/dimen_16"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/text_application_logo" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/continue_with_email_button"
+            style="@style/EmailPasswordAuthenticationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dimen_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/application_logo" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/google_sign_in_button"
+            style="@style/GoogleAuthenticationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/continue_with_email_button"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
