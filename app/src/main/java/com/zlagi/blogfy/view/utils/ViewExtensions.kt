@@ -23,7 +23,7 @@ import com.zlagi.blogfy.R
 import com.zlagi.blogfy.view.utils.ViewExt.PERMISSIONS_REQUEST_READ_STORAGE
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 fun Activity.hideKeyboard() {
@@ -48,7 +48,7 @@ fun <T> LifecycleOwner.collectWhenStarted(
     lifecycleScope.launch {
         delay(firstTimeDelay)
         lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            flow.collect(action)
+            flow.collectLatest(action)
         }
     }
 }
