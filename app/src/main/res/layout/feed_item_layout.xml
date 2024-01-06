@@ -28,7 +28,6 @@
             android:layout_marginStart="@dimen/dimen_16"
             android:layout_marginTop="@dimen/dimen_8"
             android:layout_marginEnd="@dimen/dimen_16"
-            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Blogfy.Custom1"
             tools:text="@string/text_blog_title" />
 
