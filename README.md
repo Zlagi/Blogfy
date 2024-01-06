@@ -15,6 +15,10 @@ The trick of the project is to demonstrate best practices, provide a set of guid
 
 [![Blogfy](https://img.shields.io/badge/Blogfy✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Zlagi/Blogfy/releases)
 
+## 💡 INFO
+- The server's client ID user for firebase google authentication is provided from 'local.properties' file.
+- The firestore image bucket URL path is provided from 'local.properties' file.
+
 ## 💡 API:
 
 This is our *REST API* built using Ktor Framework deployed on *Heroku*.  
