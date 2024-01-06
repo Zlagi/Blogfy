@@ -42,6 +42,13 @@
         <item name="android:fontFamily">@font/gilroy_bold</item>
     </style>
 
+    <style name="WelcomeTextViewStyle">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline4</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/gilroy_bold</item>
+    </style>
+
     <style name="EmailFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="startIconDrawable">@drawable/ic_baseline_mail_outline_24</item>
         <item name="android:inputType">textEmailAddress</item>
