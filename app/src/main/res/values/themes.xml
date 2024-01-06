@@ -75,9 +75,8 @@
         <item name="android:background">@drawable/button_shape</item>
         <item name="android:textAppearance">@style/TextAppearance.MdcTypographyStyles.Button</item>
         <item name="android:drawableStart">@drawable/ic_google</item>
-        <item name="android:drawablePadding">@dimen/dimen_32</item>
         <item name="android:text">@string/text_google_continue</item>
-        <item name="android:textAlignment">textStart</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="SignOutButton">
