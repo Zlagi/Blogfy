@@ -19,6 +19,7 @@
     <string name="delete_blog_message">Are you sure? </string>
     <string name="discard_changes_message">You have unsaved changes that will be lost. </string>
     <!-- Text -->
+    <string name="text_welcome">Welcome to Blogfy.</string>
     <string name="text_sign_in">Sign in to continue.</string>
     <string name="text_sign_up">Sign up for Blogfy account.</string>
     <string name="text_sign_up_email">Sign up with email</string>
