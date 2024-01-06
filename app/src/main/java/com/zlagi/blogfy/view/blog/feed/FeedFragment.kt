@@ -1,5 +1,7 @@
 package com.zlagi.blogfy.view.blog.feed
 
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -91,7 +93,10 @@ class FeedFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun createFeedAdapter(): FeedAdapter {
-        return FeedAdapter(firebaseStorage) { _, selectedBlog ->
+        val ai: ApplicationInfo = requireContext().packageManager
+            .getApplicationInfo(requireContext().packageName, PackageManager.GET_META_DATA)
+        val firestoreImageBucketUrl = ai.metaData["firestoreImageBucketUrlKey"].toString()
+        return FeedAdapter(firebaseStorage, firestoreImageBucketUrl) { _, selectedBlog ->
             onBlogDetail(selectedBlog.pk)
         }
     }

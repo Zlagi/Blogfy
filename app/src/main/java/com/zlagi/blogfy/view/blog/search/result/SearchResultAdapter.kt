@@ -6,18 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.ImageLoader
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.blogfy.R
 import com.zlagi.blogfy.databinding.SearchItemBinding
-import com.zlagi.common.utils.Constants
 import com.zlagi.presentation.model.BlogPresentationModel
 import io.github.rosariopfernandes.firecoil.load
 
 class SearchResultAdapter(
-    val imageLoader: ImageLoader
+    private val firestoreImageBucketUrl: String
 ) : ListAdapter<BlogPresentationModel, SearchResultAdapter.SearchBlogViewHolder>(DiffCallback()) {
 
     private val storageRef = FirebaseStorage.getInstance()
@@ -38,7 +36,7 @@ class SearchResultAdapter(
     override fun getItemCount() = currentList.size
 
     override fun onBindViewHolder(holder: SearchBlogViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position], firestoreImageBucketUrl)
     }
 
     inner class SearchBlogViewHolder(
@@ -46,7 +44,8 @@ class SearchResultAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("UseValueOf")
         fun bind(
-            item: BlogPresentationModel
+            item: BlogPresentationModel,
+            firestoreImageBucketUrl: String
         ) {
             binding.run {
                 blogTitle.text = item.title
@@ -62,14 +61,14 @@ class SearchResultAdapter(
                     transitionName = item.pk.toString()
                     if (item.updated.isNotEmpty()) load(
                         storageRef.getReferenceFromUrl(
-                            "${Constants.FIREBASE_IMAGE_URL}${item.updated}"
+                            "$firestoreImageBucketUrl${item.updated}"
                         )
                     ) {
                         placeholder(lottieDrawable)
                     }
                     else load(
                         storageRef.getReferenceFromUrl(
-                            "${Constants.FIREBASE_IMAGE_URL}${item.created}"
+                            "$firestoreImageBucketUrl${item.created}"
                         )
                     ) {
                         placeholder(lottieDrawable)

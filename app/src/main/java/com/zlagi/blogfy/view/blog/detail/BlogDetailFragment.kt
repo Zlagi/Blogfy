@@ -1,5 +1,7 @@
 package com.zlagi.blogfy.view.blog.detail
 
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,10 +26,16 @@ import com.zlagi.blogfy.databinding.FragmentBlogDetailBinding
 import com.zlagi.blogfy.view.utils.LoadingDialogFragment
 import com.zlagi.blogfy.view.utils.MenuBottomSheetDialogFragment
 import com.zlagi.blogfy.view.utils.showSnackBar
-import com.zlagi.common.utils.Constants.FIREBASE_IMAGE_URL
-import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailEvent.*
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailEvent.CheckBlogAuthor
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailEvent.ConfirmDialogButtonClicked
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailEvent.DeleteBlogButtonClicked
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailEvent.Initialization
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailEvent.UpdateBlogButtonClicked
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect
-import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect.*
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect.NavigateToUpdateBlog
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect.NavigateUp
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect.ShowDeleteBlogDialog
+import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewEffect.ShowSnackBarError
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailContract.BlogDetailViewState
 import com.zlagi.presentation.viewmodel.blog.detail.BlogDetailViewModel
 import com.zlagi.presentation.viewmodel.blog.feed.SHEET_DIALOG_ITEM
@@ -55,6 +63,8 @@ class BlogDetailFragment : Fragment() {
 
     private var menuBottomSheetDialogFragment: MenuBottomSheetDialogFragment? = null
 
+    private var firestoreImageBucketUrl = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -71,6 +81,11 @@ class BlogDetailFragment : Fragment() {
         observeViewEffect()
         onCheckBlogAuthor()
         onBackButtonClicked()
+
+        val ai: ApplicationInfo = requireContext().packageManager
+            .getApplicationInfo(requireContext().packageName, PackageManager.GET_META_DATA)
+        firestoreImageBucketUrl = ai.metaData["firestoreImageBucketUrlKey"].toString()
+
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Int>(
             SHEET_DIALOG_ITEM
         )?.observe(viewLifecycleOwner) { shouldRefresh ->
@@ -160,7 +175,7 @@ class BlogDetailFragment : Fragment() {
                 if (state.blog?.updated?.isNotEmpty() == true) {
                     load(
                         firebaseStorage.getReferenceFromUrl(
-                            "$FIREBASE_IMAGE_URL${state.blog?.updated}"
+                            "$firestoreImageBucketUrl${state.blog?.updated}"
                         )
                     ) {
                         placeholder(lottieDrawable)
@@ -168,7 +183,7 @@ class BlogDetailFragment : Fragment() {
                 } else {
                     load(
                         firebaseStorage.getReferenceFromUrl(
-                            "$FIREBASE_IMAGE_URL${state.blog?.created}"
+                            "$firestoreImageBucketUrl${state.blog?.created}"
                         )
                     ) {
                         placeholder(lottieDrawable)

@@ -1,5 +1,7 @@
 package com.zlagi.blogfy.view.blog.search.result
 
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -71,7 +73,10 @@ class SearchResultFragment : Fragment() {
     }
 
     private fun createSearchBlogAdapter(): SearchResultAdapter {
-        return SearchResultAdapter(imageLoader)
+        val ai: ApplicationInfo = requireContext().packageManager
+            .getApplicationInfo(requireContext().packageName, PackageManager.GET_META_DATA)
+        val firestoreImageBucketUrl = ai.metaData["firestoreImageBucketUrlKey"].toString()
+        return SearchResultAdapter(firestoreImageBucketUrl)
     }
 
     private fun setupNavigateUp(state: Int) {

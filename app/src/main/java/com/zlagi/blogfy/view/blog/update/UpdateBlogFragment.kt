@@ -2,6 +2,8 @@ package com.zlagi.blogfy.view.blog.update
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,7 +32,6 @@ import com.zlagi.blogfy.R
 import com.zlagi.blogfy.R.raw.image_loader
 import com.zlagi.blogfy.databinding.FragmentUpdateBlogBinding
 import com.zlagi.blogfy.view.utils.*
-import com.zlagi.common.utils.Constants
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogEvent.*
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogViewEffect
 import com.zlagi.presentation.viewmodel.blog.update.UpdateBlogContract.UpdateBlogViewEffect.*
@@ -53,6 +54,8 @@ class UpdateBlogFragment : Fragment() {
     private var alertDialogDisplayed = false
 
     private val args: UpdateBlogFragmentArgs by navArgs()
+
+    private var firestoreImageBucketUrl = ""
 
     @Inject
     lateinit var imageLoader: ImageLoader
@@ -94,6 +97,9 @@ class UpdateBlogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val ai: ApplicationInfo = requireContext().packageManager
+            .getApplicationInfo(requireContext().packageName, PackageManager.GET_META_DATA)
+        firestoreImageBucketUrl = ai.metaData["firestoreImageBucketUrlKey"].toString()
         setupUI()
         observeViewState()
         observeViewEffect()
@@ -203,14 +209,14 @@ class UpdateBlogFragment : Fragment() {
         binding.blogImageView.apply {
             if (state.blog?.updated?.isNotEmpty() == true) load(
                 storageReference.getReferenceFromUrl(
-                    "${Constants.FIREBASE_IMAGE_URL}${state.blog?.updated}"
+                    "$firestoreImageBucketUrl${state.blog?.updated}"
                 )
             ) {
                 placeholder(lottieDrawable)
             }
             else load(
                 storageReference.getReferenceFromUrl(
-                    "${Constants.FIREBASE_IMAGE_URL}${state.blog?.created}"
+                    "$firestoreImageBucketUrl${state.blog?.created}"
                 )
             ) {
                 placeholder(lottieDrawable)

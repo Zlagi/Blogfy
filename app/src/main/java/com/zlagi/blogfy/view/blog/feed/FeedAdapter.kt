@@ -11,6 +11,7 @@ import com.zlagi.presentation.model.BlogPresentationModel
 
 class FeedAdapter(
     private val firebaseStorage: FirebaseStorage,
+    private val firestoreImageBucketUrl: String,
     private val listener: OnItemSelectedListener<BlogPresentationModel> = { _, _ -> }
 ) : ListAdapter<BlogPresentationModel, FeedViewHolder>(DIFF_UTIL) {
 
@@ -27,7 +28,7 @@ class FeedAdapter(
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-        holder.bind(position, getItem(position), firebaseStorage)
+        holder.bind(position, getItem(position), firebaseStorage, firestoreImageBucketUrl)
     }
 }
 

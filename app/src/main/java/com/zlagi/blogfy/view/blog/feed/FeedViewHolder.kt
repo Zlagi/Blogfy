@@ -6,7 +6,6 @@ import com.airbnb.lottie.LottieDrawable
 import com.google.firebase.storage.FirebaseStorage
 import com.zlagi.blogfy.R
 import com.zlagi.blogfy.databinding.FeedItemLayoutBinding
-import com.zlagi.common.utils.Constants
 import com.zlagi.presentation.model.BlogPresentationModel
 import io.github.rosariopfernandes.firecoil.load
 
@@ -24,7 +23,7 @@ class FeedViewHolder(
         }
     }
 
-    fun bind(position: Int, item: BlogPresentationModel, firebaseStorage: FirebaseStorage) {
+    fun bind(position: Int, item: BlogPresentationModel, firebaseStorage: FirebaseStorage, firestoreImageBucketUrl: String) {
         currentPosition = position
         currentFeedItem = item
         with(binding) {
@@ -42,14 +41,14 @@ class FeedViewHolder(
                 transitionName = item.pk.toString()
                 if (item.updated.isNotEmpty()) load(
                     firebaseStorage.getReferenceFromUrl(
-                        "${Constants.FIREBASE_IMAGE_URL}${item.updated}"
+                        "$firestoreImageBucketUrl${item.updated}"
                     )
                 ) {
                     placeholder(lottieDrawable)
                 }
                 else load(
                     firebaseStorage.getReferenceFromUrl(
-                        "${Constants.FIREBASE_IMAGE_URL}${item.created}"
+                        "$firestoreImageBucketUrl${item.created}"
                     )
                 ) {
                     placeholder(lottieDrawable)
